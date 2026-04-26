@@ -954,3 +954,23 @@ img {
         grid-template-columns: 1fr;
     }
 }
+
+/* Sticky Reservation Bar */
+.sticky-res-bar {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 768px) {
+    .sticky-res-bar {
+        display: block;
+    }
+    body {
+        padding-bottom: 60px; /* Space for the bar */
+    }
+}

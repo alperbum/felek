@@ -617,13 +617,13 @@ const categories = [
         { id: "mezeler", image: "" },
         { id: "salatalar", image: "" },
         { id: "ana_yemekler", image: "assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg" },
+        { id: "diger_urunler", image: "" },
         { id: "tatli_meyve", image: "" },
         { id: "raki", image: "assets/images/SnapInsta.to_631052160_18497719381072243_630189921650077750_n.jpg" },
         { id: "sarap", image: "" },
         { id: "viski", image: "" },
         { id: "votka_cin", image: "" },
-        { id: "bira", image: "" },
-        { id: "diger_urunler", image: "" },
+        { id: "bira", image: "" }
     ];
 
     const menuGrid = document.getElementById('qr-menu-grid');
