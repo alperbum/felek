@@ -56,7 +56,7 @@ const translations = {
         
         cat_mezeler: "Mezeler (Başlangıçlar)",
         cat_salatalar: "Salatalar",
-        cat_ana_yemekler: "Etler (Ana Yemekler)",
+        cat_ana_yemekler: "Et Çeşitleri",
         cat_tatli_meyve: "Tatlılar ve Meyveler",
         cat_raki: "Rakılar",
         cat_sarap: "Şaraplar",

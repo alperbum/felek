@@ -126,536 +126,491 @@ document.addEventListener('DOMContentLoaded', () => {
             title: { tr: "Çiğköfte", en: "Çiğköfte", ar: "Çiğköfte", ru: "Çiğköfte" },
             price: "₺260,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Havuç Tarator", en: "Havuç Tarator", ar: "Havuç Tarator", ru: "Havuç Tarator" },
             price: "₺320,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Haydari", en: "Haydari", ar: "Haydari", ru: "Haydari" },
             price: "₺290,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Hellim", en: "Hellim", ar: "Hellim", ru: "Hellim" },
             price: "₺100,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Humus", en: "Humus", ar: "Humus", ru: "Humus" },
             price: "₺300,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Izgara Zeytin", en: "Izgara Zeytin", ar: "Izgara Zeytin", ru: "Izgara Zeytin" },
             price: "₺270,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Kırmızı Acı Biber (Porsiyon)", en: "Kırmızı Acı Biber (Porsiyon)", ar: "Kırmızı Acı Biber (Porsiyon)", ru: "Kırmızı Acı Biber (Porsiyon)" },
             price: "₺90,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Kırmızı Peynir Dolgulu Biber", en: "Kırmızı Peynir Dolgulu Biber", ar: "Kırmızı Peynir Dolgulu Biber", ru: "Kırmızı Peynir Dolgulu Biber" },
             price: "₺320,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Köpoğlu", en: "Köpoğlu", ar: "Köpoğlu", ru: "Köpoğlu" },
             price: "₺320,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Köz Biber", en: "Köz Biber", ar: "Köz Biber", ru: "Köz Biber" },
             price: "₺290,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Köz Patlıcan", en: "Köz Patlıcan", ar: "Köz Patlıcan", ru: "Köz Patlıcan" },
             price: "₺320,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Mantar", en: "Mantar", ar: "Mantar", ru: "Mantar" },
             price: "₺160,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Mantar Salatası", en: "Mantar Salatası", ar: "Mantar Salatası", ru: "Mantar Salatası" },
             price: "₺300,00", image: ""
         },
-        {
+{
             categoryId: "mezeler",
             title: { tr: "Pancar Turşusu", en: "Pancar Turşusu", ar: "Pancar Turşusu", ru: "Pancar Turşusu" },
             price: "₺300,00", image: ""
         },
-        {
-            categoryId: "mezeler",
-            title: { tr: "Meze (Karışık/Standart)", en: "Meze (Karışık/Standart)", ar: "Meze (Karışık/Standart)", ru: "Meze (Karışık/Standart)" },
-            price: "₺300,00", image: ""
-        },
-        {
-            categoryId: "salatalar",
-            title: { tr: "Salata (Standart)", en: "Salata (Standart)", ar: "Salata (Standart)", ru: "Salata (Standart)" },
-            price: "₺420,00", image: ""
-        },
-        {
+{
             categoryId: "salatalar",
             title: { tr: "Çoban Salata", en: "Çoban Salata", ar: "Çoban Salata", ru: "Çoban Salata" },
-            price: "₺350,00", image: ""
+            price: "₺350,00", extras: { tr: "+₺100,00 Duble Porsiyon", en: "+₺100,00 Double Portion", ar: "+₺100,00 Duble Porsiyon", ru: "+₺100,00 Duble Porsiyon" }, image: ""
         },
-        {
-            categoryId: "salatalar",
-            title: { tr: "Duble Çoban Salata", en: "Duble Çoban Salata", ar: "Duble Çoban Salata", ru: "Duble Çoban Salata" },
-            price: "₺450,00", image: ""
-        },
-        {
+{
             categoryId: "salatalar",
             title: { tr: "Gavurdağ Salata", en: "Gavurdağ Salata", ar: "Gavurdağ Salata", ru: "Gavurdağ Salata" },
-            price: "₺370,00", image: ""
+            price: "₺370,00", extras: { tr: "+₺100,00 Duble Porsiyon", en: "+₺100,00 Double Portion", ar: "+₺100,00 Duble Porsiyon", ru: "+₺100,00 Duble Porsiyon" }, image: ""
         },
-        {
-            categoryId: "salatalar",
-            title: { tr: "Duble Gavurdağ Salata", en: "Duble Gavurdağ Salata", ar: "Duble Gavurdağ Salata", ru: "Duble Gavurdağ Salata" },
-            price: "₺470,00", image: ""
-        },
-        {
+{
             categoryId: "salatalar",
             title: { tr: "İstanbul Salata", en: "İstanbul Salata", ar: "İstanbul Salata", ru: "İstanbul Salata" },
-            price: "₺350,00", image: ""
+            price: "₺350,00", extras: { tr: "+₺100,00 Duble Porsiyon", en: "+₺100,00 Double Portion", ar: "+₺100,00 Duble Porsiyon", ru: "+₺100,00 Duble Porsiyon" }, image: ""
         },
-        {
-            categoryId: "salatalar",
-            title: { tr: "Duble İstanbul Salata", en: "Duble İstanbul Salata", ar: "Duble İstanbul Salata", ru: "Duble İstanbul Salata" },
-            price: "₺450,00", image: ""
-        },
-        {
+{
             categoryId: "salatalar",
             title: { tr: "Kaşık Salata", en: "Kaşık Salata", ar: "Kaşık Salata", ru: "Kaşık Salata" },
-            price: "₺350,00", image: ""
+            price: "₺350,00", extras: { tr: "+₺100,00 Duble Porsiyon", en: "+₺100,00 Double Portion", ar: "+₺100,00 Duble Porsiyon", ru: "+₺100,00 Duble Porsiyon" }, image: ""
         },
-        {
-            categoryId: "salatalar",
-            title: { tr: "Duble Kaşık Salata", en: "Duble Kaşık Salata", ar: "Duble Kaşık Salata", ru: "Duble Kaşık Salata" },
-            price: "₺450,00", image: ""
-        },
-        {
+{
             categoryId: "salatalar",
             title: { tr: "Mevsim Salata", en: "Mevsim Salata", ar: "Mevsim Salata", ru: "Mevsim Salata" },
-            price: "₺350,00", image: ""
+            price: "₺350,00", extras: { tr: "+₺100,00 Duble Porsiyon", en: "+₺100,00 Double Portion", ar: "+₺100,00 Duble Porsiyon", ru: "+₺100,00 Duble Porsiyon" }, image: ""
         },
-        {
-            categoryId: "salatalar",
-            title: { tr: "Duble Mevsim Salata", en: "Duble Mevsim Salata", ar: "Duble Mevsim Salata", ru: "Duble Mevsim Salata" },
-            price: "₺450,00", image: ""
-        },
-        {
+{
             categoryId: "salatalar",
             title: { tr: "Peynirli Roka Salata", en: "Peynirli Roka Salata", ar: "Peynirli Roka Salata", ru: "Peynirli Roka Salata" },
-            price: "₺350,00", image: ""
+            price: "₺350,00", extras: { tr: "+₺120,00 Duble Porsiyon", en: "+₺120,00 Double Portion", ar: "+₺120,00 Duble Porsiyon", ru: "+₺120,00 Duble Porsiyon" }, image: ""
         },
-        {
-            categoryId: "salatalar",
-            title: { tr: "Duble Peynirli Roka Salata", en: "Duble Peynirli Roka Salata", ar: "Duble Peynirli Roka Salata", ru: "Duble Peynirli Roka Salata" },
-            price: "₺470,00", image: ""
-        },
-        {
+{
             categoryId: "salatalar",
             title: { tr: "Söğüş Salata", en: "Söğüş Salata", ar: "Söğüş Salata", ru: "Söğüş Salata" },
-            price: "₺280,00", image: ""
+            price: "₺280,00", extras: { tr: "+₺100,00 Duble Porsiyon", en: "+₺100,00 Double Portion", ar: "+₺100,00 Duble Porsiyon", ru: "+₺100,00 Duble Porsiyon" }, image: ""
         },
-        {
-            categoryId: "salatalar",
-            title: { tr: "Duble Söğüş Salata", en: "Duble Söğüş Salata", ar: "Duble Söğüş Salata", ru: "Duble Söğüş Salata" },
-            price: "₺380,00", image: ""
-        },
-        {
+{
             categoryId: "salatalar",
             title: { tr: "Salata Üstü Ekstra Ceviz", en: "Salata Üstü Ekstra Ceviz", ar: "Salata Üstü Ekstra Ceviz", ru: "Salata Üstü Ekstra Ceviz" },
             price: "₺80,00", image: ""
         },
-        {
+{
             categoryId: "salatalar",
             title: { tr: "Salata Üstü Rende Peynir", en: "Salata Üstü Rende Peynir", ar: "Salata Üstü Rende Peynir", ru: "Salata Üstü Rende Peynir" },
             price: "₺80,00", image: ""
         },
-        {
+{
             categoryId: "ana_yemekler",
             title: { tr: "Kırmızı Et", en: "Kırmızı Et", ar: "Kırmızı Et", ru: "Kırmızı Et" },
             price: "₺2.900,00", image: ""
         },
-        {
+{
             categoryId: "ana_yemekler",
             title: { tr: "Bonfile", en: "Bonfile", ar: "Bonfile", ru: "Bonfile" },
             price: "₺3.700,00", image: ""
         },
-        {
+{
             categoryId: "ana_yemekler",
             title: { tr: "Pirzola", en: "Pirzola", ar: "Pirzola", ru: "Pirzola" },
             price: "₺3.200,00", image: ""
         },
-        {
+{
             categoryId: "ana_yemekler",
             title: { tr: "Beyaz Et", en: "Beyaz Et", ar: "Beyaz Et", ru: "Beyaz Et" },
             price: "₺1.800,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Soğuk Baklava", en: "Soğuk Baklava", ar: "Soğuk Baklava", ru: "Soğuk Baklava" },
             price: "₺330,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Ayva Tatlısı", en: "Ayva Tatlısı", ar: "Ayva Tatlısı", ru: "Ayva Tatlısı" },
             price: "₺330,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "İncir Tatlısı", en: "İncir Tatlısı", ar: "İncir Tatlısı", ru: "İncir Tatlısı" },
             price: "₺330,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Kabak Tatlısı", en: "Kabak Tatlısı", ar: "Kabak Tatlısı", ru: "Kabak Tatlısı" },
             price: "₺330,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "İrmik Helvası", en: "İrmik Helvası", ar: "İrmik Helvası", ru: "İrmik Helvası" },
             price: "₺250,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Dondurmalı İrmik Helvası", en: "Dondurmalı İrmik Helvası", ar: "Dondurmalı İrmik Helvası", ru: "Dondurmalı İrmik Helvası" },
             price: "₺330,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Güllaç", en: "Güllaç", ar: "Güllaç", ru: "Güllaç" },
             price: "₺150,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Dondurma (Porsiyon)", en: "Dondurma (Porsiyon)", ar: "Dondurma (Porsiyon)", ru: "Dondurma (Porsiyon)" },
             price: "₺150,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Tek Meyve", en: "Tek Meyve", ar: "Tek Meyve", ru: "Tek Meyve" },
             price: "₺140,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Tekli Karışık Meyve", en: "Tekli Karışık Meyve", ar: "Tekli Karışık Meyve", ru: "Tekli Karışık Meyve" },
             price: "₺350,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Serpme Meyve", en: "Serpme Meyve", ar: "Serpme Meyve", ru: "Serpme Meyve" },
             price: "₺450,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Ananas", en: "Ananas", ar: "Ananas", ru: "Ananas" },
             price: "₺210,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Ballı Muz", en: "Ballı Muz", ar: "Ballı Muz", ru: "Ballı Muz" },
             price: "₺210,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Karpuz", en: "Karpuz", ar: "Karpuz", ru: "Karpuz" },
             price: "₺280,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Kavun", en: "Kavun", ar: "Kavun", ru: "Kavun" },
             price: "₺310,00", image: ""
         },
-        {
+{
             categoryId: "tatli_meyve",
             title: { tr: "Kaşık Ayva", en: "Kaşık Ayva", ar: "Kaşık Ayva", ru: "Kaşık Ayva" },
             price: "₺210,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Duble Rakı", en: "Duble Rakı", ar: "Duble Rakı", ru: "Duble Rakı" },
             price: "₺380,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Göbek Tek", en: "Göbek Tek", ar: "Göbek Tek", ru: "Göbek Tek" },
             price: "₺290,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Göbek Duble", en: "Göbek Duble", ar: "Göbek Duble", ru: "Göbek Duble" },
             price: "₺430,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Yeni Rakı 20 cl.", en: "Yeni Rakı 20 cl.", ar: "Yeni Rakı 20 cl.", ru: "Yeni Rakı 20 cl." },
             price: "₺900,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Yeni Rakı 35 cl.", en: "Yeni Rakı 35 cl.", ar: "Yeni Rakı 35 cl.", ru: "Yeni Rakı 35 cl." },
             price: "₺1.550,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Yeni Rakı 50 cl.", en: "Yeni Rakı 50 cl.", ar: "Yeni Rakı 50 cl.", ru: "Yeni Rakı 50 cl." },
             price: "₺2.200,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Yeni Rakı 70 cl.", en: "Yeni Rakı 70 cl.", ar: "Yeni Rakı 70 cl.", ru: "Yeni Rakı 70 cl." },
             price: "₺3.000,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Yeni Seri 20 cl.", en: "Yeni Seri 20 cl.", ar: "Yeni Seri 20 cl.", ru: "Yeni Seri 20 cl." },
             price: "₺950,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Yeni Seri 35 cl.", en: "Yeni Seri 35 cl.", ar: "Yeni Seri 35 cl.", ru: "Yeni Seri 35 cl." },
             price: "₺1.550,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Yeni Seri 70 cl.", en: "Yeni Seri 70 cl.", ar: "Yeni Seri 70 cl.", ru: "Yeni Seri 70 cl." },
             price: "₺3.300,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Altın Seri 20 cl.", en: "Altın Seri 20 cl.", ar: "Altın Seri 20 cl.", ru: "Altın Seri 20 cl." },
             price: "₺1.050,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Altın Seri 35 cl.", en: "Altın Seri 35 cl.", ar: "Altın Seri 35 cl.", ru: "Altın Seri 35 cl." },
             price: "₺1.850,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Altın Seri 70 cl.", en: "Altın Seri 70 cl.", ar: "Altın Seri 70 cl.", ru: "Altın Seri 70 cl." },
             price: "₺3.600,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Efe Gold 35 cl.", en: "Efe Gold 35 cl.", ar: "Efe Gold 35 cl.", ru: "Efe Gold 35 cl." },
             price: "₺1.850,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Efe Gold 70 cl.", en: "Efe Gold 70 cl.", ar: "Efe Gold 70 cl.", ru: "Efe Gold 70 cl." },
             price: "₺3.600,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Sarı Zeybek 35 cl.", en: "Sarı Zeybek 35 cl.", ar: "Sarı Zeybek 35 cl.", ru: "Sarı Zeybek 35 cl." },
             price: "₺1.950,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Sarı Zeybek 70 cl.", en: "Sarı Zeybek 70 cl.", ar: "Sarı Zeybek 70 cl.", ru: "Sarı Zeybek 70 cl." },
             price: "₺3.800,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Beylerbeyi Göbek 35 cl.", en: "Beylerbeyi Göbek 35 cl.", ar: "Beylerbeyi Göbek 35 cl.", ru: "Beylerbeyi Göbek 35 cl." },
             price: "₺1.950,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Beylerbeyi Göbek 70 cl.", en: "Beylerbeyi Göbek 70 cl.", ar: "Beylerbeyi Göbek 70 cl.", ru: "Beylerbeyi Göbek 70 cl." },
             price: "₺3.750,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Kulüp Rakı 35 cl.", en: "Kulüp Rakı 35 cl.", ar: "Kulüp Rakı 35 cl.", ru: "Kulüp Rakı 35 cl." },
             price: "₺1.750,00", image: ""
         },
-        {
+{
             categoryId: "raki",
             title: { tr: "Kulüp Rakı 70 cl.", en: "Kulüp Rakı 70 cl.", ar: "Kulüp Rakı 70 cl.", ru: "Kulüp Rakı 70 cl." },
             price: "₺3.400,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "Kadeh Şarap", en: "Kadeh Şarap", ar: "Kadeh Şarap", ru: "Kadeh Şarap" },
             price: "₺400,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "B. Kadeh Şarap", en: "B. Kadeh Şarap", ar: "B. Kadeh Şarap", ru: "B. Kadeh Şarap" },
             price: "₺450,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "K. Kadeh Şarap", en: "K. Kadeh Şarap", ar: "K. Kadeh Şarap", ru: "K. Kadeh Şarap" },
             price: "₺450,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "Buzbağ 37,5 cl Beyaz", en: "Buzbağ 37,5 cl Beyaz", ar: "Buzbağ 37,5 cl Beyaz", ru: "Buzbağ 37,5 cl Beyaz" },
             price: "₺900,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "Buzbağ 75 cl Beyaz", en: "Buzbağ 75 cl Beyaz", ar: "Buzbağ 75 cl Beyaz", ru: "Buzbağ 75 cl Beyaz" },
             price: "₺1.950,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "Buzbağ 75 cl Kırmızı", en: "Buzbağ 75 cl Kırmızı", ar: "Buzbağ 75 cl Kırmızı", ru: "Buzbağ 75 cl Kırmızı" },
             price: "₺1.950,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "Leona Blush 75 cl.", en: "Leona Blush 75 cl.", ar: "Leona Blush 75 cl.", ru: "Leona Blush 75 cl." },
             price: "₺2.300,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "Sarafin Blush 75 cl.", en: "Sarafin Blush 75 cl.", ar: "Sarafin Blush 75 cl.", ru: "Sarafin Blush 75 cl." },
             price: "₺4.300,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "Terra Kalecik Karası 75 cl.", en: "Terra Kalecik Karası 75 cl.", ar: "Terra Kalecik Karası 75 cl.", ru: "Terra Kalecik Karası 75 cl." },
             price: "₺2.300,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "Terra Öküzgözü 75 cl.", en: "Terra Öküzgözü 75 cl.", ar: "Terra Öküzgözü 75 cl.", ru: "Terra Öküzgözü 75 cl." },
             price: "₺2.300,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "Terra Rose 75 cl.", en: "Terra Rose 75 cl.", ar: "Terra Rose 75 cl.", ru: "Terra Rose 75 cl." },
             price: "₺2.300,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "Terra Shraz 75 cl.", en: "Terra Shraz 75 cl.", ar: "Terra Shraz 75 cl.", ru: "Terra Shraz 75 cl." },
             price: "₺2.300,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "Versus Beyaz 75 cl.", en: "Versus Beyaz 75 cl.", ar: "Versus Beyaz 75 cl.", ru: "Versus Beyaz 75 cl." },
             price: "₺2.900,00", image: ""
         },
-        {
+{
             categoryId: "sarap",
             title: { tr: "Versus Dedeçeşme 75 cl.", en: "Versus Dedeçeşme 75 cl.", ar: "Versus Dedeçeşme 75 cl.", ru: "Versus Dedeçeşme 75 cl." },
             price: "₺3.000,00", image: ""
         },
-        {
+{
             categoryId: "viski",
             title: { tr: "Tek Viski", en: "Tek Viski", ar: "Tek Viski", ru: "Tek Viski" },
             price: "₺450,00", image: ""
         },
-        {
+{
             categoryId: "viski",
             title: { tr: "Duble Viski", en: "Duble Viski", ar: "Duble Viski", ru: "Duble Viski" },
             price: "₺650,00", image: ""
         },
-        {
+{
             categoryId: "viski",
             title: { tr: "Chivas 35 cl.", en: "Chivas 35 cl.", ar: "Chivas 35 cl.", ru: "Chivas 35 cl." },
             price: "₺2.900,00", image: ""
         },
-        {
+{
             categoryId: "viski",
             title: { tr: "Chivas 70 cl.", en: "Chivas 70 cl.", ar: "Chivas 70 cl.", ru: "Chivas 70 cl." },
             price: "₺5.700,00", image: ""
         },
-        {
+{
             categoryId: "votka_cin",
             title: { tr: "Duble Cin", en: "Duble Cin", ar: "Duble Cin", ru: "Duble Cin" },
             price: "₺470,00", image: ""
         },
-        {
+{
             categoryId: "votka_cin",
             title: { tr: "Duble Absolut Votka", en: "Duble Absolut Votka", ar: "Duble Absolut Votka", ru: "Duble Absolut Votka" },
             price: "₺420,00", image: ""
         },
-        {
+{
             categoryId: "votka_cin",
             title: { tr: "Absolut 35 cl.", en: "Absolut 35 cl.", ar: "Absolut 35 cl.", ru: "Absolut 35 cl." },
             price: "₺2.150,00", image: ""
         },
-        {
+{
             categoryId: "votka_cin",
             title: { tr: "Absolut 70 cl.", en: "Absolut 70 cl.", ar: "Absolut 70 cl.", ru: "Absolut 70 cl." },
             price: "₺4.200,00", image: ""
         },
-        {
+{
             categoryId: "votka_cin",
             title: { tr: "Smirnoff 70 cl.", en: "Smirnoff 70 cl.", ar: "Smirnoff 70 cl.", ru: "Smirnoff 70 cl." },
             price: "₺4.200,00", image: ""
         },
-        {
+{
             categoryId: "bira",
             title: { tr: "Efes Pilsen", en: "Efes Pilsen", ar: "Efes Pilsen", ru: "Efes Pilsen" },
             price: "₺250,00", image: ""
         },
-        {
+{
             categoryId: "bira",
             title: { tr: "Efes 50 cl.", en: "Efes 50 cl.", ar: "Efes 50 cl.", ru: "Efes 50 cl." },
             price: "₺420,00", image: ""
         },
-        {
+{
             categoryId: "bira",
             title: { tr: "Tuborg 33 cl.", en: "Tuborg 33 cl.", ar: "Tuborg 33 cl.", ru: "Tuborg 33 cl." },
             price: "₺250,00", image: ""
         },
-        {
+{
             categoryId: "bira",
             title: { tr: "Tuborg 50 cl.", en: "Tuborg 50 cl.", ar: "Tuborg 50 cl.", ru: "Tuborg 50 cl." },
             price: "₺420,00", image: ""
         },
-        {
+{
             categoryId: "bira",
             title: { tr: "Corona 33 cl.", en: "Corona 33 cl.", ar: "Corona 33 cl.", ru: "Corona 33 cl." },
             price: "₺320,00", image: ""
         },
-        {
+{
             categoryId: "bira",
             title: { tr: "Miller", en: "Miller", ar: "Miller", ru: "Miller" },
             price: "₺275,00", image: ""
         },
-        {
+{
             categoryId: "diger_urunler",
             title: { tr: "Yoğurt", en: "Yoğurt", ar: "Yoğurt", ru: "Yoğurt" },
             price: "₺180,00", image: ""
         },
-        {
+{
             categoryId: "diger_urunler",
             title: { tr: "Manda Yoğurdu", en: "Manda Yoğurdu", ar: "Manda Yoğurdu", ru: "Manda Yoğurdu" },
             price: "₺200,00", image: ""
         },
-        {
+{
             categoryId: "diger_urunler",
             title: { tr: "Sarımsak", en: "Sarımsak", ar: "Sarımsak", ru: "Sarımsak" },
             price: "₺100,00", image: ""
         },
-        {
+{
             categoryId: "diger_urunler",
             title: { tr: "Antep Çerez", en: "Antep Çerez", ar: "Antep Çerez", ru: "Antep Çerez" },
             price: "₺245,00", image: ""
         },
-        {
+{
             categoryId: "diger_urunler",
             title: { tr: "Cips", en: "Cips", ar: "Cips", ru: "Cips" },
             price: "₺300,00", image: ""
-        },
+        }
     ];
 
 const categories = [
@@ -753,6 +708,7 @@ const categories = [
                 }
 
                 const allergens = getLocalized(item.allergens);
+                const extras = getLocalized(item.extras);
 
                 card.innerHTML = `
                     <div class="qr-card-img-wrapper">
@@ -768,6 +724,7 @@ const categories = [
                         <div class="qr-card-ingredients">
                             ${ingredients ? `<strong>${(typeof currentLang !== 'undefined' && translations[currentLang]) ? translations[currentLang].ingredients_label : 'İçindekiler:'}</strong> ${ingredients}<br>` : ''}
                             ${allergens ? `<strong style="color: #ffb44d;">${(typeof currentLang !== 'undefined' && translations[currentLang]) ? translations[currentLang].allergen_label : '⚠️ Alerjen Uyarısı:'}</strong> ${allergens}` : ''}
+                            ${extras ? `<div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.1); color: #ccc;"><em>${extras}</em></div>` : \'\'}
                         </div>
                     </div>
                 `;
