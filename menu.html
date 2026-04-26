@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="seo_menu_title">Felek Mangalbaşı | Dijital Menü</title>
+    <meta name="description" content="Felek Mangalbaşı dijital QR menü. Etler, mezeler ve daha fazlası.">
+    
+    <!-- Google Analytics 4 (GA4) Kodu -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3588HSCF5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E3588HSCF5');
+    </script>
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Felek Mangalbaşı | Dijital Menü">
+    <meta property="og:description" content="Felek Mangalbaşı dijital QR menü. Etler, mezeler ve daha fazlası.">
+    <meta property="og:type" content="restaurant.menu">
+    <meta property="og:url" content="https://www.felekmangalbasi.com/menu.html">
+    <meta property="og:image" content="https://www.felekmangalbasi.com/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header scrolled" id="header" style="background-color: rgba(17, 17, 17, 0.95);">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">FELEK</span>
+                <span class="logo-sub">MANGALBAŞI</span>
+            </a>
+            
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <nav class="nav" id="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html#hakkimizda" class="nav-link" data-i18n="nav_about">Hakkımızda</a></li>
+                        <li><a href="index.html#deneyim" class="nav-link" data-i18n="nav_experience">Deneyim</a></li>
+                        <li><a href="index.html#mekan" class="nav-link" data-i18n="nav_venue">Mekan & Etkinlikler</a></li>
+                        <li><a href="menu.html" class="nav-link" data-i18n="nav_menu">Menü</a></li>
+                        <li><a href="https://wa.me/905397776067" class="btn btn-primary nav-btn" data-i18n="nav_reservation">Rezervasyon</a></li>
+                    </ul>
+                </nav>
+                
+                <select id="lang-switcher" class="lang-select">
+                    <option value="tr">TR</option>
+                    <option value="en">EN</option>
+                    <option value="ar">AR</option>
+                    <option value="ru">RU</option>
+                </select>
+
+                <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="menu-page">
+        <div class="container">
+            <div class="qr-menu-header">
+                <h1 class="section-title" data-i18n="menu_title">Dijital Menü</h1>
+                <p class="section-subtitle" data-i18n="menu_subtitle">Ateşin lezzetle buluştuğu nokta</p>
+            </div>
+            
+            <div class="qr-category-nav" id="category-nav">
+                <!-- Kategoriler JS ile yüklenecek -->
+            </div>
+
+            <div class="qr-menu-grid" id="qr-menu-grid">
+                <!-- Ürünler JS ile yüklenecek -->
+            </div>
+            
+            <!-- Görüş ve Öneriler Section -->
+            <div class="feedback-section text-center" style="margin-top: 5rem; padding: 3rem 1.5rem; background: var(--dark-surface); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
+                <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 1rem;" data-i18n="feedback_title">Görüş ve Önerileriniz Bizim İçin Değerli</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;" data-i18n="feedback_desc">Felek Mangalbaşı deneyiminizi daha da güzelleştirmek için her türlü fikrinize açığız.</p>
+                <a href="https://wa.me/905397776067" target="_blank" class="btn btn-outline" style="font-size: 1rem; border-radius: 30px; padding: 0.8rem 2rem;" data-i18n="btn_whatsapp">
+                    💬 Bize Yazın (WhatsApp)
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 6rem;">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <span class="logo-text">FELEK</span>
+                </a>
+                <p data-i18n="footer_brand">Modern Mangalbaşı Deneyimi. Bakırköy'de deniz havasıyla birinci sınıf et keyfi.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h3 data-i18n="footer_links_title">Hızlı Menü</h3>
+                <ul>
+                    <li><a href="index.html#hakkimizda" data-i18n="nav_about">Hakkımızda</a></li>
+                    <li><a href="menu.html" data-i18n="nav_menu">Menü</a></li>
+                    <li><a href="index.html#mekan" data-i18n="nav_venue">Organizasyonlar</a></li>
+                    <li><a href="tel:+902125439248" data-i18n="nav_reservation">Rezervasyon</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h3 data-i18n="footer_contact_title">İletişim</h3>
+                <p>Sakızağacı, Kennedy Cad. No:29</p>
+                <p>34142 Bakırköy/İstanbul</p>
+                <p><span data-i18n="footer_phone">Telefon:</span> <a href="tel:+902125439248">(0212) 543 92 48</a></p>
+                <p data-i18n="res_hours">Her gün 12:00 - 01:30</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container text-center">
+                <p>&copy; 2026 Felek Mangalbaşı. <span data-i18n="footer_rights">Tüm hakları saklıdır. (Demo Sürüm)</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
