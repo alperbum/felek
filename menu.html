@@ -65,7 +65,7 @@
             <div class="qr-menu-header">
                 <h1 class="section-title" data-i18n="menu_title">Menü</h1>
                 <p class="section-subtitle" data-i18n="menu_subtitle">Ateşin lezzetle buluştuğu nokta</p>
-                <a href="#feedback" onclick="document.getElementById('feedback').scrollIntoView({behavior:'smooth'}); return false;" style="display:inline-block; margin-top:0.5rem; font-size:0.75rem; color:rgba(255,255,255,0.3); letter-spacing:0.04em; text-decoration:none;">Görüş &amp; önerileriniz için ↓</a>
+                <a href="#feedback" onclick="document.getElementById('feedback').scrollIntoView({behavior:'smooth'}); return false;" style="display:inline-block; margin-top:0.5rem; font-size:0.75rem; color:rgba(255,255,255,0.3); letter-spacing:0.04em; text-decoration:none;" data-i18n="feedback_hint">Görüş &amp; önerileriniz için ↓</a>
             </div>
             
             <div class="qr-category-nav" id="category-nav">
@@ -78,17 +78,19 @@
             
             <!-- Görüş ve Öneriler Section -->
             <div id="feedback" class="feedback-section text-center" style="margin-top: 5rem; padding: 3rem 1.5rem; background: var(--dark-surface); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
-                <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 1rem;">✉️ Görüş ve Önerileriniz</h2>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">Felek Mangalbaşı deneyiminizi paylaşın. Mesajınız direkt işletme sahibine ulaşır.</p>
+                <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 1rem;" data-i18n="feedback_section_title">✉️ Görüş ve Önerileriniz</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;" data-i18n="feedback_section_desc">Felek Mangalbaşı deneyiminizi paylaşın. Mesajınız direkt işletme sahibine ulaşır.</p>
                 <form id="feedback-form" style="max-width:480px; margin:0 auto; display:flex; flex-direction:column; gap:0.8rem; text-align:left;">
                     <input
                         id="feedback-name"
                         type="text"
+                        data-i18n="feedback_name_placeholder"
                         placeholder="Adınız (isteğe bağlı)"
                         style="padding:0.8rem 1rem; background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:6px; font-size:0.95rem; outline:none;"
                     />
                     <textarea
                         id="feedback-msg"
+                        data-i18n="feedback_msg_placeholder"
                         placeholder="Mesajınızı buraya yazın..."
                         rows="4"
                         required
@@ -97,6 +99,7 @@
                     <button
                         type="submit"
                         id="feedback-submit"
+                        data-i18n="feedback_btn"
                         style="padding:0.85rem; background: linear-gradient(135deg,#c8a97e,#a07850); color:#fff; border:none; border-radius:6px; font-size:1rem; font-weight:600; cursor:pointer; transition:opacity 0.2s;"
                     >
                         Gönder

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.applyTranslations = function(lang) {
         if (!translations || !translations[lang]) return;
+        currentLang = lang;
         
         document.documentElement.lang = lang;
         document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
@@ -258,82 +259,82 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             categoryId: "tatli_meyve",
-            title: { tr: "Serpme Meyve", en: "Serpme Meyve", ar: "Serpme Meyve", ru: "Serpme Meyve" },
-            price: "₺450,00", image: ""
-        },
-        {
-            categoryId: "tatli_meyve",
-            title: { tr: "Tekli Karışık Meyve", en: "Tekli Karışık Meyve", ar: "Tekli Karışık Meyve", ru: "Tekli Karışık Meyve" },
-            price: "₺350,00", image: ""
-        },
-        {
-            categoryId: "tatli_meyve",
-            title: { tr: "Soğuk Baklava", en: "Soğuk Baklava", ar: "Soğuk Baklava", ru: "Soğuk Baklava" },
+            title: { tr: "Soğuk Baklava", en: "Cold Baklava", ar: "بقلاوة باردة", ru: "Холодная Пахлава" },
             price: "₺330,00", image: ""
         },
         {
             categoryId: "tatli_meyve",
-            title: { tr: "Ayva Tatlısı", en: "Ayva Tatlısı", ar: "Ayva Tatlısı", ru: "Ayva Tatlısı" },
+            title: { tr: "Ayva Tatlısı", en: "Quince Dessert", ar: "حلوى السفرجل", ru: "Десерт из Айвы" },
             price: "₺330,00", image: ""
         },
         {
             categoryId: "tatli_meyve",
-            title: { tr: "İncir Tatlısı", en: "İncir Tatlısı", ar: "İncir Tatlısı", ru: "İncir Tatlısı" },
+            title: { tr: "İncir Tatlısı", en: "Fig Dessert", ar: "حلوى التين", ru: "Десерт из Инжира" },
             price: "₺330,00", image: ""
         },
         {
             categoryId: "tatli_meyve",
-            title: { tr: "Kabak Tatlısı", en: "Kabak Tatlısı", ar: "Kabak Tatlısı", ru: "Kabak Tatlısı" },
+            title: { tr: "Kabak Tatlısı", en: "Pumpkin Dessert", ar: "حلوى القرع", ru: "Десерт из Тыквы" },
             price: "₺330,00", image: ""
         },
         {
             categoryId: "tatli_meyve",
-            title: { tr: "Dondurmalı İrmik Helvası", en: "Dondurmalı İrmik Helvası", ar: "Dondurmalı İrmik Helvası", ru: "Dondurmalı İrmik Helvası" },
+            title: { tr: "Dondurmalı İrmik Helvası", en: "Semolina Halva with Ice Cream", ar: "حلوى السميد بالآيس كريم", ru: "Халва из Манки с Мороженым" },
             price: "₺330,00", image: ""
         },
         {
             categoryId: "tatli_meyve",
-            title: { tr: "Kavun", en: "Kavun", ar: "Kavun", ru: "Kavun" },
-            price: "₺310,00", image: ""
-        },
-        {
-            categoryId: "tatli_meyve",
-            title: { tr: "Karpuz", en: "Karpuz", ar: "Karpuz", ru: "Karpuz" },
-            price: "₺280,00", image: ""
-        },
-        {
-            categoryId: "tatli_meyve",
-            title: { tr: "İrmik Helvası", en: "İrmik Helvası", ar: "İrmik Helvası", ru: "İrmik Helvası" },
+            title: { tr: "İrmik Helvası", en: "Semolina Halva", ar: "حلوى السميد", ru: "Халва из Манки" },
             price: "₺250,00", image: ""
         },
         {
             categoryId: "tatli_meyve",
-            title: { tr: "Ananas", en: "Ananas", ar: "Ananas", ru: "Ananas" },
-            price: "₺210,00", image: ""
-        },
-        {
-            categoryId: "tatli_meyve",
-            title: { tr: "Ballı Muz", en: "Ballı Muz", ar: "Ballı Muz", ru: "Ballı Muz" },
-            price: "₺210,00", image: ""
-        },
-        {
-            categoryId: "tatli_meyve",
-            title: { tr: "Kaşık Ayva", en: "Kaşık Ayva", ar: "Kaşık Ayva", ru: "Kaşık Ayva" },
-            price: "₺210,00", image: ""
-        },
-        {
-            categoryId: "tatli_meyve",
-            title: { tr: "Güllaç", en: "Güllaç", ar: "Güllaç", ru: "Güllaç" },
+            title: { tr: "Güllaç", en: "Güllaç", ar: "جولاتش", ru: "Гюллач" },
             price: "₺150,00", image: ""
         },
         {
             categoryId: "tatli_meyve",
-            title: { tr: "Dondurma (Porsiyon)", en: "Dondurma (Porsiyon)", ar: "Dondurma (Porsiyon)", ru: "Dondurma (Porsiyon)" },
+            title: { tr: "Dondurma (Porsiyon)", en: "Ice Cream (Portion)", ar: "آيس كريم (حصة)", ru: "Мороженое (Порция)" },
             price: "₺150,00", image: ""
         },
         {
             categoryId: "tatli_meyve",
-            title: { tr: "Tek Meyve", en: "Tek Meyve", ar: "Tek Meyve", ru: "Tek Meyve" },
+            title: { tr: "Serpme Meyve", en: "Mixed Fruit Platter", ar: "طبق الفاكهة", ru: "Фруктовая Тарелка" },
+            price: "₺450,00", image: ""
+        },
+        {
+            categoryId: "tatli_meyve",
+            title: { tr: "Tekli Karışık Meyve", en: "Single Mixed Fruit", ar: "فاكهة مشكلة للفرد", ru: "Смешанные Фрукты" },
+            price: "₺350,00", image: ""
+        },
+        {
+            categoryId: "tatli_meyve",
+            title: { tr: "Kavun", en: "Melon", ar: "شمام", ru: "Дыня" },
+            price: "₺310,00", image: ""
+        },
+        {
+            categoryId: "tatli_meyve",
+            title: { tr: "Karpuz", en: "Watermelon", ar: "بطيخ", ru: "Арбуз" },
+            price: "₺280,00", image: ""
+        },
+        {
+            categoryId: "tatli_meyve",
+            title: { tr: "Ananas", en: "Pineapple", ar: "أناناس", ru: "Ананас" },
+            price: "₺210,00", image: ""
+        },
+        {
+            categoryId: "tatli_meyve",
+            title: { tr: "Ballı Muz", en: "Honey Banana", ar: "موز بالعسل", ru: "Банан с Мёдом" },
+            price: "₺210,00", image: ""
+        },
+        {
+            categoryId: "tatli_meyve",
+            title: { tr: "Kaşık Ayva", en: "Spoon Quince", ar: "سفرجل", ru: "Айва" },
+            price: "₺210,00", image: ""
+        },
+        {
+            categoryId: "tatli_meyve",
+            title: { tr: "Tek Meyve", en: "Single Fruit", ar: "فاكهة واحدة", ru: "Один Фрукт" },
             price: "₺140,00", image: ""
         },
         {
@@ -651,6 +652,9 @@ const categories = [
         function renderCategories() {
             currentView = 'categories';
             menuGrid.innerHTML = '';
+            // Feedback bölümünü göster
+            const feedbackEl = document.getElementById('feedback');
+            if (feedbackEl) feedbackEl.style.display = '';
             
             categories.forEach(cat => {
                 const card = document.createElement('div');
@@ -680,6 +684,9 @@ const categories = [
         function renderMenu() {
             currentView = 'items';
             menuGrid.innerHTML = '';
+            // Feedback bölümünü gizle
+            const feedbackEl = document.getElementById('feedback');
+            if (feedbackEl) feedbackEl.style.display = 'none';
             
             // Geri Dön Butonu
             const backBtnContainer = document.createElement('div');
