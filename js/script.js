@@ -587,12 +587,17 @@ document.addEventListener('DOMContentLoaded', () => {
             price: "₺250,00", image: ""
         },
         {
-            categoryId: "diger_urunler",
+            categoryId: "bira",
+            title: { tr: "Patates (Porsiyon)", en: "Patates (Porsiyon)", ar: "Patates (Porsiyon)", ru: "Patates (Porsiyon)" },
+            price: "₺120,00", image: ""
+        },
+        {
+            categoryId: "bira",
             title: { tr: "Cips", en: "Cips", ar: "Cips", ru: "Cips" },
             price: "₺300,00", image: ""
         },
         {
-            categoryId: "diger_urunler",
+            categoryId: "bira",
             title: { tr: "Antep Çerez", en: "Antep Çerez", ar: "Antep Çerez", ru: "Antep Çerez" },
             price: "₺245,00", image: ""
         },
@@ -617,13 +622,13 @@ const categories = [
         { id: "mezeler", image: "" },
         { id: "salatalar", image: "" },
         { id: "ana_yemekler", image: "assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg" },
-        { id: "diger_urunler", image: "" },
         { id: "tatli_meyve", image: "" },
         { id: "raki", image: "assets/images/SnapInsta.to_631052160_18497719381072243_630189921650077750_n.jpg" },
         { id: "sarap", image: "" },
         { id: "viski", image: "" },
         { id: "votka_cin", image: "" },
-        { id: "bira", image: "" }
+        { id: "bira", image: "" },
+        { id: "diger_urunler", image: "" }
     ];
 
     const menuGrid = document.getElementById('qr-menu-grid');

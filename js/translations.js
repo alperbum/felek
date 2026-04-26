@@ -54,7 +54,7 @@ const translations = {
         feedback_desc: "Felek Mangalbaşı deneyiminizi daha da güzelleştirmek için her türlü fikrinize açığız.",
         btn_whatsapp: "💬 Bize Yazın (WhatsApp)",
         
-        cat_mezeler: "Mezeler (Başlangıçlar)",
+        cat_mezeler: "Mezeler",
         cat_salatalar: "Salatalar",
         cat_ana_yemekler: "Et Çeşitleri",
         cat_tatli_meyve: "Tatlılar ve Meyveler",
@@ -125,7 +125,7 @@ const translations = {
         feedback_desc: "We are open to all your ideas to make your Felek Mangalbaşı experience even better.",
         btn_whatsapp: "💬 Message Us (WhatsApp)",
         
-        cat_mezeler: "Mezeler (Başlangıçlar)",
+        cat_mezeler: "Mezeler",
         cat_salatalar: "Salatalar",
         cat_ana_yemekler: "Etler (Ana Yemekler)",
         cat_tatli_meyve: "Tatlılar ve Meyveler",
@@ -196,7 +196,7 @@ const translations = {
         feedback_desc: "نحن منفتحون على جميع أفكارك لجعل تجربة فيلك مانجالباشي أفضل.",
         btn_whatsapp: "💬 راسلنا (واتساب)",
         
-        cat_mezeler: "Mezeler (Başlangıçlar)",
+        cat_mezeler: "Mezeler",
         cat_salatalar: "Salatalar",
         cat_ana_yemekler: "Etler (Ana Yemekler)",
         cat_tatli_meyve: "Tatlılar ve Meyveler",
@@ -267,7 +267,7 @@ const translations = {
         feedback_desc: "Мы открыты для всех ваших идей.",
         btn_whatsapp: "💬 Напишите нам (WhatsApp)",
         
-        cat_mezeler: "Mezeler (Başlangıçlar)",
+        cat_mezeler: "Mezeler",
         cat_salatalar: "Salatalar",
         cat_ana_yemekler: "Etler (Ana Yemekler)",
         cat_tatli_meyve: "Tatlılar ve Meyveler",
