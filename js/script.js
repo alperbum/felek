@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: "₺0.00", calories: "🔥 450 kcal",
             desc: { tr: "Özel baharat karışımlı klasik köfte", en: "Classic meatballs with special spices", ar: "كفتة كلاسيكية ببهارات خاصة", ru: "Классические котлеты со специями" },
             ingredients: { tr: "Dana-kuzu kıyma, soğan, baharat", en: "Beef-lamb mince, onion, spices", ar: "لحم بقر وغنم مفروم، بصل، بهارات", ru: "Говяжий и бараний фарш, лук, специи" },
-            allergens: { tr: "Gluten", en: "Gluten", ar: "جلوتين", ru: "Глютен" }, image: "SnapInsta.to_673824959_18514044895072243_796291128331931836_n.jpg"
+            allergens: { tr: "Gluten", en: "Gluten", ar: "جلوتين", ru: "Глютен" }, image: "assets/images/SnapInsta.to_673824959_18514044895072243_796291128331931836_n.jpg"
         },
         {
             categoryId: "kirmiziet",
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: "₺0.00", calories: "🔥 650 kcal",
             desc: { tr: "28 gün kuru dinlendirilmiş birinci sınıf Balıkesir danası", en: "28-day dry aged premium beef", ar: "لحم بقر ممتاز معتق لمدة 28 يومًا", ru: "Премиальная говядина 28-дневной выдержки" },
             ingredients: { tr: "Antrikot, deniz tuzu, taze kekik", en: "Ribeye, sea salt, fresh thyme", ar: "ريب آي، ملح بحري، زعتر طازج", ru: "Рибай, морская соль, свежий тимьян" },
-            image: "SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg"
+            image: "assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg"
         },
         {
             categoryId: "kirmiziet",
@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             price: "₺0.00", calories: "🔥 550 kcal",
             desc: { tr: "Trakya kuzusu, özel sos marinasyonu", en: "Thrace lamb, special marinade", ar: "خروف تراقيا، تتبيلة خاصة", ru: "Баранина, специальный маринад" },
             ingredients: { tr: "Kuzu pirzola, zeytinyağı, baharat", en: "Lamb chops, olive oil, spices", ar: "ريش ضأن، زيت زيتون، بهارات", ru: "Бараньи отбивные, оливковое масло, специи" },
-            image: "SnapInsta.to_631052160_18497719381072243_630189921650077750_n.jpg"
+            image: "assets/images/SnapInsta.to_631052160_18497719381072243_630189921650077750_n.jpg"
         },
         // BEYAZ ETLER
         {
@@ -234,9 +234,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const categories = [
-        { id: "kirmiziet", image: "SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg" },
-        { id: "beyazet", image: "SnapInsta.to_670288761_18512718343072243_7403874126890321840_n.jpg" },
-        { id: "raki", image: "SnapInsta.to_631052160_18497719381072243_630189921650077750_n.jpg" },
+        { id: "kirmiziet", image: "assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg" },
+        { id: "beyazet", image: "assets/images/SnapInsta.to_670288761_18512718343072243_7403874126890321840_n.jpg" },
+        { id: "raki", image: "assets/images/SnapInsta.to_631052160_18497719381072243_630189921650077750_n.jpg" },
         { id: "mezeler", image: "" },
         { id: "salatalar", image: "" },
         { id: "digeralkol", image: "" },
