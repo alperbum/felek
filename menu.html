@@ -77,11 +77,31 @@
             
             <!-- Görüş ve Öneriler Section -->
             <div class="feedback-section text-center" style="margin-top: 5rem; padding: 3rem 1.5rem; background: var(--dark-surface); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
-                <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 1rem;" data-i18n="feedback_title">Görüş ve Önerileriniz Bizim İçin Değerli</h2>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;" data-i18n="feedback_desc">Felek Mangalbaşı deneyiminizi daha da güzelleştirmek için her türlü fikrinize açığız.</p>
-                <a href="https://wa.me/905397776067" target="_blank" class="btn btn-outline" style="font-size: 1rem; border-radius: 30px; padding: 0.8rem 2rem;" data-i18n="btn_whatsapp">
-                    💬 Bize Yazın (WhatsApp)
-                </a>
+                <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 1rem;">✉️ Görüş ve Önerileriniz</h2>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">Felek Mangalbaşı deneyiminizi paylaşın. Mesajınız direkt işletme sahibine ulaşır.</p>
+                <form id="feedback-form" style="max-width:480px; margin:0 auto; display:flex; flex-direction:column; gap:0.8rem; text-align:left;">
+                    <input
+                        id="feedback-name"
+                        type="text"
+                        placeholder="Adınız (isteğe bağlı)"
+                        style="padding:0.8rem 1rem; background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:6px; font-size:0.95rem; outline:none;"
+                    />
+                    <textarea
+                        id="feedback-msg"
+                        placeholder="Mesajınızı buraya yazın..."
+                        rows="4"
+                        required
+                        style="padding:0.8rem 1rem; background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:6px; font-size:0.95rem; resize:vertical; outline:none;"
+                    ></textarea>
+                    <button
+                        type="submit"
+                        id="feedback-submit"
+                        style="padding:0.85rem; background: linear-gradient(135deg,#c8a97e,#a07850); color:#fff; border:none; border-radius:6px; font-size:1rem; font-weight:600; cursor:pointer; transition:opacity 0.2s;"
+                    >
+                        Gönder
+                    </button>
+                    <p id="feedback-status" style="text-align:center; font-size:0.9rem; min-height:1.2em;"></p>
+                </form>
             </div>
         </div>
     </main>
@@ -123,5 +143,55 @@
 
     <script src="js/translations.js"></script>
     <script src="js/script.js"></script>
+    <script>
+        // ─── Telegram Feedback Formu ───────────────────────────────────────
+        // 1) BotFather'dan aldığın token'ı BOT_TOKEN'a yaz
+        // 2) @userinfobot'a yaz → sana Chat ID'ni söyler → CHAT_ID'ye yaz
+        const TG_BOT_TOKEN = 'BURAYA_BOT_TOKEN';
+        const TG_CHAT_ID   = 'BURAYA_CHAT_ID';
+        // ──────────────────────────────────────────────────────────────────
+
+        document.getElementById('feedback-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const name   = document.getElementById('feedback-name').value.trim();
+            const msg    = document.getElementById('feedback-msg').value.trim();
+            const status = document.getElementById('feedback-status');
+            const btn    = document.getElementById('feedback-submit');
+
+            if (!msg) return;
+
+            const text = name
+                ? `📋 *Felek Mangalbaşı – Yeni Geri Bildirim*\n\n👤 Ad: ${name}\n💬 Mesaj:\n${msg}`
+                : `📋 *Felek Mangalbaşı – Yeni Geri Bildirim*\n\n💬 Mesaj:\n${msg}`;
+
+            btn.disabled = true;
+            btn.textContent = 'Gönderiliyor…';
+            status.style.color = '#aaa';
+            status.textContent = '';
+
+            try {
+                const res = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: TG_CHAT_ID, text, parse_mode: 'Markdown' })
+                });
+                const data = await res.json();
+                if (data.ok) {
+                    status.style.color = '#4caf50';
+                    status.textContent = '✅ Mesajınız iletildi, teşekkürler!';
+                    this.reset();
+                } else {
+                    throw new Error(data.description || 'Telegram hatası');
+                }
+            } catch (err) {
+                status.style.color = '#f44336';
+                status.textContent = '❌ Gönderilemedi. Lütfen tekrar deneyin.';
+                console.error(err);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Gönder';
+            }
+        });
+    </script>
 </body>
 </html>
