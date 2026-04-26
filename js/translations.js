@@ -1,7 +1,7 @@
 const translations = {
     tr: {
         seo_title: "Felek Mangalbaşı | Birinci Sınıf Et ve Mangal Deneyimi",
-        seo_menu_title: "Felek Mangalbaşı | Dijital Menü",
+        seo_menu_title: "Felek Mangalbaşı | Menü",
         nav_about: "Hakkımızda",
         nav_experience: "Deneyim",
         nav_venue: "Mekan & Etkinlikler",
@@ -48,7 +48,7 @@ const translations = {
         footer_contact_title: "İletişim",
         footer_phone: "Telefon:",
         footer_rights: "Tüm hakları saklıdır. (Demo Sürüm)",
-        menu_title: "Dijital Menü",
+        menu_title: "Menü",
         menu_subtitle: "Ateşin lezzetle buluştuğu nokta",
         feedback_title: "Görüş ve Önerileriniz Bizim İçin Değerli",
         feedback_desc: "Felek Mangalbaşı deneyiminizi daha da güzelleştirmek için her türlü fikrinize açığız.",
