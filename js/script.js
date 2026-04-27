@@ -62,10 +62,77 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Init hero carousel with 3.5s interval
-    initCarousel('hero-track', 3500);
     // Init venue carousel with 3s interval
     initCarousel('carousel-track', 3000);
+
+    // --- Smart Video Loading (Bağlantı hızına göre) ---
+    function isSlowConnection() {
+        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (conn) {
+            if (conn.saveData) return true;
+            const slowTypes = ['slow-2g', '2g', '3g'];
+            if (slowTypes.includes(conn.effectiveType)) return true;
+            if (conn.downlink && conn.downlink < 1.5) return true;
+        }
+        return false;
+    }
+
+    function tryPlayVideo(video) {
+        if (!video) return;
+        video.muted = true;
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                const playOnInteraction = () => {
+                    video.play().catch(() => {});
+                    document.removeEventListener('touchstart', playOnInteraction);
+                    document.removeEventListener('click', playOnInteraction);
+                };
+                document.addEventListener('touchstart', playOnInteraction, { once: true });
+                document.addEventListener('click', playOnInteraction, { once: true });
+            });
+        }
+    }
+
+    function loadVideoSource(video) {
+        const src = video.getAttribute('data-src');
+        if (!src) return;
+        if (video.querySelector('source')) return;
+
+        const source = document.createElement('source');
+        source.src = src;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+        video.load();
+        video.removeAttribute('data-src');
+    }
+
+    const venueVideo = document.getElementById('venue-video');
+    if (venueVideo) {
+        if (isSlowConnection()) {
+            console.log('[Felek] Yavaş bağlantı algılandı - video yüklenmedi, poster görseli gösteriliyor.');
+        } else {
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        loadVideoSource(venueVideo);
+                        venueVideo.addEventListener('loadedmetadata', () => tryPlayVideo(venueVideo), { once: true });
+                        tryPlayVideo(venueVideo);
+                    } else {
+                        venueVideo.pause();
+                    }
+                });
+            }, { threshold: 0.1 });
+            videoObserver.observe(venueVideo);
+
+            setTimeout(() => {
+                loadVideoSource(venueVideo);
+                venueVideo.addEventListener('loadedmetadata', () => tryPlayVideo(venueVideo), { once: true });
+            }, 1000);
+        }
+    }
     
     // --- Mobile Menu Toggle ---
     const menuToggle = document.getElementById('menu-toggle');
