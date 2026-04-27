@@ -134,11 +134,10 @@
                 <div class="hero-carousel">
                     <video class="venue-video" id="venue-video"
                         style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7) contrast(1.1);"
-                        autoplay loop muted playsinline webkit-playsinline
-                        poster="assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg">
-                        <source
-                            src="assets/videos/SnapInsta.to_AQM9oo8mAvKHARghKYc8P6mZMcs3pYA9CpumJRaqv14DqrzmBoeLYUxNM7TfWoWXyG_sNA49vvc0QUmLiFmUWNRsz4ZDkuOajzDuLlk.mp4"
-                            type="video/mp4">
+                        loop muted playsinline webkit-playsinline preload="none"
+                        poster="assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg"
+                        data-src="assets/videos/SnapInsta.to_AQM9oo8mAvKHARghKYc8P6mZMcs3pYA9CpumJRaqv14DqrzmBoeLYUxNM7TfWoWXyG_sNA49vvc0QUmLiFmUWNRsz4ZDkuOajzDuLlk.mp4">
+                        <!-- Video kaynağı JavaScript ile yüklenecek (mobilde yavaş bağlantıda yüklenmez) -->
                         Tarayıcınız video etiketini desteklemiyor.
                     </video>
                 </div>
@@ -171,7 +170,7 @@
                 </div>
                 <div class="about-image-wrapper">
                     <img src="assets/images/SnapInsta.to_670288761_18512718343072243_7403874126890321840_n.jpg"
-                        alt="Ateşin Ritmi" class="about-image">
+                        alt="Ateşin Ritmi" class="about-image" loading="lazy">
                 </div>
             </div>
         </section>
@@ -213,13 +212,13 @@
                     <div style="width: 100%; height: 100%; overflow: hidden; border-radius: 8px;">
                         <div class="carousel-track" id="carousel-track">
                             <img src="assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg"
-                                alt="Mangalbaşı 1" class="carousel-img">
+                                alt="Mangalbaşı 1" class="carousel-img" loading="lazy">
                             <img src="assets/images/SnapInsta.to_631052160_18497719381072243_630189921650077750_n.jpg"
-                                alt="Mangalbaşı 2" class="carousel-img">
+                                alt="Mangalbaşı 2" class="carousel-img" loading="lazy">
                             <img src="assets/images/SnapInsta.to_670288761_18512718343072243_7403874126890321840_n.jpg"
-                                alt="Mangalbaşı 3" class="carousel-img">
+                                alt="Mangalbaşı 3" class="carousel-img" loading="lazy">
                             <img src="assets/images/SnapInsta.to_673824959_18514044895072243_796291128331931836_n.jpg"
-                                alt="Mangalbaşı 4" class="carousel-img">
+                                alt="Mangalbaşı 4" class="carousel-img" loading="lazy">
                         </div>
                     </div>
                 </div>

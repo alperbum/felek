@@ -104,17 +104,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Video Autoplay (Hero + Venue) - Mobile Compatible ---
+    // --- Smart Video Loading (Bağlantı hızına göre) ---
+    function isSlowConnection() {
+        // Network Information API ile bağlantı hızını kontrol et
+        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (conn) {
+            // Save-data modu açıksa video yükleme
+            if (conn.saveData) return true;
+            // Yavaş bağlantı tipleri
+            const slowTypes = ['slow-2g', '2g', '3g'];
+            if (slowTypes.includes(conn.effectiveType)) return true;
+            // Düşük bant genişliği (1.5 Mbps altı)
+            if (conn.downlink && conn.downlink < 1.5) return true;
+        }
+        return false;
+    }
+
     function tryPlayVideo(video) {
         if (!video) return;
-        // Muted olmasını garantile (iOS zorunlu)
         video.muted = true;
         video.setAttribute('playsinline', '');
         video.setAttribute('webkit-playsinline', '');
         const playPromise = video.play();
         if (playPromise !== undefined) {
             playPromise.catch(() => {
-                // Autoplay engellendiyse kullanıcı etkileşimi bekle
                 const playOnInteraction = () => {
                     video.play().catch(() => {});
                     document.removeEventListener('touchstart', playOnInteraction);
@@ -126,23 +139,47 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function loadVideoSource(video) {
+        const src = video.getAttribute('data-src');
+        if (!src) return;
+        // Zaten yüklenmişse tekrar yükleme
+        if (video.querySelector('source')) return;
+
+        const source = document.createElement('source');
+        source.src = src;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+        video.load();
+        video.removeAttribute('data-src');
+    }
+
     const venueVideo = document.getElementById('venue-video');
     if (venueVideo) {
-        // Sayfa yüklenince hemen dene
-        venueVideo.addEventListener('loadedmetadata', () => tryPlayVideo(venueVideo));
-        tryPlayVideo(venueVideo);
+        if (isSlowConnection()) {
+            // Yavaş bağlantıda video yüklenmez, poster görseli kalır
+            console.log('[Felek] Yavaş bağlantı algılandı - video yüklenmedi, poster görseli gösteriliyor.');
+        } else {
+            // Hızlı bağlantıda video görünür olduğunda lazy load yap
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        loadVideoSource(venueVideo);
+                        venueVideo.addEventListener('loadedmetadata', () => tryPlayVideo(venueVideo), { once: true });
+                        tryPlayVideo(venueVideo);
+                    } else {
+                        venueVideo.pause();
+                    }
+                });
+            }, { threshold: 0.1 });
+            videoObserver.observe(venueVideo);
 
-        // Scroll bazlı kontrol
-        const videoObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    tryPlayVideo(venueVideo);
-                } else {
-                    venueVideo.pause();
-                }
-            });
-        }, { threshold: 0.2 });
-        videoObserver.observe(venueVideo);
+            // Ayrıca ilk yüklenmede de dene (hero bölümünde zaten görünür)
+            // Küçük bir gecikme ile sayfa yüklenmesini engellemeden
+            setTimeout(() => {
+                loadVideoSource(venueVideo);
+                venueVideo.addEventListener('loadedmetadata', () => tryPlayVideo(venueVideo), { once: true });
+            }, 1000);
+        }
     }
 
     // --- QR Menu Data & Rendering ---
