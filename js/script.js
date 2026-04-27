@@ -104,19 +104,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Venue Video Autoplay on Scroll ---
+    // --- Video Autoplay (Hero + Venue) - Mobile Compatible ---
+    function tryPlayVideo(video) {
+        if (!video) return;
+        // Muted olmasını garantile (iOS zorunlu)
+        video.muted = true;
+        video.setAttribute('playsinline', '');
+        video.setAttribute('webkit-playsinline', '');
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                // Autoplay engellendiyse kullanıcı etkileşimi bekle
+                const playOnInteraction = () => {
+                    video.play().catch(() => {});
+                    document.removeEventListener('touchstart', playOnInteraction);
+                    document.removeEventListener('click', playOnInteraction);
+                };
+                document.addEventListener('touchstart', playOnInteraction, { once: true });
+                document.addEventListener('click', playOnInteraction, { once: true });
+            });
+        }
+    }
+
     const venueVideo = document.getElementById('venue-video');
     if (venueVideo) {
+        // Sayfa yüklenince hemen dene
+        venueVideo.addEventListener('loadedmetadata', () => tryPlayVideo(venueVideo));
+        tryPlayVideo(venueVideo);
+
+        // Scroll bazlı kontrol
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    venueVideo.play();
+                    tryPlayVideo(venueVideo);
                 } else {
                     venueVideo.pause();
                 }
             });
-        }, { threshold: 0.3 }); // Play when 30% of the video is visible
-
+        }, { threshold: 0.2 });
         videoObserver.observe(venueVideo);
     }
 
