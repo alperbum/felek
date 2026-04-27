@@ -47,17 +47,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial translation apply
     window.applyTranslations(currentLang);
 
-    // --- Hero Carousel Slider ---
-    const track = document.getElementById('carousel-track');
-    if (track) {
-        const slides = track.querySelectorAll('.carousel-img');
-        let currentIndex = 0;
-        
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }, 3000); // Change image every 3 seconds
+    // --- Carousel Sliders ---
+    function initCarousel(trackId, interval) {
+        const track = document.getElementById(trackId);
+        if (track) {
+            const slides = track.querySelectorAll('.carousel-img');
+            if (slides.length <= 1) return;
+            let currentIndex = 0;
+            
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }, interval);
+        }
     }
+    
+    // Init hero carousel with 3.5s interval
+    initCarousel('hero-track', 3500);
+    // Init venue carousel with 3s interval
+    initCarousel('carousel-track', 3000);
     
     // --- Mobile Menu Toggle ---
     const menuToggle = document.getElementById('menu-toggle');
