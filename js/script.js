@@ -816,7 +816,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     const client = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
                     const { data: catData, error: catError } = await client.from('categories').select('*').order('sort_order', { ascending: true });
-                    const { data: itemData, error: itemError } = await client.from('menu_items').select('*').eq('is_active', true);
+                    const { data: itemData, error: itemError } = await client.from('menu_items').select('*').eq('is_active', true).order('created_at', { ascending: true });
                     
                     if (!catError && catData && !itemError && itemData) {
                         categories = catData.map(c => ({

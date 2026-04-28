@@ -128,7 +128,7 @@ async function loadData() {
     if (catError) console.error(catError);
     else categories = catData || [];
 
-    const { data: itemData, error: itemError } = await sb.from('menu_items').select('*').order('created_at', { ascending: false });
+    const { data: itemData, error: itemError } = await sb.from('menu_items').select('*').order('created_at', { ascending: true });
     if (itemError) console.error(itemError);
     else items = itemData || [];
 
