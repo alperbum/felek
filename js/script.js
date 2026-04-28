@@ -1,7 +1,4 @@
-// SUPABASE AYARLARI (Yönetim Paneli Kurulumu Sonrası Burayı Doldurun)
-window.SUPABASE_URL = 'https://efltjgimkjjtagfebmha.supabase.co';
-window.SUPABASE_ANON_KEY = 'sb_publishable_qbZn4_rrYtoyhXEyJdIb3Q_ctEOMAgE';
-
+// Supabase ayarları artık config.js dosyasından geliyor.
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Language Switcher ---

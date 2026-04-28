@@ -1,16 +1,10 @@
-// SUPABASE YAPILANDIRMASI (script.js den alınacak veya buraya kopyalanacak)
-// YÖNERGE: Walkthrough'da anlatıldığı gibi Supabase projesi oluşturduktan sonra bu bilgileri doldurun.
-// Not: Aynı keyler js/script.js içerisinde de olmalı.
-
-// LÜTFEN AŞAĞIDAKİ BİLGİLERİ DOLDURUN (veya script.js ile ortaklaştırın)
-// Şimdilik hata vermemesi için window üzerinden script.js'teki varsa onu alır, yoksa placeholder'da kalır.
-const SUPABASE_URL = window.SUPABASE_URL || 'BURAYA_SUPABASE_URL_GELECEK';
-const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || 'BURAYA_SUPABASE_ANON_KEY_GELECEK';
+const SUPABASE_URL = window.SUPABASE_URL;
+const SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY;
 
 let supabase;
 
 // Eğer Supabase JS yüklendiyse ve URL geçerliyse başlat
-if (typeof supabase !== 'undefined' && SUPABASE_URL !== 'BURAYA_SUPABASE_URL_GELECEK') {
+if (typeof window.supabase !== 'undefined' && SUPABASE_URL) {
     supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     checkSession();
 }
