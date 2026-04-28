@@ -128,7 +128,7 @@ async function loadData() {
     if (catError) console.error(catError);
     else categories = catData || [];
 
-    const { data: itemData, error: itemError } = await sb.from('menu_items').select('*').order('created_at', { ascending: true });
+    const { data: itemData, error: itemError } = await sb.from('menu_items').select('*').order('sort_order', { ascending: true });
     if (itemError) console.error(itemError);
     else items = itemData || [];
 
@@ -190,6 +190,7 @@ function renderItemsTable(filterCatId = '') {
             <td>${item.name_tr}</td>
             <td>${catName}</td>
             <td>${item.price ? new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(item.price) : '-'}</td>
+            <td>${item.sort_order || 0}</td>
             <td>${item.is_active ? '<span style="color:var(--success);">Aktif</span>' : '<span style="color:var(--error);">Pasif</span>'}</td>
             <td>
                 <button class="btn btn-outline" style="padding: 0.3rem 0.6rem; margin-right: 0.5rem;" onclick="editItem('${item.id}')">Düzenle</button>
@@ -320,6 +321,7 @@ document.getElementById('item-form')?.addEventListener('submit', async (e) => {
     const category_id = document.getElementById('item-category').value;
     const name_tr = document.getElementById('item-name-tr').value;
     const price = document.getElementById('item-price').value;
+    const sort_order = parseInt(document.getElementById('item-sort-order').value) || 0;
     let image = document.getElementById('item-image').value;
     const imageFile = document.getElementById('item-image-file').files[0];
 
@@ -334,12 +336,12 @@ document.getElementById('item-form')?.addEventListener('submit', async (e) => {
 
     if (id) {
         const { error } = await sb.from('menu_items').update({
-            category_id, name_tr, price: parseFloat(price), image
+            category_id, name_tr, price: parseFloat(price), sort_order, image
         }).eq('id', id);
         if (error) alert(error.message);
     } else {
         const { error } = await sb.from('menu_items').insert([{
-            category_id, name_tr, price: parseFloat(price), image, is_active: true
+            category_id, name_tr, price: parseFloat(price), sort_order, image, is_active: true
         }]);
         if (error) alert(error.message);
     }
@@ -357,6 +359,7 @@ window.editItem = function (id) {
         document.getElementById('item-category').value = item.category_id;
         document.getElementById('item-name-tr').value = item.name_tr;
         document.getElementById('item-price').value = item.price || '';
+        document.getElementById('item-sort-order').value = item.sort_order || 0;
         document.getElementById('item-image').value = item.image || '';
         document.getElementById('itemModalTitle').textContent = 'Ürün Düzenle';
         openModal('itemModal');

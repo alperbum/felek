@@ -76,6 +76,7 @@
                                     <th>İsim (TR)</th>
                                     <th>Kategori</th>
                                     <th>Fiyat</th>
+                                    <th>Sıra</th>
                                     <th>Durum</th>
                                     <th>İşlemler</th>
                                 </tr>
@@ -137,6 +138,10 @@
                 <div class="input-group">
                     <label>Fiyat (Sadece sayı, örn: 320 veya 320.50)</label>
                     <input type="number" step="0.01" id="item-price" required>
+                </div>
+                <div class="input-group">
+                    <label>Sıralama (Küçük olan önce çıkar)</label>
+                    <input type="number" id="item-sort-order" value="0">
                 </div>
                 <div class="input-group">
                     <label>Görsel Yükle (Yeni Fotoğraf Seçin)</label>
