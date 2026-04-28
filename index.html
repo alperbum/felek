@@ -137,10 +137,9 @@
                 <div class="hero-carousel">
                     <video class="venue-video" id="venue-video"
                         style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7) contrast(1.1);"
-                        loop muted playsinline webkit-playsinline preload="none"
-                        poster="assets/images/hero_charcoal.jpg"
-                        data-src="assets/videos/hero_compressed.mp4">
-                        <!-- Video kaynağı JavaScript ile yüklenecek (mobilde yavaş bağlantıda yüklenmez) -->
+                        autoplay loop muted playsinline webkit-playsinline preload="metadata"
+                        poster="assets/images/hero_charcoal.jpg">
+                        <source src="assets/videos/hero_compressed.mp4" type="video/mp4">
                         Tarayıcınız video etiketini desteklemiyor.
                     </video>
                 </div>

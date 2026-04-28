@@ -52,7 +52,6 @@
                 <ul class="nav-menu">
                     <li class="active" data-tab="items">Menü Ürünleri</li>
                     <li data-tab="categories">Kategoriler</li>
-                    <li data-tab="settings">Veritabanı Kurulumu</li>
                 </ul>
             </div>
             
@@ -111,62 +110,7 @@
                     </div>
                 </div>
 
-                <!-- Setup DB Tab -->
-                <div id="tab-settings" class="tab-content">
-                    <div class="content-header">
-                        <h2>İlk Kurulum Aracı</h2>
-                    </div>
-                    <div class="settings-card">
-                        <p>Supabase SQL Editörüne yapıştırıp çalıştırmanız gereken kodlar:</p>
-                        <textarea readonly style="width:100%; height: 300px; font-family: monospace; padding: 1rem; background: #1a1a1a; color: #fff; border: 1px solid #333;">
--- Kategoriler Tablosu
-CREATE TABLE categories (
-  id text PRIMARY KEY,
-  name_tr text NOT NULL,
-  name_en text,
-  name_ar text,
-  name_ru text,
-  image text,
-  sort_order integer DEFAULT 0
-);
 
--- Menü Ürünleri Tablosu
-CREATE TABLE menu_items (
-  id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
-  category_id text REFERENCES categories(id) ON DELETE CASCADE,
-  name_tr text NOT NULL,
-  name_en text,
-  name_ar text,
-  name_ru text,
-  price numeric,
-  extras_tr text,
-  extras_en text,
-  extras_ar text,
-  extras_ru text,
-  image text,
-  is_active boolean DEFAULT true,
-  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
-);
-
--- RLS (Row Level Security) Politikaları
-ALTER TABLE categories ENABLE ROW LEVEL SECURITY;
-ALTER TABLE menu_items ENABLE ROW LEVEL SECURITY;
-
--- Okuma İzni (Herkes için)
-CREATE POLICY "Public profiles are viewable by everyone." ON categories FOR SELECT USING (true);
-CREATE POLICY "Public items are viewable by everyone." ON menu_items FOR SELECT USING (true);
-
--- Yazma İzni (Sadece Authenticated - Giriş yapmış adminler)
-CREATE POLICY "Authenticated users can insert categories" ON categories FOR INSERT WITH CHECK (auth.role() = 'authenticated');
-CREATE POLICY "Authenticated users can update categories" ON categories FOR UPDATE USING (auth.role() = 'authenticated');
-CREATE POLICY "Authenticated users can delete categories" ON categories FOR DELETE USING (auth.role() = 'authenticated');
-
-CREATE POLICY "Authenticated users can insert items" ON menu_items FOR INSERT WITH CHECK (auth.role() = 'authenticated');
-CREATE POLICY "Authenticated users can update items" ON menu_items FOR UPDATE USING (auth.role() = 'authenticated');
-CREATE POLICY "Authenticated users can delete items" ON menu_items FOR DELETE USING (auth.role() = 'authenticated');
-                        </textarea>
-                    </div>
-                </div>
                 
             </div>
         </main>
