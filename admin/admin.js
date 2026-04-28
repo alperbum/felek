@@ -132,9 +132,12 @@ async function loadData() {
     if (itemError) console.error(itemError);
     else items = itemData || [];
 
+    const filterSelect = document.getElementById('filter-category');
+    const currentFilter = filterSelect ? filterSelect.value : '';
+
     renderCategoriesTable();
-    renderItemsTable();
-    updateCategorySelects();
+    updateCategorySelects(currentFilter);
+    renderItemsTable(currentFilter);
 }
 
 // ─── RENDER TABLES ───────────────────────────────────────────────────
@@ -201,7 +204,7 @@ function renderItemsTable(filterCatId = '') {
     });
 }
 
-function updateCategorySelects() {
+function updateCategorySelects(currentFilter = '') {
     const filterSelect = document.getElementById('filter-category');
     const formSelect = document.getElementById('item-category');
 
@@ -209,11 +212,15 @@ function updateCategorySelects() {
         const options = categories.map(c => `<option value="${c.id}">${c.name_tr}</option>`).join('');
 
         filterSelect.innerHTML = '<option value="">Tüm Kategoriler</option>' + options;
+        if (currentFilter) {
+            filterSelect.value = currentFilter;
+        }
+        
         formSelect.innerHTML = options;
 
-        filterSelect.addEventListener('change', (e) => {
+        filterSelect.onchange = (e) => {
             renderItemsTable(e.target.value);
-        });
+        };
     }
 }
 
