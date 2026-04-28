@@ -1,3 +1,7 @@
+// SUPABASE AYARLARI (Yönetim Paneli Kurulumu Sonrası Burayı Doldurun)
+window.SUPABASE_URL = 'https://efltjgimkjjtagfebmha.supabase.co';
+window.SUPABASE_ANON_KEY = 'sb_publishable_qbZn4_rrYtoyhXEyJdIb3Q_ctEOMAgE';
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Language Switcher ---
@@ -181,7 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- QR Menu Data & Rendering ---
-    const menuData = [
+    let menuData = [
         {
             categoryId: "mezeler",
             title: { tr: "Havuç Tarator", en: "Havuç Tarator", ar: "Havuç Tarator", ru: "Havuç Tarator" },
@@ -679,7 +683,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-const categories = [
+    let categories = [
         { id: "mezeler", image: "" },
         { id: "salatalar", image: "" },
         { id: "ana_yemekler", image: "assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg" },
@@ -809,7 +813,45 @@ const categories = [
         window.renderMenu = renderMenu;
         window.getCurrentView = () => currentView;
 
-        // Initialize
-        renderCategories();
+        // Initialize with Supabase (if configured) or fallback to static
+        async function initMenuData() {
+            if (typeof supabase !== 'undefined' && window.SUPABASE_URL && window.SUPABASE_URL !== 'BURAYA_SUPABASE_URL_GELECEK') {
+                try {
+                    const client = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+                    const { data: catData, error: catError } = await client.from('categories').select('*').order('sort_order', { ascending: true });
+                    const { data: itemData, error: itemError } = await client.from('menu_items').select('*').eq('is_active', true);
+                    
+                    if (!catError && catData && !itemError && itemData) {
+                        categories = catData.map(c => ({
+                            id: c.id,
+                            image: c.image || ''
+                        }));
+                        
+                        menuData = itemData.map(item => ({
+                            categoryId: item.category_id,
+                            title: { tr: item.name_tr, en: item.name_en, ar: item.name_ar, ru: item.name_ru },
+                            price: item.price ? new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY' }).format(item.price) : '',
+                            extras: { tr: item.extras_tr, en: item.extras_en, ar: item.extras_ar, ru: item.extras_ru },
+                            image: item.image || ''
+                        }));
+                        
+                        // Kategori isimlerini translations nesnesine dinamik ekle
+                        if (window.translations) {
+                            catData.forEach(c => {
+                                if (window.translations.tr && c.name_tr) window.translations.tr['cat_' + c.id] = c.name_tr;
+                                if (window.translations.en && c.name_en) window.translations.en['cat_' + c.id] = c.name_en;
+                                if (window.translations.ar && c.name_ar) window.translations.ar['cat_' + c.id] = c.name_ar;
+                                if (window.translations.ru && c.name_ru) window.translations.ru['cat_' + c.id] = c.name_ru;
+                            });
+                        }
+                    }
+                } catch(e) {
+                    console.error("Supabase bağlantı hatası:", e);
+                }
+            }
+            renderCategories();
+        }
+
+        initMenuData();
     }
 });

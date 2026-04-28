@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Felek Yönetim Paneli</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    
+    <!-- Login Screen -->
+    <div id="login-screen" class="auth-wrapper">
+        <div class="auth-card">
+            <h2>Yönetim Girişi</h2>
+            <p>Devam etmek için Supabase bilgilerinizi ve giriş bilgilerinizi girin.</p>
+            
+            <div id="setup-info" style="margin-bottom: 20px; text-align: left; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;">
+                <p style="font-size: 0.85rem; color: #ccc;">Sistem Kurulumu Tamamlanmadı! Devam etmek için <a href="../walkthrough.html" style="color: #ffb44d;">yönergeleri</a> izleyip `js/script.js` dosyasındaki SUPABASE_URL ve SUPABASE_ANON_KEY değerlerini doldurun.</p>
+            </div>
+
+            <form id="login-form">
+                <div class="input-group">
+                    <label>E-Posta</label>
+                    <input type="email" id="email" required placeholder="admin@felekmangalbasi.com">
+                </div>
+                <div class="input-group">
+                    <label>Şifre</label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Giriş Yap</button>
+            </form>
+            <p id="login-error" class="error-msg"></p>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboard-screen" class="dashboard-wrapper" style="display: none;">
+        <header class="admin-header">
+            <div class="header-brand">
+                <h1>Felek Admin Paneli</h1>
+            </div>
+            <button id="logout-btn" class="btn btn-outline">Çıkış Yap</button>
+        </header>
+
+        <main class="admin-main">
+            <div class="sidebar">
+                <ul class="nav-menu">
+                    <li class="active" data-tab="items">Menü Ürünleri</li>
+                    <li data-tab="categories">Kategoriler</li>
+                    <li data-tab="settings">Veritabanı Kurulumu</li>
+                </ul>
+            </div>
+            
+            <div class="content-area">
+                
+                <!-- Items Tab -->
+                <div id="tab-items" class="tab-content active">
+                    <div class="content-header">
+                        <h2>Menü Ürünleri</h2>
+                        <button class="btn btn-primary" onclick="openModal('itemModal')">+ Yeni Ürün Ekle</button>
+                    </div>
+                    <div class="filters">
+                        <select id="filter-category" class="select-input">
+                            <option value="">Tüm Kategoriler</option>
+                        </select>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Görsel</th>
+                                    <th>İsim (TR)</th>
+                                    <th>Kategori</th>
+                                    <th>Fiyat</th>
+                                    <th>Durum</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody id="items-table-body">
+                                <tr><td colspan="6" style="text-align:center;">Yükleniyor...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Categories Tab -->
+                <div id="tab-categories" class="tab-content">
+                    <div class="content-header">
+                        <h2>Kategoriler</h2>
+                        <button class="btn btn-primary" onclick="openModal('categoryModal')">+ Yeni Kategori Ekle</button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>İsim (TR)</th>
+                                    <th>Sıralama</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody id="categories-table-body">
+                                <tr><td colspan="4" style="text-align:center;">Yükleniyor...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Setup DB Tab -->
+                <div id="tab-settings" class="tab-content">
+                    <div class="content-header">
+                        <h2>İlk Kurulum Aracı</h2>
+                    </div>
+                    <div class="settings-card">
+                        <p>Supabase SQL Editörüne yapıştırıp çalıştırmanız gereken kodlar:</p>
+                        <textarea readonly style="width:100%; height: 300px; font-family: monospace; padding: 1rem; background: #1a1a1a; color: #fff; border: 1px solid #333;">
+-- Kategoriler Tablosu
+CREATE TABLE categories (
+  id text PRIMARY KEY,
+  name_tr text NOT NULL,
+  name_en text,
+  name_ar text,
+  name_ru text,
+  image text,
+  sort_order integer DEFAULT 0
+);
+
+-- Menü Ürünleri Tablosu
+CREATE TABLE menu_items (
+  id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+  category_id text REFERENCES categories(id) ON DELETE CASCADE,
+  name_tr text NOT NULL,
+  name_en text,
+  name_ar text,
+  name_ru text,
+  price numeric,
+  extras_tr text,
+  extras_en text,
+  extras_ar text,
+  extras_ru text,
+  image text,
+  is_active boolean DEFAULT true,
+  created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- RLS (Row Level Security) Politikaları
+ALTER TABLE categories ENABLE ROW LEVEL SECURITY;
+ALTER TABLE menu_items ENABLE ROW LEVEL SECURITY;
+
+-- Okuma İzni (Herkes için)
+CREATE POLICY "Public profiles are viewable by everyone." ON categories FOR SELECT USING (true);
+CREATE POLICY "Public items are viewable by everyone." ON menu_items FOR SELECT USING (true);
+
+-- Yazma İzni (Sadece Authenticated - Giriş yapmış adminler)
+CREATE POLICY "Authenticated users can insert categories" ON categories FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Authenticated users can update categories" ON categories FOR UPDATE USING (auth.role() = 'authenticated');
+CREATE POLICY "Authenticated users can delete categories" ON categories FOR DELETE USING (auth.role() = 'authenticated');
+
+CREATE POLICY "Authenticated users can insert items" ON menu_items FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+CREATE POLICY "Authenticated users can update items" ON menu_items FOR UPDATE USING (auth.role() = 'authenticated');
+CREATE POLICY "Authenticated users can delete items" ON menu_items FOR DELETE USING (auth.role() = 'authenticated');
+                        </textarea>
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <!-- Item Modal -->
+    <div id="itemModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="itemModalTitle">Ürün Ekle</h3>
+                <span class="close-modal" onclick="closeModal('itemModal')">&times;</span>
+            </div>
+            <form id="item-form">
+                <input type="hidden" id="item-id">
+                <div class="input-group">
+                    <label>Kategori</label>
+                    <select id="item-category" required class="select-input"></select>
+                </div>
+                <div class="input-group">
+                    <label>İsim (TR)</label>
+                    <input type="text" id="item-name-tr" required>
+                </div>
+                <div class="input-group">
+                    <label>Fiyat (Sadece sayı, örn: 320 veya 320.50)</label>
+                    <input type="number" step="0.01" id="item-price" required>
+                </div>
+                <div class="input-group">
+                    <label>Görsel Yükle (Yeni Fotoğraf Seçin)</label>
+                    <input type="file" id="item-image-file" accept="image/*" class="select-input" style="padding: 0.5rem;">
+                </div>
+                <div class="input-group">
+                    <label>Veya Görsel URL'si (Elle girmek için)</label>
+                    <input type="text" id="item-image" placeholder="https://...">
+                </div>
+                <div style="display:flex; gap: 1rem; margin-top: 1rem;">
+                    <button type="submit" class="btn btn-primary" style="flex:1;">Kaydet</button>
+                    <button type="button" class="btn btn-outline" style="flex:1;" onclick="closeModal('itemModal')">İptal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Category Modal -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="categoryModalTitle">Kategori Ekle</h3>
+                <span class="close-modal" onclick="closeModal('categoryModal')">&times;</span>
+            </div>
+            <form id="category-form">
+                <div class="input-group">
+                    <label>Kategori ID (boşluksuz, ingilizce karakter, örn: ana_yemekler)</label>
+                    <input type="text" id="cat-id" required>
+                </div>
+                <div class="input-group">
+                    <label>İsim (TR)</label>
+                    <input type="text" id="cat-name-tr" required>
+                </div>
+                <div class="input-group">
+                    <label>Sıralama (Küçük olan önce çıkar)</label>
+                    <input type="number" id="cat-order" value="0" required>
+                </div>
+                <div class="input-group">
+                    <label>Görsel Yükle (Yeni Fotoğraf Seçin)</label>
+                    <input type="file" id="cat-image-file" accept="image/*" class="select-input" style="padding: 0.5rem;">
+                </div>
+                <div class="input-group">
+                    <label>Veya Görsel URL'si (Elle girmek için)</label>
+                    <input type="text" id="cat-image" placeholder="https://...">
+                </div>
+                <div style="display:flex; gap: 1rem; margin-top: 1rem;">
+                    <button type="submit" class="btn btn-primary" style="flex:1;">Kaydet</button>
+                    <button type="button" class="btn btn-outline" style="flex:1;" onclick="closeModal('categoryModal')">İptal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
