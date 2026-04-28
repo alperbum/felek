@@ -329,6 +329,7 @@ document.getElementById('item-form')?.addEventListener('submit', async (e) => {
     const name_tr = document.getElementById('item-name-tr').value;
     const price = document.getElementById('item-price').value;
     const sort_order = parseInt(document.getElementById('item-sort-order').value) || 0;
+    const is_active = document.getElementById('item-is-active').checked;
     let image = document.getElementById('item-image').value;
     const imageFile = document.getElementById('item-image-file').files[0];
 
@@ -343,12 +344,12 @@ document.getElementById('item-form')?.addEventListener('submit', async (e) => {
 
     if (id) {
         const { error } = await sb.from('menu_items').update({
-            category_id, name_tr, price: parseFloat(price), sort_order, image
+            category_id, name_tr, price: parseFloat(price), sort_order, is_active, image
         }).eq('id', id);
         if (error) alert(error.message);
     } else {
         const { error } = await sb.from('menu_items').insert([{
-            category_id, name_tr, price: parseFloat(price), sort_order, image, is_active: true
+            category_id, name_tr, price: parseFloat(price), sort_order, is_active, image
         }]);
         if (error) alert(error.message);
     }
@@ -367,6 +368,7 @@ window.editItem = function (id) {
         document.getElementById('item-name-tr').value = item.name_tr;
         document.getElementById('item-price').value = item.price || '';
         document.getElementById('item-sort-order').value = item.sort_order || 0;
+        document.getElementById('item-is-active').checked = item.is_active;
         document.getElementById('item-image').value = item.image || '';
         document.getElementById('itemModalTitle').textContent = 'Ürün Düzenle';
         openModal('itemModal');
