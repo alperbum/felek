@@ -540,8 +540,6 @@ let menuData = [
             });
         }
 
-        }
-
         // Global functions for onclick and language switcher
         window.renderCategories = renderCategories;
         window.renderMenu = renderMenu;
