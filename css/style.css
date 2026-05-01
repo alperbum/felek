@@ -829,46 +829,27 @@ img {
     margin-top: auto;
 }
 
-/* --- Variant Select (Dropdown) --- */
-.qr-select-wrapper {
-    position: relative;
+/* --- Variant Inline List --- */
+.qr-variant-inline-list {
     margin-top: 0.8rem;
-    width: 100%;
-}
-
-.qr-select-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--primary-color);
-    font-size: 0.8rem;
-    pointer-events: none;
-}
-
-.qr-variant-select {
-    width: 100%;
-    appearance: none;
-    background-color: rgba(20, 20, 20, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #fff;
-    padding: 0.6rem 1rem 0.6rem 2.2rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
     font-family: var(--font-text);
-    font-size: 0.9rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: var(--transition);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    line-height: 1.5;
 }
 
-.qr-variant-select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(226, 88, 34, 0.2);
+.qr-variant-inline-item {
+    white-space: nowrap;
 }
 
-.qr-variant-select option {
-    background-color: #1a1a1a;
-    color: #fff;
+.qr-variant-separator {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.8rem;
+    margin: 0 0.1rem;
 }
 
 /* --- Footer --- */

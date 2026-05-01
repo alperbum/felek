@@ -491,42 +491,23 @@ let menuData = [
                 }
 
                 if (item.isGroup) {
-                    let defaultVariant = item.variants[0]; 
-                    
-                    let optionsHtml = item.variants.map((v, idx) => 
-                        `<option value="${idx}" ${idx === 0 ? 'selected' : ''}>${v.size}</option>`
-                    ).join('');
+                    let variantsHtml = item.variants.map(v => 
+                        `<span class="qr-variant-inline-item"><span style="color:#aaa;">${v.size}</span> <span style="color:var(--primary-color);">${v.price}</span></span>`
+                    ).join('<span class="qr-variant-separator">•</span>');
 
                     card.innerHTML = `
                         <div class="qr-card-img-wrapper">
                             ${imageHtml}
                         </div>
                         <div class="qr-card-content">
-                            <div class="qr-card-header" style="align-items: center;">
-                                <h3 class="qr-card-title">${title} ${defaultVariant.size}</h3>
-                                <span class="qr-card-price">${defaultVariant.price}</span>
+                            <div class="qr-card-header">
+                                <h3 class="qr-card-title">${title}</h3>
                             </div>
-                            <div class="qr-select-wrapper">
-                                <span class="qr-select-icon">▼</span>
-                                <select class="qr-variant-select">
-                                    ${optionsHtml}
-                                </select>
+                            <div class="qr-variant-inline-list">
+                                ${variantsHtml}
                             </div>
                         </div>
                     `;
-                    
-                    const selectEl = card.querySelector('.qr-variant-select');
-                    const priceEl = card.querySelector('.qr-card-price');
-                    const titleEl = card.querySelector('.qr-card-title');
-                    
-                    selectEl.addEventListener('change', function(e) {
-                        e.stopPropagation();
-                        const selectedIdx = this.value;
-                        const selectedVariant = item.variants[selectedIdx];
-                        priceEl.textContent = selectedVariant.price;
-                        titleEl.textContent = `${title} ${selectedVariant.size}`;
-                    });
-
                 } else {
                     const allergens = getLocalized(item.allergens);
                     let extrasObj = item.extras;
