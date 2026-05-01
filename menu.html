@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="seo_menu_title">Felek Mangalbaşı | Menü</title>
-    <meta name="description" content="Felek Mangalbaşı menüsü. Etler, mezeler ve daha fazlası.">
+    <meta name="description" id="meta-description" content="Felek Mangalbaşı menüsü. Etler, mezeler ve daha fazlası.">
+    <link rel="canonical" href="https://www.felekmangalbasi.com/menu.html">
     
     <!-- Google Analytics 4 (GA4) Kodu -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3588HSCF5"></script>
@@ -24,7 +25,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <!-- Supabase JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -36,7 +37,7 @@
                 <span class="logo-sub">MANGALBAŞI</span>
             </a>
             
-            <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <div class="header-right">
                 <nav class="nav" id="nav">
                     <ul class="nav-list">
                         <li><a href="index.html#hakkimizda" class="nav-link" data-i18n="nav_about">Hakkımızda</a></li>
@@ -80,16 +81,16 @@
             </div>
             
             <!-- Görüş ve Öneriler Section -->
-            <div id="feedback" class="feedback-section text-center" style="margin-top: 5rem; padding: 3rem 1.5rem; background: var(--dark-surface); border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);">
-                <h2 class="section-title" style="font-size: 1.5rem; margin-bottom: 1rem;" data-i18n="feedback_section_title">✉️ Görüş ve Önerileriniz</h2>
-                <p style="color: var(--text-muted); margin-bottom: 2rem;" data-i18n="feedback_section_desc">Felek Mangalbaşı deneyiminizi paylaşın. Mesajınız direkt işletme sahibine ulaşır.</p>
-                <form id="feedback-form" style="max-width:480px; margin:0 auto; display:flex; flex-direction:column; gap:0.8rem; text-align:left;">
+            <div id="feedback" class="feedback-section text-center">
+                <h2 class="section-title feedback-title" data-i18n="feedback_section_title">✉️ Görüş ve Önerileriniz</h2>
+                <p class="feedback-desc" data-i18n="feedback_section_desc">Felek Mangalbaşı deneyiminizi paylaşın. Mesajınız direkt işletme sahibine ulaşır.</p>
+                <form id="feedback-form" class="feedback-form">
                     <input
                         id="feedback-name"
                         type="text"
                         data-i18n="feedback_name_placeholder"
                         placeholder="Adınız (isteğe bağlı)"
-                        style="padding:0.8rem 1rem; background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:6px; font-size:0.95rem; outline:none;"
+                        class="feedback-input"
                     />
                     <textarea
                         id="feedback-msg"
@@ -97,24 +98,24 @@
                         placeholder="Mesajınızı buraya yazın..."
                         rows="4"
                         required
-                        style="padding:0.8rem 1rem; background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:6px; font-size:0.95rem; resize:vertical; outline:none;"
+                        class="feedback-input feedback-textarea"
                     ></textarea>
                     <button
                         type="submit"
                         id="feedback-submit"
                         data-i18n="feedback_btn"
-                        style="padding:0.85rem; background: linear-gradient(135deg,#c8a97e,#a07850); color:#fff; border:none; border-radius:6px; font-size:1rem; font-weight:600; cursor:pointer; transition:opacity 0.2s;"
+                        class="feedback-submit-btn"
                     >
                         Gönder
                     </button>
-                    <p id="feedback-status" style="text-align:center; font-size:0.9rem; min-height:1.2em;"></p>
+                    <p id="feedback-status" class="feedback-status"></p>
                 </form>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="footer" style="margin-top: 6rem;">
+    <footer class="footer footer-menu">
         <div class="container footer-container">
             <div class="footer-brand">
                 <a href="index.html" class="logo">
@@ -152,11 +153,9 @@
     <script src="js/config.js"></script>
     <script src="js/script.js"></script>
     <script>
-        // ─── Telegram Feedback Formu ───────────────────────────────────────
-        // 1) BotFather'dan aldığın token'ı BOT_TOKEN'a yaz
-        // 2) @userinfobot'a yaz → sana Chat ID'ni söyler → CHAT_ID'ye yaz
-        const TG_BOT_TOKEN = '8721886347:AAHWTqfUt9AnfJbmIZGeQVkltIrSQ9bo6O4';
-        const TG_CHAT_ID   = '1585282829';
+        // ─── Feedback Formu (Güvenli Sunucu Proxy) ─────────────────────────
+        // Token ve Chat ID sunucu tarafında (Cloudflare Workers env vars) tutulur.
+        // İstemci sadece /api/feedback endpoint'ine POST atar.
         // ──────────────────────────────────────────────────────────────────
 
         document.getElementById('feedback-form').addEventListener('submit', async function(e) {
@@ -168,20 +167,16 @@
 
             if (!msg) return;
 
-            const text = name
-                ? `📋 *Felek Mangalbaşı – Yeni Geri Bildirim*\n\n👤 Ad: ${name}\n💬 Mesaj:\n${msg}`
-                : `📋 *Felek Mangalbaşı – Yeni Geri Bildirim*\n\n💬 Mesaj:\n${msg}`;
-
             btn.disabled = true;
             btn.textContent = 'Gönderiliyor…';
             status.style.color = '#aaa';
             status.textContent = '';
 
             try {
-                const res = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`, {
+                const res = await fetch('/api/feedback', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: TG_CHAT_ID, text, parse_mode: 'Markdown' })
+                    body: JSON.stringify({ name: name || '', message: msg })
                 });
                 const data = await res.json();
                 if (data.ok) {
@@ -189,7 +184,7 @@
                     status.textContent = '✅ Mesajınız iletildi, teşekkürler!';
                     this.reset();
                 } else {
-                    throw new Error(data.description || 'Telegram hatası');
+                    throw new Error(data.error || 'Gönderim hatası');
                 }
             } catch (err) {
                 status.style.color = '#f44336';

@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Large video files
+*.mp4
+!assets/videos/hero_compressed.mp4
+
+# Build output
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+.env.local
+.env.production

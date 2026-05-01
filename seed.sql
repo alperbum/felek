@@ -2,16 +2,16 @@ DELETE FROM menu_items;
 DELETE FROM categories;
 
 -- KATEGORİLER
-INSERT INTO categories (id, name_tr, sort_order, image) VALUES ('mezeler', 'Mezeler', 0, '');
-INSERT INTO categories (id, name_tr, sort_order, image) VALUES ('salatalar', 'Salatalar', 10, '');
-INSERT INTO categories (id, name_tr, sort_order, image) VALUES ('ana_yemekler', 'Ana Yemekler', 20, 'assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg');
-INSERT INTO categories (id, name_tr, sort_order, image) VALUES ('tatli_meyve', 'Tatlı & Meyve', 30, '');
-INSERT INTO categories (id, name_tr, sort_order, image) VALUES ('raki', 'Rakı', 40, 'assets/images/SnapInsta.to_631052160_18497719381072243_630189921650077750_n.jpg');
-INSERT INTO categories (id, name_tr, sort_order, image) VALUES ('sarap', 'Şarap', 50, '');
-INSERT INTO categories (id, name_tr, sort_order, image) VALUES ('viski', 'Viski', 60, '');
-INSERT INTO categories (id, name_tr, sort_order, image) VALUES ('votka_cin', 'Votka & Cin', 70, '');
-INSERT INTO categories (id, name_tr, sort_order, image) VALUES ('bira', 'Bira', 80, '');
-INSERT INTO categories (id, name_tr, sort_order, image) VALUES ('diger_urunler', 'Diğer Ürünler', 90, '');
+INSERT INTO categories (id, name_tr, name_en, name_ar, name_ru, sort_order, image) VALUES ('mezeler', 'Mezeler', 'Appetizers', 'المقبلات', 'Закуски', 0, '');
+INSERT INTO categories (id, name_tr, name_en, name_ar, name_ru, sort_order, image) VALUES ('salatalar', 'Salatalar', 'Salads', 'السلطات', 'Салаты', 10, '');
+INSERT INTO categories (id, name_tr, name_en, name_ar, name_ru, sort_order, image) VALUES ('ana_yemekler', 'Ana Yemekler', 'Grilled Meats', 'اللحوم المشوية', 'Мясо на Гриле', 20, 'assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg');
+INSERT INTO categories (id, name_tr, name_en, name_ar, name_ru, sort_order, image) VALUES ('tatli_meyve', 'Tatlı & Meyve', 'Desserts & Fruits', 'الحلويات والفواكه', 'Десерты и Фрукты', 30, '');
+INSERT INTO categories (id, name_tr, name_en, name_ar, name_ru, sort_order, image) VALUES ('raki', 'Rakı', 'Rakı', 'راكي', 'Раки', 40, 'assets/images/SnapInsta.to_631052160_18497719381072243_630189921650077750_n.jpg');
+INSERT INTO categories (id, name_tr, name_en, name_ar, name_ru, sort_order, image) VALUES ('sarap', 'Şarap', 'Wine', 'النبيذ', 'Вино', 50, '');
+INSERT INTO categories (id, name_tr, name_en, name_ar, name_ru, sort_order, image) VALUES ('viski', 'Viski', 'Whiskey', 'الويسكي', 'Виски', 60, '');
+INSERT INTO categories (id, name_tr, name_en, name_ar, name_ru, sort_order, image) VALUES ('votka_cin', 'Votka & Cin', 'Vodka & Gin', 'فودكا وجن', 'Водка и Джин', 70, '');
+INSERT INTO categories (id, name_tr, name_en, name_ar, name_ru, sort_order, image) VALUES ('bira', 'Bira', 'Beer', 'البيرة', 'Пиво', 80, '');
+INSERT INTO categories (id, name_tr, name_en, name_ar, name_ru, sort_order, image) VALUES ('diger_urunler', 'Diğer Ürünler', 'Sides', 'الأطباق الجانبية', 'Гарниры', 90, '');
 
 -- ÜRÜNLER
 INSERT INTO menu_items (category_id, name_tr, name_en, name_ar, name_ru, price, extras_tr, extras_en, extras_ar, extras_ru, image, is_active) VALUES ('mezeler', 'Havuç Tarator', 'Havuç Tarator', 'Havuç Tarator', 'Havuç Tarator', 320, NULL, NULL, NULL, NULL, NULL, true);

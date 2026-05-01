@@ -1,6 +1,7 @@
 const translations = {
     tr: {
         seo_title: "Felek Mangalbaşı | Birinci Sınıf Et ve Mangal Deneyimi",
+        seo_description: "İstanbul Bakırköy'de deniz kenarında, geleneksel mangalbaşı kültürünü modern restoran anlayışıyla sunan birinci sınıf steakhouse.",
         seo_menu_title: "Felek Mangalbaşı | Menü",
         nav_about: "Hakkımızda",
         nav_experience: "Deneyim",
@@ -78,6 +79,7 @@ const translations = {
     },
     en: {
         seo_title: "Felek Mangalbaşı | Premium Steak and Mangal Experience",
+        seo_description: "Premium steakhouse by the sea in Bakırköy, Istanbul. Traditional mangal culture with modern restaurant service.",
         seo_menu_title: "Felek Mangalbaşı | Digital Menu",
         nav_about: "About Us",
         nav_experience: "Experience",
@@ -155,6 +157,7 @@ const translations = {
     },
     ar: {
         seo_title: "فيلك مانجالباشي | تجربة لحوم وشواء ممتازة",
+        seo_description: "مطعم شرائح لحم فاخر على شاطئ البحر في باكيركوي، اسطنبول. ثقافة المانجال التقليدية بخدمة مطاعم حديثة.",
         seo_menu_title: "فيلك مانجالباشي | القائمة الرقمية",
         nav_about: "معلومات عنا",
         nav_experience: "تجربة",
@@ -232,6 +235,7 @@ const translations = {
     },
     ru: {
         seo_title: "Felek Mangalbaşı | Премиальный Стейк и Мангал",
+        seo_description: "Премиальный стейкхаус на морском побережье в Бакыркее, Стамбул. Традиционная культура мангала с современным обслуживанием.",
         seo_menu_title: "Felek Mangalbaşı | Цифровое Меню",
         nav_about: "О Нас",
         nav_experience: "Опыт",

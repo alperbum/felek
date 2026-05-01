@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="seo_title">Felek Mangalbaşı | Birinci Sınıf Et ve Mangal Deneyimi</title>
-    <meta name="description"
+    <meta name="description" id="meta-description"
         content="İstanbul Bakırköy'de deniz kenarında, geleneksel mangalbaşı kültürünü modern restoran anlayışıyla sunan birinci sınıf steakhouse.">
     <meta name="keywords"
         content="mangalbaşı, steakhouse, bakırköy restoran, deniz manzaralı et restoranı, felek mangalbaşı, istanbul et restoranı">
+    <link rel="canonical" href="https://www.felekmangalbasi.com/">
 
     <!-- Google Search Console Doğrulama Kodu (Bunu Search Console'dan alıp buraya yapıştıracaksınız) -->
     <!-- <meta name="google-site-verification" content="DOGRULAMA_KODUNUZ_BURAYA" /> -->
@@ -71,8 +72,11 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
         rel="stylesheet">
 
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="css/style.css" as="style">
+
     <!-- Supabase JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -87,7 +91,7 @@
                 <span class="logo-sub">MANGALBAŞI</span>
             </a>
 
-            <div style="display: flex; align-items: center; gap: 1.5rem;">
+            <div class="header-right">
                 <nav class="nav" id="nav">
                     <ul class="nav-list">
                         <li><a href="#hakkimizda" class="nav-link" data-i18n="nav_about">Hakkımızda</a></li>
@@ -106,7 +110,7 @@
                     <option value="ru">RU</option>
                 </select>
 
-                <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç">
+                <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -122,8 +126,7 @@
             <div class="container hero-container">
                 <div class="hero-content">
                     <p class="hero-subtitle" data-i18n="hero_subtitle">İstanbul'un Kalbinde, Ateşin Başında</p>
-                    <div class="night-badge"
-                        style="display: inline-block; background: rgba(0,0,0,0.6); border: 1px solid #d4af37; color: #d4af37; padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.9rem; margin-bottom: 1rem; backdrop-filter: blur(5px);">
+                    <div class="night-badge">
                         🌙 Gece 02:00'ye kadar kesintisiz mangal keyfi</div>
                     <h1 class="hero-title" data-i18n="hero_title">Geleneksel Lezzet,<br>Modern Mangal Deneyimi</h1>
                     <p class="hero-desc" data-i18n="hero_desc">Kendi etinizi pişirmenin keyfini, birinci sınıf restoran
@@ -135,8 +138,7 @@
                     </div>
                 </div>
                 <div class="hero-carousel">
-                    <video class="venue-video" id="venue-video"
-                        style="width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7) contrast(1.1);"
+                    <video class="venue-video hero-video" id="venue-video"
                         autoplay loop muted playsinline webkit-playsinline preload="metadata"
                         poster="assets/images/hero_charcoal.jpg">
                         <source src="assets/videos/hero_compressed.mp4" type="video/mp4">
@@ -155,7 +157,7 @@
             <div class="container about-container">
                 <div class="about-text">
                     <h2 class="section-title" data-i18n="about_title">Ateşin Ritmi, Etin Sanatı</h2>
-                    <p style="font-size: 1.1rem; color: #ccc; margin-bottom: 2rem;">Bakırköy\'de deniz esintisi
+                    <p class="about-intro">Bakırköy\'de deniz esintisi
                         eşliğinde, geleneksel mangalbaşı kültürünü premium hizmetle sunuyoruz.</p>
                     <div class="features-grid">
                         <div class="feature-item">
@@ -211,7 +213,7 @@
         <section class="section venue" id="mekan">
             <div class="container venue-container">
                 <div class="venue-video-wrapper">
-                    <div style="width: 100%; height: 100%; overflow: hidden; border-radius: 8px;">
+                    <div class="carousel-container">
                         <div class="carousel-track" id="carousel-track">
                             <img src="assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg"
                                 alt="Mangalbaşı 1" class="carousel-img" loading="lazy">
@@ -246,31 +248,27 @@
 
 
         <!-- Reviews Section -->
-        <section class="section reviews" id="yorumlar" style="background-color: #111;">
+        <section class="section reviews" id="yorumlar">
             <div class="container text-center">
                 <h2 class="section-title">Misafirlerimizin Gözünden</h2>
-                <div class="reviews-grid"
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
-                    <div class="review-card"
-                        style="background: #1a1a1a; padding: 2rem; border-radius: 8px; border: 1px solid #333; text-align: left;">
-                        <div style="color: #ffb44d; font-size: 1.5rem; margin-bottom: 1rem;">★★★★★</div>
-                        <p style="color: #ccc; font-style: italic;">"Etlerin lezzeti ve kalitesi muazzam. Deniz
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Etlerin lezzeti ve kalitesi muazzam. Deniz
                             kenarında kendi etimizi mangalda pişirmek çok keyifliydi. Kesinlikle tekrar geleceğiz."</p>
-                        <h4 style="margin-top: 1rem; color: #fff;">- Ahmet Y.</h4>
+                        <h4 class="review-author">- Ahmet Y.</h4>
                     </div>
-                    <div class="review-card"
-                        style="background: #1a1a1a; padding: 2rem; border-radius: 8px; border: 1px solid #333; text-align: left;">
-                        <div style="color: #ffb44d; font-size: 1.5rem; margin-bottom: 1rem;">★★★★★</div>
-                        <p style="color: #ccc; font-style: italic;">"Vale hizmetinden masadaki ilgiye kadar her şey
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Vale hizmetinden masadaki ilgiye kadar her şey
                             kusursuz. Fındık kömürü kullanmaları harika bir detay, asla is kokmadık."</p>
-                        <h4 style="margin-top: 1rem; color: #fff;">- Selin K.</h4>
+                        <h4 class="review-author">- Selin K.</h4>
                     </div>
-                    <div class="review-card"
-                        style="background: #1a1a1a; padding: 2rem; border-radius: 8px; border: 1px solid #333; text-align: left;">
-                        <div style="color: #ffb44d; font-size: 1.5rem; margin-bottom: 1rem;">★★★★★</div>
-                        <p style="color: #ccc; font-style: italic;">"Mezeler olağanüstü taze, etler lokum gibi. Ailece
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <p class="review-text">"Mezeler olağanüstü taze, etler lokum gibi. Ailece
                             çok güzel bir akşam geçirdik. Rezervasyon sistemi çok pratik."</p>
-                        <h4 style="margin-top: 1rem; color: #fff;">- Burak T.</h4>
+                        <h4 class="review-author">- Burak T.</h4>
                     </div>
                 </div>
             </div>
@@ -280,16 +278,14 @@
         <section class="section reservation" id="rezervasyon">
             <div class="container reservation-container-new text-center">
                 <h2 class="section-title" data-i18n="res_title">Masanızı Ayırtın</h2>
-                <p class="section-subtitle" style="margin-bottom: 2rem;">Ateşin başında unutulmaz bir akşam için bize
+                <p class="section-subtitle res-subtitle">Ateşin başında unutulmaz bir akşam için bize
                     WhatsApp üzerinden ulaşın.</p>
 
-                <a href="https://wa.me/905397776067" target="_blank" class="btn btn-primary"
-                    style="font-size: 1.3rem; padding: 1.1rem 3rem; background-color: #25D366; border-color: #25D366; color: #fff; display: inline-flex; align-items: center; gap: 0.6rem; margin-bottom: 3rem;">
+                <a href="https://wa.me/905397776067" target="_blank" class="btn btn-whatsapp">
                     💬 Rezervasyon İçin WhatsApp
                 </a>
 
-                <div class="contact-details"
-                    style="display: flex; flex-direction: row; justify-content: center; gap: 4rem; flex-wrap: wrap;">
+                <div class="contact-details">
                     <div class="contact-item">
                         <strong data-i18n="res_hours_title">Çalışma Saatleri:</strong>
                         <p>Her Gün: 12:00 - 02:00</p>
@@ -298,8 +294,8 @@
                         <strong data-i18n="res_loc_title">Konum:</strong>
                         <p>Sakızağacı, Kennedy Cad. No:29<br>34142 Bakırköy/İstanbul</p>
                         <a href="https://www.google.com/maps/dir/?api=1&destination=Felek+Mangalbaşı+Bakırköy+İstanbul"
-                            target="_blank" class="btn btn-outline"
-                            style="margin-top: 1rem; padding: 0.6rem 1.2rem; font-size: 0.95rem;">🗺️ Nasıl Giderim?</a>
+                            target="_blank"
+                            class="btn-directions">🗺️ Nasıl Giderim?</a>
                     </div>
                     <div class="contact-item">
                         <strong data-i18n="res_serv_title">Hizmetler:</strong>
@@ -354,8 +350,7 @@
 
     <!-- Sticky Mobile Reservation Bar -->
     <div class="sticky-res-bar">
-        <a href="https://wa.me/905397776067" target="_blank"
-            style="display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; text-align: center; background-color: #25D366; color: #fff; font-size: 0.9rem; font-weight: 600; padding: 0.7rem 1rem; text-decoration: none;">💬
+        <a href="https://wa.me/905397776067" target="_blank" class="sticky-res-link">💬
             Rezervasyon Yap</a>
     </div>
 

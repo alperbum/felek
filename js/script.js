@@ -23,6 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Update SEO meta tags based on language
+        const metaDesc = document.getElementById('meta-description');
+        if (metaDesc && translations[lang].seo_description) {
+            metaDesc.setAttribute('content', translations[lang].seo_description);
+        }
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle && translations[lang].seo_title) {
+            ogTitle.setAttribute('content', translations[lang].seo_title);
+        }
+        const ogDesc = document.querySelector('meta[property="og:description"]');
+        if (ogDesc && translations[lang].seo_description) {
+            ogDesc.setAttribute('content', translations[lang].seo_description);
+        }
+
         // Re-render menu if we are on the menu page and functions exist
         if (typeof window.getCurrentView === 'function') {
             if (window.getCurrentView() === 'categories' && typeof window.renderCategories === 'function') {
@@ -49,6 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.applyTranslations(currentLang);
 
     // --- Carousel Sliders ---
+    let carouselIntervals = [];
+
     function initCarousel(trackId, interval) {
         const track = document.getElementById(trackId);
         if (track) {
@@ -56,12 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (slides.length <= 1) return;
             let currentIndex = 0;
             
-            setInterval(() => {
+            const intervalId = setInterval(() => {
                 currentIndex = (currentIndex + 1) % slides.length;
                 track.style.transform = `translateX(-${currentIndex * 100}%)`;
             }, interval);
+            carouselIntervals.push(intervalId);
         }
     }
+
+    // Cleanup carousel intervals on page unload
+    window.addEventListener('beforeunload', () => {
+        carouselIntervals.forEach(id => clearInterval(id));
+    });
     
     // Init venue carousel with 3s interval
     initCarousel('carousel-track', 3000);
@@ -143,10 +165,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuToggle && nav) {
         menuToggle.addEventListener('click', () => {
             nav.classList.toggle('active');
+            const isExpanded = nav.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+            menuToggle.setAttribute('aria-label', isExpanded ? 'Menüyü kapat' : 'Menüyü aç');
             
             // Hamburger animation
             const spans = menuToggle.querySelectorAll('span');
-            if (nav.classList.contains('active')) {
+            if (isExpanded) {
                 spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
                 spans[1].style.opacity = '0';
                 spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
