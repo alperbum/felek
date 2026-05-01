@@ -457,6 +457,22 @@ let menuData = [
             } else {
                 groupedItems = filteredItems;
             }
+            
+            // Helper to parse price string for sorting
+            function parsePrice(item) {
+                let priceStr = '';
+                if (item.isGroup && item.variants && item.variants.length > 0) {
+                    priceStr = item.variants[0].price;
+                } else if (item.price) {
+                    priceStr = item.price;
+                }
+                if (!priceStr) return 0;
+                // e.g. "₺3.000,00" -> 3000.00
+                return parseFloat(priceStr.replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
+            }
+
+            // Sort by price descending (Pahalıdan ucuza)
+            groupedItems.sort((a, b) => parsePrice(b) - parsePrice(a));
 
             groupedItems.forEach(item => {
                 const card = document.createElement('div');
@@ -476,8 +492,9 @@ let menuData = [
 
                 if (item.isGroup) {
                     let defaultVariant = item.variants[0]; 
-                    let pillsHtml = item.variants.map((v, idx) => 
-                        `<button type="button" class="qr-variant-pill ${idx === 0 ? 'active' : ''}" data-price="${v.price}">${v.size}</button>`
+                    
+                    let optionsHtml = item.variants.map((v, idx) => 
+                        `<option value="${idx}" ${idx === 0 ? 'selected' : ''}>${v.size}</option>`
                     ).join('');
 
                     card.innerHTML = `
@@ -485,26 +502,29 @@ let menuData = [
                             ${imageHtml}
                         </div>
                         <div class="qr-card-content">
-                            <div class="qr-card-header">
-                                <h3 class="qr-card-title">${title}</h3>
+                            <div class="qr-card-header" style="align-items: center;">
+                                <h3 class="qr-card-title">${title} ${defaultVariant.size}</h3>
                                 <span class="qr-card-price">${defaultVariant.price}</span>
                             </div>
-                            <div class="qr-variant-pills">
-                                ${pillsHtml}
+                            <div class="qr-select-wrapper">
+                                <span class="qr-select-icon">▼</span>
+                                <select class="qr-variant-select">
+                                    ${optionsHtml}
+                                </select>
                             </div>
                         </div>
                     `;
                     
-                    const pills = card.querySelectorAll('.qr-variant-pill');
+                    const selectEl = card.querySelector('.qr-variant-select');
                     const priceEl = card.querySelector('.qr-card-price');
+                    const titleEl = card.querySelector('.qr-card-title');
                     
-                    pills.forEach(pill => {
-                        pill.addEventListener('click', function(e) {
-                            e.stopPropagation();
-                            pills.forEach(p => p.classList.remove('active'));
-                            this.classList.add('active');
-                            priceEl.textContent = this.getAttribute('data-price');
-                        });
+                    selectEl.addEventListener('change', function(e) {
+                        e.stopPropagation();
+                        const selectedIdx = this.value;
+                        const selectedVariant = item.variants[selectedIdx];
+                        priceEl.textContent = selectedVariant.price;
+                        titleEl.textContent = `${title} ${selectedVariant.size}`;
                     });
 
                 } else {
