@@ -471,8 +471,34 @@ let menuData = [
                 return parseFloat(priceStr.replace(/[^0-9,]/g, '').replace(',', '.')) || 0;
             }
 
-            // Sort by price descending (Pahalıdan ucuza)
-            groupedItems.sort((a, b) => parsePrice(b) - parsePrice(a));
+            // Sort by custom order for Raki, fallback to price descending (Pahalıdan ucuza)
+            const customRakiOrder = [
+                "Beylerbeyi Göbek",
+                "Altın Seri",
+                "Efe Gold",
+                "Yeni Rakı",
+                "Sarı Zeybek",
+                "Yeni Seri",
+                "Kulüp Rakı"
+            ];
+
+            groupedItems.sort((a, b) => {
+                if (activeCategory === 'raki') {
+                    let nameA = a.isGroup ? a.baseName : (a.title.tr || '');
+                    let nameB = b.isGroup ? b.baseName : (b.title.tr || '');
+                    
+                    let idxA = customRakiOrder.findIndex(r => nameA.includes(r));
+                    let idxB = customRakiOrder.findIndex(r => nameB.includes(r));
+                    
+                    if (idxA === -1) idxA = 999;
+                    if (idxB === -1) idxB = 999;
+                    
+                    if (idxA !== idxB) {
+                        return idxA - idxB;
+                    }
+                }
+                return parsePrice(b) - parsePrice(a);
+            });
 
             groupedItems.forEach(item => {
                 const card = document.createElement('div');
