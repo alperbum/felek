@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="tr" dir="ltr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="seo_title">Felek Mangalbaşı | Birinci Sınıf Et ve Mangal Deneyimi</title>
     <meta name="description" id="meta-description"
         content="İstanbul Bakırköy'de deniz kenarında, geleneksel mangalbaşı kültürünü modern restoran anlayışıyla sunan birinci sınıf steakhouse.">
-    <meta name="keywords"
-        content="mangalbaşı, steakhouse, bakırköy restoran, deniz manzaralı et restoranı, felek mangalbaşı, istanbul et restoranı">
+    <meta name="keywords" content="mangalbaşı, steakhouse, bakırköy restoran, deniz manzaralı et restoranı, felek mangalbaşı, istanbul et restoranı">
     <link rel="canonical" href="https://www.felekmangalbasi.com/">
-
-    <!-- Google Search Console Doğrulama Kodu (Bunu Search Console'dan alıp buraya yapıştıracaksınız) -->
-    <!-- <meta name="google-site-verification" content="DOGRULAMA_KODUNUZ_BURAYA" /> -->
 
     <!-- Google Analytics 4 (GA4) Kodu -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-E3588HSCF5"></script>
@@ -22,14 +17,13 @@
         gtag('js', new Date());
         gtag('config', 'G-E3588HSCF5');
     </script>
+    
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="Felek Mangalbaşı | Birinci Sınıf Et ve Mangal Deneyimi">
-    <meta property="og:description"
-        content="İstanbul Bakırköy'de deniz kenarında, geleneksel mangalbaşı kültürünü modern restoran anlayışıyla sunan birinci sınıf steakhouse.">
+    <meta property="og:description" content="İstanbul Bakırköy'de deniz kenarında, geleneksel mangalbaşı kültürünü modern restoran anlayışıyla sunan birinci sınıf steakhouse.">
     <meta property="og:type" content="restaurant">
     <meta property="og:url" content="https://www.felekmangalbasi.com">
-    <meta property="og:image"
-        content="https://www.felekmangalbasi.com/assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg">
+    <meta property="og:image" content="https://www.felekmangalbasi.com/assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg">
 
     <!-- JSON-LD LocalBusiness Schema -->
     <script type="application/ld+json">
@@ -55,9 +49,7 @@
       },
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
-        ],
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
         "opens": "12:00",
         "closes": "01:30"
       },
@@ -65,296 +57,211 @@
     }
     </script>
 
-    <!-- Google Fonts: Playfair Display for headings, Inter for text -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
 
     <!-- Preload critical CSS -->
     <link rel="preload" href="css/style.css" as="style">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- Supabase JS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-
-    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <!-- Header / Navigation -->
-    <header class="header" id="header">
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <span class="logo-text">FELEK</span>
-                <span class="logo-sub">MANGALBAŞI</span>
-            </a>
+    <!-- NAV -->
+    <nav id="header">
+        <div class="nav-left">
+            <a href="#" class="nav-logo">Felek</a>
+            <ul class="nav-links" id="nav">
+                <li><a href="#hakkinda" data-i18n="nav_about">Hakkında</a></li>
+                <li><a href="#deneyim" data-i18n="nav_experience">Deneyim</a></li>
+                <li><a href="#etkinlikler" data-i18n="nav_venue">Etkinlikler</a></li>
+                <li><a href="menu.html" data-i18n="nav_menu">Menü</a></li>
+            </ul>
+        </div>
+        
+        <div class="nav-right">
+            <select id="lang-switcher" class="lang-select">
+                <option value="tr">TR</option>
+                <option value="en">EN</option>
+                <option value="ar">AR</option>
+                <option value="ru">RU</option>
+            </select>
+            <a href="https://wa.me/905397776067" target="_blank" class="nav-reserve" data-i18n="nav_reservation">Rezervasyon</a>
+            
+            <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
 
-            <div class="header-right">
-                <nav class="nav" id="nav">
-                    <ul class="nav-list">
-                        <li><a href="#hakkimizda" class="nav-link" data-i18n="nav_about">Hakkımızda</a></li>
-                        <li><a href="#deneyim" class="nav-link" data-i18n="nav_experience">Deneyim</a></li>
-                        <li><a href="#mekan" class="nav-link" data-i18n="nav_venue">Mekan & Etkinlikler</a></li>
-                        <li><a href="menu.html" class="nav-link" data-i18n="nav_menu">Menü</a></li>
-                        <li><a href="https://wa.me/905397776067" target="_blank" class="btn btn-primary nav-btn"
-                                data-i18n="nav_reservation">Rezervasyon</a></li>
-                    </ul>
-                </nav>
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-texture"></div>
 
-                <select id="lang-switcher" class="lang-select">
-                    <option value="tr">TR</option>
-                    <option value="en">EN</option>
-                    <option value="ar">AR</option>
-                    <option value="ru">RU</option>
-                </select>
-
-                <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç" aria-expanded="false" aria-controls="nav">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+        <div class="hero-content-wrapper">
+            <p class="hero-eyebrow reveal" data-i18n="hero_subtitle">Bakırköy · Kennedy Caddesi</p>
+            <h1 class="hero-title reveal reveal-delay-1" data-i18n="hero_title">
+                Kendi ateşin,<br><em>kendi ritmin.</em>
+            </h1>
+            <div class="hero-meta reveal reveal-delay-2">
+                <span class="hero-meta-item" data-i18n="res_hours">Her gün 12:00 – 02:00</span>
+                <span class="hero-meta-item" data-i18n="hero_meta_loc">Bakırköy · Deniz kıyısı</span>
+                <span class="hero-meta-item" data-i18n="hero_meta_vale">Vale hizmeti</span>
             </div>
         </div>
-    </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="hero-overlay"></div>
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <p class="hero-subtitle" data-i18n="hero_subtitle">İstanbul'un Kalbinde, Ateşin Başında</p>
-                    <div class="night-badge">
-                        🌙 Gece 02:00'ye kadar kesintisiz mangal keyfi</div>
-                    <h1 class="hero-title" data-i18n="hero_title">Geleneksel Lezzet,<br>Modern Mangal Deneyimi</h1>
-                    <p class="hero-desc" data-i18n="hero_desc">Kendi etinizi pişirmenin keyfini, birinci sınıf restoran
-                        konforunda deniz havasıyla buluşturuyoruz.</p>
-                    <div class="hero-actions">
-                        <a href="https://wa.me/905397776067" target="_blank" class="btn btn-primary"
-                            data-i18n="btn_reserve">Masanızı Ayırtın</a>
-                        <a href="menu.html" class="btn btn-outline" data-i18n="btn_menu">Menüyü İnceleyin</a>
-                    </div>
-                </div>
-                <div class="hero-carousel">
-                    <video class="venue-video hero-video" id="venue-video"
-                        autoplay loop muted playsinline webkit-playsinline preload="metadata"
-                        poster="assets/images/hero_charcoal.jpg">
-                        <source src="assets/videos/hero_compressed.mp4" type="video/mp4">
-                        Tarayıcınız video etiketini desteklemiyor.
-                    </video>
-                </div>
+        <div class="hero-scroll" data-i18n="scroll_down">Aşağı Kaydır</div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="hakkinda" class="about">
+        <div class="about-text">
+            <p class="about-label reveal" data-i18n="about_label">Mekan</p>
+            <h2 class="about-heading reveal reveal-delay-1" data-i18n="about_title">Mangalın başında<br>zaman durur.</h2>
+            <p class="about-body reveal reveal-delay-2" data-i18n="about_p1">
+                Felek, pişirme eylemini sofra ritüelinin merkezine alır. Balıkesir ve Trakya'dan gelen seçkin etler, dumansız fındık kömürü sistemiyle masanıza entegre mangallarda, kendi hızınızda pişer.
+            </p>
+            <p class="about-body reveal reveal-delay-2" data-i18n="about_p2">
+                Deniz esintisi, taş duvarlar ve kalabalıktan uzak bir ambiyans. Ekibimiz hazırlar; gerisi size kalmış.
+            </p>
+        </div>
+
+        <div class="about-panel">
+            <div class="about-stat reveal">
+                <div class="stat-number">02:00</div>
+                <div class="stat-label" data-i18n="stat_1">Kapanış saati</div>
             </div>
-            <div class="scroll-indicator">
-                <span data-i18n="scroll_down">Aşağı Kaydır</span>
-                <div class="mouse"></div>
+            <div class="about-stat reveal reveal-delay-1">
+                <div class="stat-number">0</div>
+                <div class="stat-label" data-i18n="stat_2">Duman. Fındık kömürü sistemi.</div>
             </div>
-        </section>
-
-        <!-- About Section -->
-        <section class="section about" id="hakkimizda">
-            <div class="container about-container">
-                <div class="about-text">
-                    <h2 class="section-title" data-i18n="about_title">Ateşin Ritmi, Etin Sanatı</h2>
-                    <p class="about-intro">Bakırköy\'de deniz esintisi
-                        eşliğinde, geleneksel mangalbaşı kültürünü premium hizmetle sunuyoruz.</p>
-                    <div class="features-grid">
-                        <div class="feature-item">
-                            <h3 class="feature-title" data-i18n="feat1_title">Premium Etler</h3>
-                            <p class="feature-desc" data-i18n="feat1_desc">Balıkesir ve Trakya'dan özenle seçilmiş
-                                yöresel lezzetler.</p>
-                        </div>
-                        <div class="feature-item">
-                            <h3 class="feature-title" data-i18n="feat2_title">Taş Mimari</h3>
-                            <p class="feature-desc" data-i18n="feat2_desc">Rustik ve otantik atmosferde sıcak bir ortam.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image-wrapper">
-                    <img src="assets/images/SnapInsta.to_670288761_18512718343072243_7403874126890321840_n.jpg"
-                        alt="Ateşin Ritmi" class="about-image" loading="lazy">
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section class="section experience" id="deneyim">
-            <div class="container text-center">
-                <h2 class="section-title text-center" data-i18n="exp_title">Kendin Pişir, Kendin Ye Deneyimi</h2>
-                <p class="section-subtitle" data-i18n="exp_subtitle">Misafirlerimiz sadece yemek yemez, sosyal ve
-                    keyifli bir deneyimin başrolünde olurlar.</p>
-
-                <div class="exp-grid">
-                    <div class="exp-card">
-                        <div class="exp-icon">🔥</div>
-                        <h3 class="exp-title">Dumansız Mangal Sistemi</h3>
-                        <p>Kıvılcım ve is yapmayan özel fındık kömürü ateşi, her masaya entegre mangal sistemiyle
-                            birleşince dumansız, lezzetli ve konforlu bir pişirme deneyimi yaşarsınız.</p>
-                    </div>
-                    <div class="exp-card">
-                        <div class="exp-icon">💨</div>
-                        <h3 class="exp-title">Güçlü Havalandırma</h3>
-                        <p>Ferah ve temiz hava sağlayan son teknoloji havalandırma altyapımız ile konforunuzdan asla
-                            ödün vermezsiniz.</p>
-                    </div>
-                    <div class="exp-card">
-                        <div class="exp-icon">🌊</div>
-                        <h3 class="exp-title">Deniz Esintisi</h3>
-                        <p>Bakırköy Kennedy Caddesi üzerinde, deniz havası eşliğinde mangal yapmanın ayrıcalığını
-                            hissedin.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Venue & Events Section -->
-        <section class="section venue" id="mekan">
-            <div class="container venue-container">
-                <div class="venue-video-wrapper">
-                    <div class="carousel-container">
-                        <div class="carousel-track" id="carousel-track">
-                            <img src="assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg"
-                                alt="Mangalbaşı 1" class="carousel-img" loading="lazy">
-                            <img src="assets/images/SnapInsta.to_631052160_18497719381072243_630189921650077750_n.jpg"
-                                alt="Mangalbaşı 2" class="carousel-img" loading="lazy">
-                            <img src="assets/images/SnapInsta.to_670288761_18512718343072243_7403874126890321840_n.jpg"
-                                alt="Mangalbaşı 3" class="carousel-img" loading="lazy">
-                            <img src="assets/images/SnapInsta.to_673824959_18514044895072243_796291128331931836_n.jpg"
-                                alt="Mangalbaşı 4" class="carousel-img" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-                <div class="venue-text">
-                    <h2 class="section-title" data-i18n="venue_title">Özel Anlarınıza Ev Sahipliği</h2>
-                    <p data-i18n="venue_p1">Merkezi konumu ve 50-150 kişilik kapasitesiyle Felek Mangalbaşı, sadece
-                        bireysel akşam yemekleri için değil, unutulmaz kutlamalar için de idealdir.</p>
-                    <ul class="event-list">
-                        <li><span>✓</span> <span data-i18n="venue_list1">Nikah Sonrası Yemekleri</span></li>
-                        <li><span>✓</span> <span data-i18n="venue_list2">Doğum Günü & Yıldönümü Kutlamaları</span></li>
-                        <li><span>✓</span> <span data-i18n="venue_list3">Kurumsal Şirket Toplantıları</span></li>
-                        <li><span>✓</span> <span data-i18n="venue_list4">Özel Davet ve Organizasyonlar</span></li>
-                    </ul>
-                    <p data-i18n="venue_p2">Profesyonel ekibimiz ve esnek menü seçeneklerimizle her etkinlik için size
-                        özel bir deneyim sunuyoruz.</p>
-                    <a href="https://wa.me/905397776067" target="_blank" class="btn btn-outline"
-                        data-i18n="btn_event">Etkinlik Planlayın</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Menü kısmı ayrı sayfaya (menu.html) taşınmıştır -->
-
-
-        <!-- Reviews Section -->
-        <section class="section reviews" id="yorumlar">
-            <div class="container text-center">
-                <h2 class="section-title">Misafirlerimizin Gözünden</h2>
-                <div class="reviews-grid">
-                    <div class="review-card">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-text">"Etlerin lezzeti ve kalitesi muazzam. Deniz
-                            kenarında kendi etimizi mangalda pişirmek çok keyifliydi. Kesinlikle tekrar geleceğiz."</p>
-                        <h4 class="review-author">- Ahmet Y.</h4>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-text">"Vale hizmetinden masadaki ilgiye kadar her şey
-                            kusursuz. Fındık kömürü kullanmaları harika bir detay, asla is kokmadık."</p>
-                        <h4 class="review-author">- Selin K.</h4>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-stars">★★★★★</div>
-                        <p class="review-text">"Mezeler olağanüstü taze, etler lokum gibi. Ailece
-                            çok güzel bir akşam geçirdik. Rezervasyon sistemi çok pratik."</p>
-                        <h4 class="review-author">- Burak T.</h4>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Reservation Section -->
-        <section class="section reservation" id="rezervasyon">
-            <div class="container reservation-container-new text-center">
-                <h2 class="section-title" data-i18n="res_title">Masanızı Ayırtın</h2>
-                <p class="section-subtitle res-subtitle">Ateşin başında unutulmaz bir akşam için bize
-                    WhatsApp üzerinden ulaşın.</p>
-
-                <a href="https://wa.me/905397776067" target="_blank" class="btn btn-whatsapp">
-                    💬 Rezervasyon İçin WhatsApp
-                </a>
-
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <strong data-i18n="res_hours_title">Çalışma Saatleri:</strong>
-                        <p>Her Gün: 12:00 - 02:00</p>
-                    </div>
-                    <div class="contact-item">
-                        <strong data-i18n="res_loc_title">Konum:</strong>
-                        <p>Sakızağacı, Kennedy Cad. No:29<br>34142 Bakırköy/İstanbul</p>
-                        <a href="https://www.google.com/maps/dir/?api=1&destination=Felek+Mangalbaşı+Bakırköy+İstanbul"
-                            target="_blank"
-                            class="btn-directions">🗺️ Nasıl Giderim?</a>
-                    </div>
-                    <div class="contact-item">
-                        <strong data-i18n="res_serv_title">Hizmetler:</strong>
-                        <p><strong>🚘 Ücretsiz Otopark ve Vale Hizmeti</strong><br>Açık hava bölümü, Mama
-                            sandalyesi,<br>Köpeklerin içeri girmesine izin veriliyor</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-brand">
-                <a href="#" class="logo">
-                    <span class="logo-text">FELEK</span>
-                </a>
-                <p data-i18n="footer_brand">Modern Mangalbaşı Deneyimi. Bakırköy'de deniz havasıyla birinci sınıf et
-                    keyfi.</p>
-            </div>
-
-            <div class="footer-links">
-                <h3 data-i18n="footer_links_title">Hızlı Menü</h3>
-                <ul>
-                    <li><a href="#hakkimizda" data-i18n="nav_about">Hakkımızda</a></li>
-                    <li><a href="menu.html" data-i18n="nav_menu">Menü</a></li>
-                    <li><a href="#mekan" data-i18n="nav_venue">Organizasyonlar</a></li>
-                    <li><a href="tel:+902125439248" data-i18n="nav_reservation">Rezervasyon</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-contact">
-                <h3 data-i18n="footer_contact_title">İletişim</h3>
-                <p>Sakızağacı, Kennedy Cad. No:29</p>
-                <p>34142 Bakırköy/İstanbul</p>
-                <p><span data-i18n="footer_phone">Telefon:</span> <a href="tel:+902125439248">(0212) 543 92 48</a></p>
-                <p>Her gün 12:00 - 02:00</p>
+            <div class="about-stat reveal reveal-delay-2">
+                <div class="stat-number" data-i18n="stat_3_num">Açık<br>teras</div>
+                <div class="stat-label" data-i18n="stat_3_label">Deniz havası eşliğinde</div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <div class="container text-center">
-                <p>&copy; 2026 Felek Mangalbaşı. <span data-i18n="footer_rights">Tüm hakları saklıdır. (Demo
-                        Sürüm)</span></p>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="deneyim" class="features">
+        <div class="features-header">
+            <p class="features-label reveal" data-i18n="nav_experience">Deneyim</p>
+            <h2 class="features-title reveal reveal-delay-1" data-i18n="exp_title">
+                Her detay<br>bir nedenden ötürü.
+            </h2>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-item reveal">
+                <div class="feature-num">01</div>
+                <h3 class="feature-title" data-i18n="exp1_title">Dumansız mangal</h3>
+                <p class="feature-desc" data-i18n="exp1_desc">
+                    Özel fındık kömürü, kıvılcım ve is bırakmadan saatler boyu eşit ısı üretir. Kıyafetinize koku sinmez.
+                </p>
             </div>
+            <div class="feature-item reveal reveal-delay-1">
+                <div class="feature-num">02</div>
+                <h3 class="feature-title" data-i18n="exp2_title">Güçlü havalandırma</h3>
+                <p class="feature-desc" data-i18n="exp2_desc">
+                    Yüksek kapasiteli sistem, kapalı ve açık alan arasındaki hava dengesini sürekli canlı tutar.
+                </p>
+            </div>
+            <div class="feature-item reveal reveal-delay-2">
+                <div class="feature-num">03</div>
+                <h3 class="feature-title" data-i18n="exp3_title">Deniz havasında</h3>
+                <p class="feature-desc" data-i18n="exp3_desc">
+                    Kennedy Caddesi üzerinde, Marmara rüzgarıyla birleşen açık teras; standart bir restoran değil.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="etkinlikler" class="events">
+        <div>
+            <p class="events-label reveal" data-i18n="venue_label">Özel Etkinlikler</p>
+            <h2 class="events-title reveal reveal-delay-1" data-i18n="venue_title">
+                Kalabalık için<br>de bir yerimiz var.
+            </h2>
+            <p class="events-body reveal reveal-delay-2" data-i18n="venue_p1">
+                Özel etkinlikleriniz için ekibimiz ve esnek menü seçeneklerimizle buradayız. Organizasyonunuzu birlikte planlayalım.
+            </p>
+            <a href="https://wa.me/905397776067" class="btn reveal reveal-delay-2" data-i18n="btn_event">İletişime Geçin</a>
+        </div>
+
+        <div class="events-list reveal reveal-delay-1">
+            <div class="event-row">
+                <span class="event-dot"></span>
+                <span class="event-name" data-i18n="venue_list1">Nikah sonrası yemekleri</span>
+            </div>
+            <div class="event-row">
+                <span class="event-dot"></span>
+                <span class="event-name" data-i18n="venue_list2">Doğum günü & yıldönümü</span>
+            </div>
+            <div class="event-row">
+                <span class="event-dot"></span>
+                <span class="event-name" data-i18n="venue_list3">Kurumsal toplantılar</span>
+            </div>
+            <div class="event-row">
+                <span class="event-dot"></span>
+                <span class="event-name" data-i18n="venue_list4">Özel davet ve organizasyonlar</span>
+            </div>
+            <div class="event-row">
+                <span class="event-dot"></span>
+                <span class="event-name" data-i18n="venue_list5">Aile toplantıları</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="rezervasyon">
+        <p class="cta-eyebrow reveal" data-i18n="nav_reservation">Rezervasyon</p>
+        <h2 class="cta-title reveal reveal-delay-1" data-i18n="res_title">
+            Masanız<br><em>hazır mı?</em>
+        </h2>
+        <a href="https://wa.me/905397776067" class="btn reveal reveal-delay-2" data-i18n="btn_whatsapp">WhatsApp ile Ayırtın</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <div class="footer-logo">Felek Mangalbaşı</div>
+            <p class="footer-text" style="margin-top: 1rem;" data-i18n="footer_brand">Modern Mangalbaşı Deneyimi. Bakırköy'de deniz havasıyla birinci sınıf et keyfi.</p>
+        </div>
+        <div>
+            <p class="footer-label" data-i18n="footer_contact_title">Adres & Saat</p>
+            <p class="footer-text">
+                Sakızağacı, Kennedy Cad. No:29<br>
+                34142 Bakırköy / İstanbul
+            </p>
+            <p class="footer-text" style="margin-top:0.5rem;" data-i18n="res_hours">Her gün 12:00 – 02:00</p>
+            <a href="tel:+902125439248" class="footer-link">+90 (212) 543 92 48</a>
+        </div>
+        <div>
+            <p class="footer-label" data-i18n="res_serv_title">Hizmetler</p>
+            <p class="footer-text" data-i18n="res_serv">
+                Otopark · Vale hizmeti<br>Açık hava terası<br>Mama sandalyesi<br>Patili dostlarınız da aramızda
+            </p>
         </div>
     </footer>
 
+    <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 Felek Mangalbaşı. <span data-i18n="footer_rights">Tüm hakları saklıdır. (Demo Sürüm)</span></span>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Felek+Mangalbaşı+Bakırköy+İstanbul" target="_blank" class="footer-copy" style="color: var(--accent);">Haritada Gör</a>
+    </div>
+
+    <!-- Scripts -->
     <script src="js/translations.js"></script>
     <script src="js/config.js"></script>
     <script src="js/script.js"></script>
 
-    <!-- Sticky Mobile Reservation Bar -->
-    <div class="sticky-res-bar">
-        <a href="https://wa.me/905397776067" target="_blank" class="sticky-res-link">💬
-            Rezervasyon Yap</a>
-    </div>
-
-
 </body>
-
 </html>

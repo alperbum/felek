@@ -23,67 +23,66 @@
     <meta property="og:url" content="https://www.felekmangalbasi.com/menu.html">
     <meta property="og:image" content="https://www.felekmangalbasi.com/assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+
     <!-- Supabase JS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-
-    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="header scrolled" id="header" style="background-color: rgba(17, 17, 17, 0.95);">
-        <div class="container header-container">
-            <a href="index.html" class="logo">
-                <span class="logo-text">FELEK</span>
-                <span class="logo-sub">MANGALBAŞI</span>
-            </a>
-            
-            <div class="header-right">
-                <nav class="nav" id="nav">
-                    <ul class="nav-list">
-                        <li><a href="index.html#hakkimizda" class="nav-link" data-i18n="nav_about">Hakkımızda</a></li>
-                        <li><a href="index.html#deneyim" class="nav-link" data-i18n="nav_experience">Deneyim</a></li>
-                        <li><a href="index.html#mekan" class="nav-link" data-i18n="nav_venue">Mekan & Etkinlikler</a></li>
-                        <li><a href="menu.html" class="nav-link" data-i18n="nav_menu">Menü</a></li>
-                        <li><a href="https://wa.me/905397776067" class="btn btn-primary nav-btn" data-i18n="nav_reservation">Rezervasyon</a></li>
-                    </ul>
-                </nav>
-                
-                <select id="lang-switcher" class="lang-select">
-                    <option value="tr">TR</option>
-                    <option value="en">EN</option>
-                    <option value="ar">AR</option>
-                    <option value="ru">RU</option>
-                </select>
-
-                <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+    <!-- NAV -->
+    <nav id="header" style="background-color: rgba(14, 12, 10, 0.95); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
+        <div class="nav-left">
+            <a href="index.html" class="nav-logo">Felek</a>
+            <ul class="nav-links" id="nav">
+                <li><a href="index.html#hakkinda" data-i18n="nav_about">Hakkında</a></li>
+                <li><a href="index.html#deneyim" data-i18n="nav_experience">Deneyim</a></li>
+                <li><a href="index.html#etkinlikler" data-i18n="nav_venue">Etkinlikler</a></li>
+                <li><a href="menu.html" data-i18n="nav_menu">Menü</a></li>
+            </ul>
         </div>
-    </header>
+        
+        <div class="nav-right">
+            <select id="lang-switcher" class="lang-select">
+                <option value="tr">TR</option>
+                <option value="en">EN</option>
+                <option value="ar">AR</option>
+                <option value="ru">RU</option>
+            </select>
+            <a href="https://wa.me/905397776067" class="nav-reserve" data-i18n="nav_reservation">Rezervasyon</a>
+            
+            <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü aç">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
 
     <main class="menu-page">
-        <div class="container">
-            <div class="qr-menu-header">
-                <h1 class="section-title" data-i18n="menu_title">Menü</h1>
-                <p class="section-subtitle" data-i18n="menu_subtitle">Ateşin lezzetle buluştuğu nokta</p>
-                <a href="#feedback" onclick="document.getElementById('feedback').scrollIntoView({behavior:'smooth'}); return false;" style="display:inline-block; margin-top:0.5rem; font-size:0.75rem; color:rgba(255,255,255,0.3); letter-spacing:0.04em; text-decoration:none;" data-i18n="feedback_hint">Görüş &amp; önerileriniz için ↓</a>
+        <div class="menu-container">
+            <div class="qr-menu-header reveal">
+                <h1 class="cta-title" data-i18n="menu_title" style="margin-bottom: 0.5rem;">Menü</h1>
+                <p class="cta-eyebrow" data-i18n="menu_subtitle" style="margin-bottom: 2rem;">Ateşin lezzetle buluştuğu nokta</p>
+                <a href="#feedback" onclick="document.getElementById('feedback').scrollIntoView({behavior:'smooth'}); return false;" style="display:inline-block; font-size:12px; color:var(--muted); letter-spacing:0.15em; text-transform:uppercase; text-decoration:none; border-bottom: 1px solid var(--muted); padding-bottom: 2px;" data-i18n="feedback_hint">Görüş &amp; önerileriniz için ↓</a>
             </div>
             
             <div class="qr-category-nav" id="category-nav">
-                <!-- Kategoriler JS ile yüklenecek -->
+                <!-- Kategoriler JS ile yüklenecek (Eğer eski nav sistemi kalırsa) -->
             </div>
 
-            <div class="qr-menu-grid" id="qr-menu-grid">
+            <div class="qr-menu-grid reveal reveal-delay-1" id="qr-menu-grid">
                 <!-- Ürünler JS ile yüklenecek -->
             </div>
             
             <!-- Görüş ve Öneriler Section -->
-            <div id="feedback" class="feedback-section text-center">
-                <h2 class="section-title feedback-title" data-i18n="feedback_section_title">✉️ Görüş ve Önerileriniz</h2>
-                <p class="feedback-desc" data-i18n="feedback_section_desc">Felek Mangalbaşı deneyiminizi paylaşın. Mesajınız direkt işletme sahibine ulaşır.</p>
+            <div id="feedback" class="feedback-section reveal reveal-delay-2">
+                <h2 class="events-title text-center" data-i18n="feedback_section_title">Görüş ve Önerileriniz</h2>
+                <p class="events-body text-center" style="margin: 0 auto 3rem auto; max-width: 500px;" data-i18n="feedback_section_desc">Felek Mangalbaşı deneyiminizi paylaşın. Mesajınız direkt işletme sahibine ulaşır.</p>
                 <form id="feedback-form" class="feedback-form">
                     <input
                         id="feedback-name"
@@ -96,7 +95,6 @@
                         id="feedback-msg"
                         data-i18n="feedback_msg_placeholder"
                         placeholder="Mesajınızı buraya yazın..."
-                        rows="4"
                         required
                         class="feedback-input feedback-textarea"
                     ></textarea>
@@ -114,50 +112,40 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer footer-menu">
-        <div class="container footer-container">
-            <div class="footer-brand">
-                <a href="index.html" class="logo">
-                    <span class="logo-text">FELEK</span>
-                </a>
-                <p data-i18n="footer_brand">Modern Mangalbaşı Deneyimi. Bakırköy'de deniz havasıyla birinci sınıf et keyfi.</p>
-            </div>
-            
-            <div class="footer-links">
-                <h3 data-i18n="footer_links_title">Hızlı Menü</h3>
-                <ul>
-                    <li><a href="index.html#hakkimizda" data-i18n="nav_about">Hakkımızda</a></li>
-                    <li><a href="menu.html" data-i18n="nav_menu">Menü</a></li>
-                    <li><a href="index.html#mekan" data-i18n="nav_venue">Organizasyonlar</a></li>
-                    <li><a href="tel:+902125439248" data-i18n="nav_reservation">Rezervasyon</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-contact">
-                <h3 data-i18n="footer_contact_title">İletişim</h3>
-                <p>Sakızağacı, Kennedy Cad. No:29</p>
-                <p>34142 Bakırköy/İstanbul</p>
-                <p><span data-i18n="footer_phone">Telefon:</span> <a href="tel:+902125439248">(0212) 543 92 48</a></p>
-                <p data-i18n="res_hours">Her gün 12:00 - 01:30</p>
-            </div>
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <div class="footer-logo">Felek Mangalbaşı</div>
+            <p class="footer-text" style="margin-top: 1rem;" data-i18n="footer_brand">Modern Mangalbaşı Deneyimi. Bakırköy'de deniz havasıyla birinci sınıf et keyfi.</p>
         </div>
-        <div class="footer-bottom">
-            <div class="container text-center">
-                <p>&copy; 2026 Felek Mangalbaşı. <span data-i18n="footer_rights">Tüm hakları saklıdır. (Demo Sürüm)</span></p>
-            </div>
+        <div>
+            <p class="footer-label" data-i18n="footer_contact_title">İletişim & Saatler</p>
+            <p class="footer-text">
+                Sakızağacı, Kennedy Cad. No:29<br>
+                34142 Bakırköy / İstanbul
+            </p>
+            <p class="footer-text" style="margin-top:0.5rem;" data-i18n="res_hours">Her gün 12:00 – 01:30</p>
+            <a href="tel:+902125439248" class="footer-link">+90 (212) 543 92 48</a>
+        </div>
+        <div>
+            <p class="footer-label" data-i18n="res_serv_title">Hizmetler</p>
+            <p class="footer-text" data-i18n="res_serv">
+                Açık hava bölümü, Mama sandalyesi,<br>Köpeklerin içeri girmesine izin veriliyor
+            </p>
         </div>
     </footer>
 
+    <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 Felek Mangalbaşı. <span data-i18n="footer_rights">Tüm hakları saklıdır. (Demo Sürüm)</span></span>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Felek+Mangalbaşı+Bakırköy+İstanbul" target="_blank" class="footer-copy" style="color: var(--accent);">Haritada Gör</a>
+    </div>
+
+    <!-- Scripts -->
     <script src="js/translations.js"></script>
     <script src="js/config.js"></script>
     <script src="js/script.js"></script>
     <script>
-        // ─── Feedback Formu (Güvenli Sunucu Proxy) ─────────────────────────
-        // Token ve Chat ID sunucu tarafında (Cloudflare Workers env vars) tutulur.
-        // İstemci sadece /api/feedback endpoint'ine POST atar.
-        // ──────────────────────────────────────────────────────────────────
-
+        // ─── Feedback Formu ─────────────────────────
         document.getElementById('feedback-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             const name   = document.getElementById('feedback-name').value.trim();
@@ -169,7 +157,7 @@
 
             btn.disabled = true;
             btn.textContent = 'Gönderiliyor…';
-            status.style.color = '#aaa';
+            status.style.color = 'var(--muted)';
             status.textContent = '';
 
             try {
@@ -180,15 +168,15 @@
                 });
                 const data = await res.json();
                 if (data.ok) {
-                    status.style.color = '#4caf50';
-                    status.textContent = '✅ Mesajınız iletildi, teşekkürler!';
+                    status.style.color = '#c8923a'; // Accent color for success
+                    status.textContent = 'Mesajınız iletildi, teşekkürler!';
                     this.reset();
                 } else {
                     throw new Error(data.error || 'Gönderim hatası');
                 }
             } catch (err) {
-                status.style.color = '#f44336';
-                status.textContent = '❌ Gönderilemedi. Lütfen tekrar deneyin.';
+                status.style.color = '#ff6b6b'; // Redish for error
+                status.textContent = 'Gönderilemedi. Lütfen tekrar deneyin.';
                 console.error(err);
             } finally {
                 btn.disabled = false;
