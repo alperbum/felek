@@ -2,9 +2,9 @@
 :root {
   --bg: #0e0c0a;
   --bg2: #161310;
-  --text: #e8e0d4;
-  --muted: #7a7167;
-  --accent: #c8923a;
+  --text: #f4eee6;
+  --muted: #a69c90;
+  --accent: #d4a355;
   --border: rgba(200,146,58,0.18);
   --serif: 'Cormorant Garamond', serif;
   --sans: 'DM Sans', sans-serif;
@@ -141,8 +141,8 @@ nav.scrolled {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 0 3rem 5rem;
+  justify-content: center;
+  padding: 8rem 3rem 5rem;
   position: relative;
   overflow: hidden;
 }
@@ -204,8 +204,9 @@ nav.scrolled {
 
 .hero-meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
   margin-top: 3rem;
 }
 
@@ -590,23 +591,33 @@ footer {
 
 /* Responsive */
 @media (max-width: 900px) {
-  nav { padding: 1.5rem 1.5rem; }
+  nav { padding: 1rem 1.5rem; }
+  .nav-left { gap: 1rem; }
+  .nav-logo { font-size: 1rem; }
+  .nav-right { gap: 1rem; }
+  .nav-reserve { display: none; } /* Hide reserve text on very small screens to save space */
+  
   .nav-links { 
       display: none; 
       position: absolute;
       top: 100%;
       left: 0;
       width: 100%;
-      background: rgba(14, 12, 10, 0.95);
+      background: var(--bg);
       flex-direction: column;
       padding: 2rem;
       border-bottom: 1px solid var(--border);
   }
-  .nav.active .nav-links { display: flex; }
-  .menu-toggle { display: flex; }
+  nav.active .nav-links { display: flex; }
   
-  .hero { padding: 0 1.5rem 4rem; }
+  .menu-toggle { display: flex; }
+  .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  
+  .hero { padding: 8rem 1.5rem 4rem; justify-content: center; }
   .hero-scroll { display: none; }
+  .hero-title { font-size: clamp(2.8rem, 10vw, 4rem); }
   .hero-meta { flex-direction: column; align-items: flex-start; gap: 1rem; }
   
   .about { grid-template-columns: 1fr; }
@@ -661,6 +672,7 @@ footer {
     aspect-ratio: 16/9;
     transition: var(--transition);
     overflow: hidden;
+    background: radial-gradient(circle at center, rgba(200,146,58,0.08) 0%, transparent 70%);
 }
 
 .qr-category-card:hover {

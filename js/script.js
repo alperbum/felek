@@ -90,37 +90,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // --- Mobile Menu Toggle ---
     const menuToggle = document.getElementById('menu-toggle');
-    const nav = document.getElementById('nav');
-    const navLinks = document.querySelectorAll('.nav-link, .nav-btn');
+    const headerNav = document.getElementById('header');
+    const navLinks = document.querySelectorAll('.nav-links a');
 
-    if (menuToggle && nav) {
+    if (menuToggle && headerNav) {
         menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            const isExpanded = nav.classList.contains('active');
-            menuToggle.setAttribute('aria-expanded', isExpanded);
-            menuToggle.setAttribute('aria-label', isExpanded ? 'Menüyü kapat' : 'Menüyü aç');
-            
-            // Hamburger animation
-            const spans = menuToggle.querySelectorAll('span');
-            if (isExpanded) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
+            headerNav.classList.toggle('active');
+            menuToggle.classList.toggle('active');
         });
 
         // Close menu when a link is clicked
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                nav.classList.remove('active');
-                const spans = menuToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
+                headerNav.classList.remove('active');
+                menuToggle.classList.remove('active');
             });
         });
     }
@@ -323,7 +306,7 @@ let menuData = [
                                 
                 const imgHtml = cat.image && cat.image !== '' 
                                 ? `<img src="${cat.image}" alt="${catName}">` 
-                                : `<div style="width:100%; height:100%; background:#111; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.1); font-family:var(--font-heading);">Görsel</div>`;
+                                : ``;
                 
                 card.innerHTML = `
                     ${imgHtml}
