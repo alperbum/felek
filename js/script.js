@@ -111,11 +111,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Sticky Header ---
     const header = document.getElementById('header');
     
+    let scrollTicking = false;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
+        if (!scrollTicking) {
+            requestAnimationFrame(() => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                scrollTicking = false;
+            });
+            scrollTicking = true;
         }
     });
 
@@ -147,9 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let categories = [
     { id: "mezeler", image: "" },
     { id: "salatalar", image: "" },
-    { id: "ana_yemekler", image: "assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.jpg" },
+    { id: "ana_yemekler", image: "assets/images/SnapInsta.to_613647466_18491576731072243_8360769828246837946_n.webp" },
     { id: "alkolsuz", image: "" },
-    { id: "raki", image: "assets/images/SnapInsta.to_631052160_18497719381072243_630189921650077750_n.jpg" },
+    { id: "raki", image: "assets/images/SnapInsta.to_631052160_18497719381072243_630189921650077750_n.webp" },
     { id: "viski", image: "" },
     { id: "sarap", image: "" },
     { id: "biralar", image: "" },
@@ -280,6 +287,17 @@ let menuData = [
         let currentView = 'categories';
         let activeCategory = null;
 
+        // HTML sanitizasyon helper
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
         // Localized veriyi çeken yardımcı fonksiyon
         function getLocalized(obj) {
             if (!obj) return '';
@@ -305,12 +323,13 @@ let menuData = [
                                 : cat.id;
                                 
                 const imgHtml = cat.image && cat.image !== '' 
-                                ? `<img src="${cat.image}" alt="${catName}">` 
+                                ? `<img src="${escapeHtml(cat.image)}" alt="${escapeHtml(catName)}" loading="lazy" decoding="async">` 
                                 : ``;
+
                 
                 card.innerHTML = `
                     ${imgHtml}
-                    <h3 class="qr-category-card-title">${catName}</h3>
+                    <h3 class="qr-category-card-title">${escapeHtml(catName)}</h3>
                 `;
                 card.addEventListener('click', () => {
                     activeCategory = cat.id;
@@ -443,7 +462,7 @@ let menuData = [
 
                 let imageHtml = '';
                 if (item.image && item.image.trim() !== '') {
-                    imageHtml = `<img src="${item.image}" alt="${title}" class="qr-card-img">`;
+                    imageHtml = `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(title)}" class="qr-card-img" loading="lazy" decoding="async">`;
                 } else {
                     const placeholderTxt = (typeof currentLang !== 'undefined' && translations[currentLang]) ? translations[currentLang].placeholder_image : 'Görsel Bekleniyor';
                     imageHtml = `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-family:var(--font-heading);">${placeholderTxt}</div>`;

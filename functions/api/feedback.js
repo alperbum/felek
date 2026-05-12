@@ -13,6 +13,27 @@
 const rateLimitMap = new Map();
 const RATE_LIMIT_WINDOW = 60_000; // 1 dakika
 const RATE_LIMIT_MAX = 3;
+const ALLOWED_ORIGINS = [
+    "https://felekmangalbasi.com",
+    "https://www.felekmangalbasi.com",
+    "https://felek-mangalbasi.pages.dev"
+];
+
+function getCorsOrigin(request) {
+    const origin = request.headers.get("Origin");
+    if (origin && ALLOWED_ORIGINS.includes(origin)) {
+        return origin;
+    }
+    return ALLOWED_ORIGINS[0];
+}
+
+function escapeHtml(str) {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
 
 function isRateLimited(ip) {
     const now = Date.now();
@@ -36,7 +57,7 @@ export async function onRequestPost(context) {
 
     // CORS Headers
     const corsHeaders = {
-        "Access-Control-Allow-Origin": request.headers.get("Origin") || "*",
+        "Access-Control-Allow-Origin": getCorsOrigin(request),
         "Access-Control-Allow-Methods": "POST, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type",
         "Content-Type": "application/json",
@@ -86,9 +107,12 @@ export async function onRequestPost(context) {
     const sanitizedName = name ? String(name).slice(0, 100) : "";
     const sanitizedMsg = String(message).slice(0, 2000);
 
-    const text = sanitizedName
-        ? `📋 *Felek Mangalbaşı – Yeni Geri Bildirim*\n\n👤 Ad: ${sanitizedName}\n💬 Mesaj:\n${sanitizedMsg}`
-        : `📋 *Felek Mangalbaşı – Yeni Geri Bildirim*\n\n💬 Mesaj:\n${sanitizedMsg}`;
+    const escapedName = sanitizedName ? escapeHtml(sanitizedName) : "";
+    const escapedMsg = escapeHtml(sanitizedMsg);
+
+    const text = escapedName
+        ? `\u{1F4CB} <b>Felek Mangalba\u015F\u0131 \u2013 Yeni Geri Bildirim</b>\n\n\u{1F464} Ad: ${escapedName}\n\u{1F4AC} Mesaj:\n${escapedMsg}`
+        : `\u{1F4CB} <b>Felek Mangalba\u015F\u0131 \u2013 Yeni Geri Bildirim</b>\n\n\u{1F4AC} Mesaj:\n${escapedMsg}`;
 
     // Telegram API'ye gönder
     try {
@@ -100,7 +124,7 @@ export async function onRequestPost(context) {
                 body: JSON.stringify({
                     chat_id: chatId,
                     text: text,
-                    parse_mode: "Markdown",
+                    parse_mode: "HTML",
                 }),
             }
         );
@@ -129,11 +153,13 @@ export async function onRequestPost(context) {
 }
 
 // CORS preflight
-export async function onRequestOptions() {
+export async function onRequestOptions(context) {
+    const origin = context.request.headers.get("Origin");
+    const allowedOrigin = (origin && ALLOWED_ORIGINS.includes(origin)) ? origin : ALLOWED_ORIGINS[0];
     return new Response(null, {
         status: 204,
         headers: {
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": allowedOrigin,
             "Access-Control-Allow-Methods": "POST, OPTIONS",
             "Access-Control-Allow-Headers": "Content-Type",
             "Access-Control-Max-Age": "86400",

@@ -4,25 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Felek Yönetim Paneli</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="admin.css">
-    
-    <!-- Supabase JS -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
+    <!-- Confirm Dialog -->
+    <div id="confirm-dialog" class="confirm-overlay">
+        <div class="confirm-box">
+            <div class="confirm-icon">⚠️</div>
+            <p id="confirm-message">Emin misiniz?</p>
+            <div class="confirm-actions">
+                <button id="confirm-yes" class="btn btn-danger">Evet, Sil</button>
+                <button id="confirm-no" class="btn btn-outline">Vazgeç</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Login Screen -->
     <div id="login-screen" class="auth-wrapper">
         <div class="auth-card">
-            <h2>Yönetim Girişi</h2>
-            <p>Devam etmek için Supabase bilgilerinizi ve giriş bilgilerinizi girin.</p>
-            
-            <div id="setup-info" style="margin-bottom: 20px; text-align: left; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px;">
-                <p style="font-size: 0.85rem; color: #ccc;">Sistem Kurulumu Tamamlanmadı! Devam etmek için <a href="../walkthrough.html" style="color: #ffb44d;">yönergeleri</a> izleyip `js/script.js` dosyasındaki SUPABASE_URL ve SUPABASE_ANON_KEY değerlerini doldurun.</p>
-            </div>
-
+            <div class="auth-logo">🔥</div>
+            <h2>Felek Yönetim Paneli</h2>
+            <p>Menüyü düzenlemek için giriş yapın.</p>
             <form id="login-form">
                 <div class="input-group">
                     <label>E-Posta</label>
@@ -42,88 +50,64 @@
     <div id="dashboard-screen" class="dashboard-wrapper" style="display: none;">
         <header class="admin-header">
             <div class="header-brand">
-                <h1>Felek Admin Paneli</h1>
+                <span class="header-logo">🔥</span>
+                <h1>Felek Yönetim</h1>
             </div>
-            <button id="logout-btn" class="btn btn-outline">Çıkış Yap</button>
+            <div class="header-right">
+                <a href="../menu.html" target="_blank" class="btn btn-outline btn-sm">🌐 Siteyi Gör</a>
+                <button id="logout-btn" class="btn btn-outline btn-sm">Çıkış</button>
+            </div>
         </header>
 
-        <main class="admin-main">
-            <div class="sidebar">
-                <ul class="nav-menu">
-                    <li class="active" data-tab="items">Menü Ürünleri</li>
-                    <li data-tab="categories">Kategoriler</li>
-                </ul>
-            </div>
+        <div class="tab-bar">
+            <button class="tab-btn active" data-tab="items">🍖 Menü Ürünleri</button>
+            <button class="tab-btn" data-tab="categories">📂 Kategoriler</button>
+        </div>
+
+        <main class="admin-content">
             
-            <div class="content-area">
-                
-                <!-- Items Tab -->
-                <div id="tab-items" class="tab-content active">
-                    <div class="content-header">
+            <!-- Items Tab -->
+            <div id="tab-items" class="tab-content active">
+                <div class="content-header">
+                    <div>
                         <h2>Menü Ürünleri</h2>
-                        <button class="btn btn-primary" onclick="openModal('itemModal')">+ Yeni Ürün Ekle</button>
+                        <p class="header-subtitle" id="items-count">Yükleniyor...</p>
                     </div>
-                    <div class="filters">
-                        <select id="filter-category" class="select-input">
-                            <option value="">Tüm Kategoriler</option>
-                        </select>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>Görsel</th>
-                                    <th>İsim (TR)</th>
-                                    <th>Kategori</th>
-                                    <th>Fiyat</th>
-                                    <th>Sıra</th>
-                                    <th>Durum</th>
-                                    <th>İşlemler</th>
-                                </tr>
-                            </thead>
-                            <tbody id="items-table-body">
-                                <tr><td colspan="6" style="text-align:center;">Yükleniyor...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <button class="btn btn-primary" onclick="openItemModal()">＋ Yeni Ürün</button>
                 </div>
-
-                <!-- Categories Tab -->
-                <div id="tab-categories" class="tab-content">
-                    <div class="content-header">
-                        <h2>Kategoriler</h2>
-                        <button class="btn btn-primary" onclick="openModal('categoryModal')">+ Yeni Kategori Ekle</button>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="admin-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>İsim (TR)</th>
-                                    <th>Sıralama</th>
-                                    <th>İşlemler</th>
-                                </tr>
-                            </thead>
-                            <tbody id="categories-table-body">
-                                <tr><td colspan="4" style="text-align:center;">Yükleniyor...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="filters">
+                    <select id="filter-category" class="select-input">
+                        <option value="">Tüm Kategoriler</option>
+                    </select>
                 </div>
-
-
-                
+                <div class="card-list" id="items-list">
+                    <div class="loading-state">Yükleniyor...</div>
+                </div>
             </div>
+
+            <!-- Categories Tab -->
+            <div id="tab-categories" class="tab-content">
+                <div class="content-header">
+                    <div>
+                        <h2>Kategoriler</h2>
+                        <p class="header-subtitle" id="cats-count">Yükleniyor...</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openCategoryModal()">＋ Yeni Kategori</button>
+                </div>
+                <div class="card-list" id="categories-list">
+                    <div class="loading-state">Yükleniyor...</div>
+                </div>
+            </div>
+
         </main>
     </div>
 
-    <!-- Modals -->
     <!-- Item Modal -->
     <div id="itemModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="itemModalTitle">Ürün Ekle</h3>
-                <span class="close-modal" onclick="closeModal('itemModal')">&times;</span>
+                <h3 id="itemModalTitle">Yeni Ürün Ekle</h3>
+                <button class="close-modal" onclick="closeModal('itemModal')">&times;</button>
             </div>
             <form id="item-form">
                 <input type="hidden" id="item-id">
@@ -132,32 +116,42 @@
                     <select id="item-category" required class="select-input"></select>
                 </div>
                 <div class="input-group">
-                    <label>İsim (TR)</label>
-                    <input type="text" id="item-name-tr" required>
+                    <label>Ürün Adı</label>
+                    <input type="text" id="item-name-tr" required placeholder="Örn: Adana Kebap">
+                </div>
+                <div class="input-row">
+                    <div class="input-group">
+                        <label>Fiyat (₺)</label>
+                        <input type="number" step="0.01" id="item-price" required placeholder="320">
+                    </div>
+                    <div class="input-group">
+                        <label>Sıralama</label>
+                        <input type="number" id="item-sort-order" value="0" placeholder="0">
+                        <span class="input-hint">Küçük numara önce çıkar</span>
+                    </div>
+                </div>
+                <div class="input-group toggle-group">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="item-is-active" checked>
+                        <span class="toggle-switch"></span>
+                        <span>Menüde göster</span>
+                    </label>
                 </div>
                 <div class="input-group">
-                    <label>Fiyat (Sadece sayı, örn: 320 veya 320.50)</label>
-                    <input type="number" step="0.01" id="item-price" required>
+                    <label>Fotoğraf</label>
+                    <div class="image-upload-area" id="item-upload-area">
+                        <input type="file" id="item-image-file" accept="image/*" class="file-input-hidden">
+                        <input type="hidden" id="item-image">
+                        <div class="upload-placeholder" id="item-upload-placeholder">
+                            <span class="upload-icon">📷</span>
+                            <span>Fotoğraf seçmek için tıklayın</span>
+                        </div>
+                        <img id="item-image-preview" class="image-preview" style="display:none;">
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label>Sıralama (Küçük olan önce çıkar)</label>
-                    <input type="number" id="item-sort-order" value="0">
-                </div>
-                <div class="input-group" style="flex-direction: row; align-items: center; gap: 10px;">
-                    <input type="checkbox" id="item-is-active" checked style="width: auto;">
-                    <label for="item-is-active" style="margin-bottom: 0;">Ürün Menüde Aktif (Gösterilsin)</label>
-                </div>
-                <div class="input-group">
-                    <label>Görsel Yükle (Yeni Fotoğraf Seçin)</label>
-                    <input type="file" id="item-image-file" accept="image/*" class="select-input" style="padding: 0.5rem;">
-                </div>
-                <div class="input-group">
-                    <label>Veya Görsel URL'si (Elle girmek için)</label>
-                    <input type="text" id="item-image" placeholder="https://...">
-                </div>
-                <div style="display:flex; gap: 1rem; margin-top: 1rem;">
-                    <button type="submit" class="btn btn-primary" style="flex:1;">Kaydet</button>
-                    <button type="button" class="btn btn-outline" style="flex:1;" onclick="closeModal('itemModal')">İptal</button>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                    <button type="button" class="btn btn-outline" onclick="closeModal('itemModal')">İptal</button>
                 </div>
             </form>
         </div>
@@ -167,33 +161,35 @@
     <div id="categoryModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="categoryModalTitle">Kategori Ekle</h3>
-                <span class="close-modal" onclick="closeModal('categoryModal')">&times;</span>
+                <h3 id="categoryModalTitle">Yeni Kategori Ekle</h3>
+                <button class="close-modal" onclick="closeModal('categoryModal')">&times;</button>
             </div>
             <form id="category-form">
+                <input type="hidden" id="cat-id">
                 <div class="input-group">
-                    <label>Kategori ID (boşluksuz, ingilizce karakter, örn: ana_yemekler)</label>
-                    <input type="text" id="cat-id" required>
+                    <label>Kategori Adı</label>
+                    <input type="text" id="cat-name-tr" required placeholder="Örn: Mezeler">
                 </div>
                 <div class="input-group">
-                    <label>İsim (TR)</label>
-                    <input type="text" id="cat-name-tr" required>
+                    <label>Sıralama</label>
+                    <input type="number" id="cat-order" value="0" required placeholder="0">
+                    <span class="input-hint">Küçük numara önce çıkar</span>
                 </div>
                 <div class="input-group">
-                    <label>Sıralama (Küçük olan önce çıkar)</label>
-                    <input type="number" id="cat-order" value="0" required>
+                    <label>Kapak Fotoğrafı</label>
+                    <div class="image-upload-area" id="cat-upload-area">
+                        <input type="file" id="cat-image-file" accept="image/*" class="file-input-hidden">
+                        <input type="hidden" id="cat-image">
+                        <div class="upload-placeholder" id="cat-upload-placeholder">
+                            <span class="upload-icon">📷</span>
+                            <span>Fotoğraf seçmek için tıklayın</span>
+                        </div>
+                        <img id="cat-image-preview" class="image-preview" style="display:none;">
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label>Görsel Yükle (Yeni Fotoğraf Seçin)</label>
-                    <input type="file" id="cat-image-file" accept="image/*" class="select-input" style="padding: 0.5rem;">
-                </div>
-                <div class="input-group">
-                    <label>Veya Görsel URL'si (Elle girmek için)</label>
-                    <input type="text" id="cat-image" placeholder="https://...">
-                </div>
-                <div style="display:flex; gap: 1rem; margin-top: 1rem;">
-                    <button type="submit" class="btn btn-primary" style="flex:1;">Kaydet</button>
-                    <button type="button" class="btn btn-outline" style="flex:1;" onclick="closeModal('categoryModal')">İptal</button>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                    <button type="button" class="btn btn-outline" onclick="closeModal('categoryModal')">İptal</button>
                 </div>
             </form>
         </div>
