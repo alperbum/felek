@@ -306,6 +306,66 @@ let menuData = [
             return obj[lang] || obj['tr'] || '';
         }
 
+        // Tüm görsellerin yüklendiğinden emin olup kartları topluca göster
+        function revealCardsWhenReady(container, imageSelector) {
+            return new Promise(resolve => {
+                const images = container.querySelectorAll(imageSelector);
+                if (images.length === 0) {
+                    // Görsel yoksa kartları direkt göster
+                    container.querySelectorAll('.qr-category-card, .qr-card').forEach(c => c.classList.add('visible'));
+                    resolve();
+                    return;
+                }
+
+                let loaded = 0;
+                const total = images.length;
+
+                function checkAllLoaded() {
+                    loaded++;
+                    if (loaded >= total) {
+                        // Tüm görseller yüklendi, kartları topluca göster
+                        requestAnimationFrame(() => {
+                            container.querySelectorAll('.qr-category-card, .qr-card').forEach(c => {
+                                c.classList.remove('loading');
+                                c.classList.add('visible');
+                            });
+                            container.querySelectorAll('.qr-card-img-wrapper').forEach(w => w.classList.remove('loading'));
+                            resolve();
+                        });
+                    }
+                }
+
+                images.forEach(img => {
+                    if (img.complete && img.naturalWidth > 0) {
+                        img.classList.add('loaded');
+                        checkAllLoaded();
+                    } else {
+                        img.addEventListener('load', () => {
+                            img.classList.add('loaded');
+                            checkAllLoaded();
+                        }, { once: true });
+                        img.addEventListener('error', () => {
+                            img.classList.add('loaded'); // Hata durumunda da ilerle
+                            checkAllLoaded();
+                        }, { once: true });
+                    }
+                });
+
+                // Failsafe: 4 saniyeden fazla bekleme
+                setTimeout(() => {
+                    if (loaded < total) {
+                        container.querySelectorAll('.qr-category-card, .qr-card').forEach(c => {
+                            c.classList.remove('loading');
+                            c.classList.add('visible');
+                        });
+                        container.querySelectorAll('.qr-card-img-wrapper').forEach(w => w.classList.remove('loading'));
+                        images.forEach(img => img.classList.add('loaded'));
+                        resolve();
+                    }
+                }, 4000);
+            });
+        }
+
         // Ana Menü (Kategoriler Kart Grid)
         function renderCategories() {
             currentView = 'categories';
@@ -321,12 +381,16 @@ let menuData = [
                 const catName = (typeof currentLang !== 'undefined' && translations[currentLang] && translations[currentLang]['cat_' + cat.id]) 
                                 ? translations[currentLang]['cat_' + cat.id] 
                                 : cat.id;
+                
+                const hasImage = cat.image && cat.image !== '';
+                if (hasImage) {
+                    card.classList.add('loading');
+                }
                                 
-                const imgHtml = cat.image && cat.image !== '' 
-                                ? `<img src="${escapeHtml(cat.image)}" alt="${escapeHtml(catName)}" loading="lazy" decoding="async">` 
+                const imgHtml = hasImage 
+                                ? `<img src="${escapeHtml(cat.image)}" alt="${escapeHtml(catName)}" decoding="async">` 
                                 : ``;
 
-                
                 card.innerHTML = `
                     ${imgHtml}
                     <h3 class="qr-category-card-title">${escapeHtml(catName)}</h3>
@@ -337,6 +401,9 @@ let menuData = [
                 });
                 menuGrid.appendChild(card);
             });
+
+            // Görseller hazır olunca kartları göster
+            revealCardsWhenReady(menuGrid, '.qr-category-card img');
         }
 
         // Alt Menü (Seçili Kategorinin Ürünleri)
@@ -461,8 +528,9 @@ let menuData = [
                 const ingredients = getLocalized(item.ingredients);
 
                 let imageHtml = '';
-                if (item.image && item.image.trim() !== '') {
-                    imageHtml = `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(title)}" class="qr-card-img" loading="lazy" decoding="async">`;
+                const hasItemImage = item.image && item.image.trim() !== '';
+                if (hasItemImage) {
+                    imageHtml = `<img src="${escapeHtml(item.image)}" alt="${escapeHtml(title)}" class="qr-card-img" decoding="async">`;
                 } else {
                     const placeholderTxt = (typeof currentLang !== 'undefined' && translations[currentLang]) ? translations[currentLang].placeholder_image : 'Görsel Bekleniyor';
                     imageHtml = `<div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-family:var(--font-heading);">${placeholderTxt}</div>`;
@@ -474,7 +542,7 @@ let menuData = [
                     ).join('<span class="qr-variant-separator">•</span>');
 
                     card.innerHTML = `
-                        <div class="qr-card-img-wrapper">
+                        <div class="qr-card-img-wrapper${hasItemImage ? ' loading' : ''}">
                             ${imageHtml}
                         </div>
                         <div class="qr-card-content">
@@ -497,7 +565,7 @@ let menuData = [
                     }
 
                     card.innerHTML = `
-                        <div class="qr-card-img-wrapper">
+                        <div class="qr-card-img-wrapper${hasItemImage ? ' loading' : ''}">
                             ${imageHtml}
                             ${item.calories ? `<span class="qr-card-cal">${item.calories}</span>` : ''}
                         </div>
@@ -517,6 +585,9 @@ let menuData = [
                 }
                 menuGrid.appendChild(card);
             });
+
+            // Görseller hazır olunca kartları göster
+            revealCardsWhenReady(menuGrid, '.qr-card-img');
         }
 
         // Global functions for onclick and language switcher
@@ -524,13 +595,29 @@ let menuData = [
         window.renderMenu = renderMenu;
         window.getCurrentView = () => currentView;
 
+        // Loading overlay'i gizle
+        function hideLoadingOverlay() {
+            const overlay = document.getElementById('page-loading-overlay');
+            if (overlay) {
+                overlay.classList.add('hidden');
+                // Animasyon bitince DOM'dan kaldır
+                setTimeout(() => overlay.remove(), 600);
+            }
+        }
+
         // Initialize with Supabase (if configured) or fallback to static
         async function initMenuData() {
             if (typeof supabase !== 'undefined' && window.SUPABASE_URL && window.SUPABASE_URL !== 'BURAYA_SUPABASE_URL_GELECEK') {
                 try {
                     const client = supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
-                    const { data: catData, error: catError } = await client.from('categories').select('*').order('sort_order', { ascending: true });
-                    const { data: itemData, error: itemError } = await client.from('menu_items').select('*').eq('is_active', true).order('sort_order', { ascending: true });
+                    // Her iki sorguyu paralel çalıştır (daha hızlı)
+                    const [catResult, itemResult] = await Promise.all([
+                        client.from('categories').select('*').order('sort_order', { ascending: true }),
+                        client.from('menu_items').select('*').eq('is_active', true).order('sort_order', { ascending: true })
+                    ]);
+                    
+                    const { data: catData, error: catError } = catResult;
+                    const { data: itemData, error: itemError } = itemResult;
                     
                     if (!catError && catData && !itemError && itemData) {
                         categories = catData.map(c => ({
@@ -560,7 +647,12 @@ let menuData = [
                     console.error("Supabase bağlantı hatası:", e);
                 }
             }
+            
+            // Veri hazır, kategorileri render et
             renderCategories();
+            
+            // Overlay'i kaldır (kartlar kendi fade-in animasyonlarıyla gelecek)
+            hideLoadingOverlay();
         }
 
         initMenuData();
