@@ -97,6 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
         menuToggle.addEventListener('click', () => {
             headerNav.classList.toggle('active');
             menuToggle.classList.toggle('active');
+            const isOpen = menuToggle.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isOpen);
         });
 
         // Close menu when a link is clicked
@@ -370,9 +372,6 @@ let menuData = [
         function renderCategories() {
             currentView = 'categories';
             menuGrid.innerHTML = '';
-            // Feedback bölümünü göster
-            const feedbackEl = document.getElementById('feedback');
-            if (feedbackEl) feedbackEl.style.display = '';
             
             categories.forEach(cat => {
                 const card = document.createElement('div');
@@ -410,9 +409,6 @@ let menuData = [
         function renderMenu() {
             currentView = 'items';
             menuGrid.innerHTML = '';
-            // Feedback bölümünü gizle
-            const feedbackEl = document.getElementById('feedback');
-            if (feedbackEl) feedbackEl.style.display = 'none';
             
             // Geri Dön Butonu
             const backBtnContainer = document.createElement('div');
@@ -575,11 +571,12 @@ let menuData = [
                                 ${item.price ? `<span class="qr-card-price">${item.price}</span>` : ''}
                             </div>
                             ${desc ? `<p class="qr-card-desc">${desc}</p>` : ''}
+                            ${(ingredients || allergens || (extrasStr && extrasStr !== 'undefined')) ? `
                             <div class="qr-card-ingredients">
-                                ${ingredients ? `<strong>${(typeof currentLang !== 'undefined' && translations[currentLang]) ? translations[currentLang].ingredients_label : 'İçindekiler:'}</strong> ${ingredients}<br>` : ''}
+                                ${ingredients ? `<strong>${(typeof currentLang !== 'undefined' && translations[currentLang]) ? translations[currentLang].ingredients_label : 'İçindekiler:'}</strong> ${ingredients}${(allergens || (extrasStr && extrasStr !== 'undefined')) ? '<br>' : ''}` : ''}
                                 ${allergens ? `<strong style="color: #ffb44d;">${(typeof currentLang !== 'undefined' && translations[currentLang]) ? translations[currentLang].allergen_label : '⚠️ Alerjen Uyarısı:'}</strong> ${allergens}` : ''}
-                                ${extrasStr && extrasStr !== 'undefined' ? `<div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.1); color: #ccc;"><em>${extrasStr}</em></div>` : ''}
-                            </div>
+                                ${extrasStr && extrasStr !== 'undefined' ? `<div style="color: #ccc; ${(ingredients || allergens) ? 'margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.1);' : ''}"><em>${extrasStr}</em></div>` : ''}
+                            </div>` : ''}
                         </div>
                     `;
                 }
@@ -619,6 +616,9 @@ let menuData = [
                     const { data: catData, error: catError } = catResult;
                     const { data: itemData, error: itemError } = itemResult;
                     
+                    if (catError || itemError) {
+                        console.error('Supabase veri hatası:', catError || itemError);
+                    }
                     if (!catError && catData && !itemError && itemData) {
                         categories = catData.map(c => ({
                             id: c.id,
