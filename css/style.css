@@ -78,11 +78,14 @@
 .qr-category-card:nth-child(9), .qr-card:nth-child(10) { transition-delay: 0.27s; }
 .qr-category-card:nth-child(10), .qr-card:nth-child(11) { transition-delay: 0.3s; }
 
-/* Image load fade-in */
+/* Image load fade-in and download protection */
 .qr-category-card img,
 .qr-card-img {
   opacity: 0;
   transition: opacity 0.4s ease, transform 0.3s ease, filter 0.3s ease;
+  pointer-events: none; /* Sağ tık ve sürüklemeyi engeller */
+  user-select: none;    /* Seçilmeyi engeller */
+  -webkit-user-drag: none; /* Safari/Chrome sürüklemeyi engeller */
 }
 
 .qr-category-card img.loaded,

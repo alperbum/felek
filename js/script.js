@@ -268,15 +268,12 @@ let menuData = [
     { categoryId: "biralar", title: { tr: "Cips", en: "Cips", ar: "Cips", ru: "Cips" }, price: "₺300,00", image: "" },
     { categoryId: "biralar", title: { tr: "Antep Çerez", en: "Antep Çerez", ar: "Antep Çerez", ru: "Antep Çerez" }, price: "₺245,00", image: "" },
     { categoryId: "biralar", title: { tr: "Patates Tava", en: "Patates Tava", ar: "Patates Tava", ru: "Patates Tava" }, price: "₺240,00", image: "" },
-    { categoryId: "alkolsuz", title: { tr: "1 Litre Şalgam / Tonik", en: "1 Litre Şalgam / Tonik", ar: "1 Litre Şalgam / Tonik", ru: "1 Litre Şalgam / Tonik" }, price: "₺400,00", image: "" },
-    { categoryId: "alkolsuz", title: { tr: "Büyük Redbull", en: "Büyük Redbull", ar: "Büyük Redbull", ru: "Büyük Redbull" }, price: "₺270,00", image: "" },
-    { categoryId: "alkolsuz", title: { tr: "Redbull", en: "Redbull", ar: "Redbull", ru: "Redbull" }, price: "₺175,00", image: "" },
+    { categoryId: "alkolsuz", title: { tr: "Redbull", en: "Redbull", ar: "Redbull", ru: "Redbull" }, price: "₺170,00", image: "", extras: { tr: "+₺100,00 Büyük Redbull", en: "+₺100,00 Large Redbull", ar: "+₺100,00 ريد بول كبير", ru: "+₺100,00 Большой Ред Булл" } },
     { categoryId: "alkolsuz", title: { tr: "Kola / Fanta / Sprite", en: "Kola / Fanta / Sprite", ar: "Kola / Fanta / Sprite", ru: "Kola / Fanta / Sprite" }, price: "₺145,00", image: "" },
-    { categoryId: "alkolsuz", title: { tr: "Tonik", en: "Tonik", ar: "Tonik", ru: "Tonik" }, price: "₺140,00", image: "" },
+    { categoryId: "alkolsuz", title: { tr: "Şalgam / Tonik", en: "Turnip Juice / Tonic", ar: "عصير اللفت / تونيك", ru: "Шалгам / Тоник" }, price: "₺140,00", image: "", extras: { tr: "+₺260,00 1 Litre", en: "+₺260,00 1 Liter", ar: "+₺260,00 1 لتر", ru: "+₺260,00 1 литр" } },
     { categoryId: "alkolsuz", title: { tr: "Portakal / Vişne / Şeftali Suyu", en: "Portakal / Vişne / Şeftali Suyu", ar: "Portakal / Vişne / Şeftali Suyu", ru: "Portakal / Vişne / Şeftali Suyu" }, price: "₺130,00", image: "" },
     { categoryId: "alkolsuz", title: { tr: "Ice Tea Limon / Şeftali", en: "Ice Tea Limon / Şeftali", ar: "Ice Tea Limon / Şeftali", ru: "Ice Tea Limon / Şeftali" }, price: "₺130,00", image: "" },
     { categoryId: "alkolsuz", title: { tr: "Churchill", en: "Churchill", ar: "Churchill", ru: "Churchill" }, price: "₺130,00", image: "" },
-    { categoryId: "alkolsuz", title: { tr: "Acılı / Acısız Şalgam", en: "Acılı / Acısız Şalgam", ar: "Acılı / Acısız Şalgam", ru: "Acılı / Acısız Şalgam" }, price: "₺110,00", image: "" },
     { categoryId: "alkolsuz", title: { tr: "Ayran", en: "Ayran", ar: "Ayran", ru: "Ayran" }, price: "₺100,00", image: "" },
     { categoryId: "alkolsuz", title: { tr: "Soda", en: "Soda", ar: "Soda", ru: "Soda" }, price: "₺75,00", image: "" }
 ];

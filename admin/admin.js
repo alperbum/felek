@@ -310,7 +310,16 @@ function resetImagePreview(previewId, placeholderId) {
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
 const MAX_RAW_SIZE = 10 * 1024 * 1024;
 const MAX_DIMENSION = 1200;
-const COMPRESS_QUALITY = 0.80;
+const COMPRESS_QUALITY = 0.82;
+
+// WebP desteğini bir kez test et
+const WEBP_SUPPORTED = (() => {
+    try {
+        const c = document.createElement('canvas');
+        c.width = 1; c.height = 1;
+        return c.toDataURL('image/webp').startsWith('data:image/webp');
+    } catch (e) { return false; }
+})();
 
 async function compressImage(file) {
     if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
@@ -334,12 +343,29 @@ async function compressImage(file) {
             const canvas = document.createElement('canvas');
             canvas.width = width; canvas.height = height;
             canvas.getContext('2d').drawImage(img, 0, 0, width, height);
-            canvas.toBlob((blob) => {
-                if (blob) resolve(new File([blob], file.name.replace(/\.[^.]+$/, '.webp'), { type: 'image/webp' }));
-                else canvas.toBlob((jpgBlob) => {
-                    resolve(jpgBlob ? new File([jpgBlob], file.name.replace(/\.[^.]+$/, '.jpg'), { type: 'image/jpeg' }) : file);
+
+            if (WEBP_SUPPORTED) {
+                // WebP destekleniyor — doğrudan WebP üret
+                canvas.toBlob((blob) => {
+                    if (blob) {
+                        resolve(new File([blob], file.name.replace(/\.[^.]+$/, '.webp'), { type: 'image/webp' }));
+                    } else {
+                        // Blob boş döndü, JPEG'e düş
+                        canvas.toBlob((jpgBlob) => {
+                            resolve(jpgBlob
+                                ? new File([jpgBlob], file.name.replace(/\.[^.]+$/, '.jpg'), { type: 'image/jpeg' })
+                                : file);
+                        }, 'image/jpeg', COMPRESS_QUALITY);
+                    }
+                }, 'image/webp', COMPRESS_QUALITY);
+            } else {
+                // WebP desteklenmiyor (Safari vb.) — JPEG üret
+                canvas.toBlob((jpgBlob) => {
+                    resolve(jpgBlob
+                        ? new File([jpgBlob], file.name.replace(/\.[^.]+$/, '.jpg'), { type: 'image/jpeg' })
+                        : file);
                 }, 'image/jpeg', COMPRESS_QUALITY);
-            }, 'image/webp', COMPRESS_QUALITY);
+            }
         };
         img.onerror = () => { URL.revokeObjectURL(url); resolve(file); };
         img.src = url;
@@ -351,9 +377,14 @@ async function uploadImage(file, categoryId) {
     const compressed = await compressImage(file);
     if (!compressed) return null;
     const fileExt = compressed.name.split('.').pop();
+    const mimeType = compressed.type || (fileExt === 'webp' ? 'image/webp' : 'image/jpeg');
     const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 11)}.${fileExt}`;
     const filePath = categoryId ? `${categoryId}/${fileName}` : fileName;
-    const { error } = await sb.storage.from('images').upload(filePath, compressed, { cacheControl: '86400', upsert: false });
+    const { error } = await sb.storage.from('images').upload(filePath, compressed, {
+        cacheControl: '86400',
+        upsert: false,
+        contentType: mimeType
+    });
     if (error) { showToast('Görsel yüklenemedi: ' + error.message, 'error'); return null; }
     const { data } = sb.storage.from('images').getPublicUrl(filePath);
     return data.publicUrl;
