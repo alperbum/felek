@@ -196,8 +196,8 @@ function renderItemsList(filterCatId = '') {
             </div>
             <span class="item-price">${priceText}</span>
             <div class="item-actions">
-                <button class="btn-icon" onclick="editItem('${item.id}')" title="Düzenle">✏️</button>
-                <button class="btn-icon danger" onclick="handleDeleteItem('${item.id}')" title="Sil">🗑️</button>
+                <button class="btn-icon" onclick="editItem('${escapeAttr(item.id)}')" title="Düzenle">✏️</button>
+                <button class="btn-icon danger" onclick="handleDeleteItem('${escapeAttr(item.id)}')" title="Sil">🗑️</button>
             </div>
         `;
         container.appendChild(card);

@@ -280,8 +280,6 @@ let menuData = [
 ];
 
     const menuGrid = document.getElementById('qr-menu-grid');
-    const categoryNav = document.getElementById('category-nav');
-    if (categoryNav) categoryNav.style.display = 'none'; // Yeni yapıda buton nav yok
 
     if (menuGrid) {
         let currentView = 'categories';
@@ -351,7 +349,7 @@ let menuData = [
                     }
                 });
 
-                // Failsafe: 4 saniyeden fazla bekleme
+                // Failsafe: Yavaş bağlantılarda 1.5 saniyeden fazla bekletme
                 setTimeout(() => {
                     if (loaded < total) {
                         container.querySelectorAll('.qr-category-card, .qr-card').forEach(c => {
@@ -362,7 +360,7 @@ let menuData = [
                         images.forEach(img => img.classList.add('loaded'));
                         resolve();
                     }
-                }, 4000);
+                }, 1500);
             });
         }
 
@@ -569,11 +567,11 @@ let menuData = [
                                 ${item.price ? `<span class="qr-card-price">${item.price}</span>` : ''}
                             </div>
                             ${desc ? `<p class="qr-card-desc">${desc}</p>` : ''}
-                            ${(ingredients || allergens || (extrasStr && extrasStr !== 'undefined')) ? `
+                            ${(ingredients || allergens || (extrasStr && extrasStr.trim() !== '' && extrasStr !== 'undefined')) ? `
                             <div class="qr-card-ingredients">
-                                ${ingredients ? `<strong>${(typeof currentLang !== 'undefined' && translations[currentLang]) ? translations[currentLang].ingredients_label : 'İçindekiler:'}</strong> ${ingredients}${(allergens || (extrasStr && extrasStr !== 'undefined')) ? '<br>' : ''}` : ''}
+                                ${ingredients ? `<strong>${(typeof currentLang !== 'undefined' && translations[currentLang]) ? translations[currentLang].ingredients_label : 'İçindekiler:'}</strong> ${ingredients}${(allergens || (extrasStr && extrasStr.trim() !== '' && extrasStr !== 'undefined')) ? '<br>' : ''}` : ''}
                                 ${allergens ? `<strong style="color: #ffb44d;">${(typeof currentLang !== 'undefined' && translations[currentLang]) ? translations[currentLang].allergen_label : '⚠️ Alerjen Uyarısı:'}</strong> ${allergens}` : ''}
-                                ${extrasStr && extrasStr !== 'undefined' ? `<div style="color: #ccc; ${(ingredients || allergens) ? 'margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.1);' : ''}"><em>${extrasStr}</em></div>` : ''}
+                                ${extrasStr && extrasStr.trim() !== '' && extrasStr !== 'undefined' ? `<div style="color: #ccc; ${(ingredients || allergens) ? 'margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,0.1);' : ''}"><em>${extrasStr}</em></div>` : ''}
                             </div>` : ''}
                         </div>
                     `;
