@@ -37,6 +37,16 @@ function escapeHtml(str) {
 
 function isRateLimited(ip) {
     const now = Date.now();
+
+    // Hafıza sızıntısı koruması: Map çok büyürse eskiyen kayıtları temizle
+    if (rateLimitMap.size > 1000) {
+        for (const [key, val] of rateLimitMap.entries()) {
+            if (now - val.timestamp > RATE_LIMIT_WINDOW) {
+                rateLimitMap.delete(key);
+            }
+        }
+    }
+
     const entry = rateLimitMap.get(ip);
 
     if (!entry || now - entry.timestamp > RATE_LIMIT_WINDOW) {
