@@ -20,4 +20,9 @@
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.felekmangalbasi.com/menu.html?lang=ar"/>
     <xhtml:link rel="alternate" hreflang="ru" href="https://www.felekmangalbasi.com/menu.html?lang=ru"/>
   </url>
+  <url>
+    <loc>https://www.felekmangalbasi.com/llms.txt</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
