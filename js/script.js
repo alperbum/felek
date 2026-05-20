@@ -164,9 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { id: "biralar", image: "" },
     { id: "votka_cin", image: "" },
     { id: "tatli_meyve", image: "" }
-];
-
-let menuData = [
+];let menuData = [
     { categoryId: "mezeler", title: { tr: "Havuç Tarator", en: "Havuç Tarator", ar: "Havuç Tarator", ru: "Havuç Tarator" }, price: "₺320,00", image: "" },
     { categoryId: "mezeler", title: { tr: "Kırmızı Peynir Dolgulu Biber", en: "Kırmızı Peynir Dolgulu Biber", ar: "Kırmızı Peynir Dolgulu Biber", ru: "Kırmızı Peynir Dolgulu Biber" }, price: "₺320,00", image: "" },
     { categoryId: "mezeler", title: { tr: "Köpoğlu", en: "Köpoğlu", ar: "Köpoğlu", ru: "Köpoğlu" }, price: "₺320,00", image: "" },
@@ -241,15 +239,22 @@ let menuData = [
     { categoryId: "raki", title: { tr: "Tek Göbek", en: "Tek Göbek", ar: "Tek Göbek", ru: "Tek Göbek" }, price: "₺290,00", image: "" },
     { categoryId: "raki", title: { tr: "Duble Rakı", en: "Duble Rakı", ar: "Duble Rakı", ru: "Duble Rakı" }, price: "₺380,00", image: "" },
     { categoryId: "raki", title: { tr: "Tek Rakı", en: "Tek Rakı", ar: "Tek Rakı", ru: "Tek Rakı" }, price: "₺240,00", image: "" },
-    { categoryId: "viski", title: { tr: "Chivas 70 cl", en: "Chivas 70 cl", ar: "Chivas 70 cl", ru: "Chivas 70 cl" }, price: "₺5.700,00", image: "" },
-    { categoryId: "viski", title: { tr: "Chivas 35 cl", en: "Chivas 35 cl", ar: "Chivas 35 cl", ru: "Chivas 35 cl" }, price: "₺2.900,00", image: "" },
+    { categoryId: "raki", title: { tr: "Beylerbeyi Teragold 70 cl", en: "Beylerbeyi Teragold 70 cl", ar: "Beylerbeyi Teragold 70 cl", ru: "Beylerbeyi Teragold 70 cl" }, price: "", image: "" },
+    { categoryId: "raki", title: { tr: "Beylerbeyi Teragold 35 cl", en: "Beylerbeyi Teragold 35 cl", ar: "Beylerbeyi Teragold 35 cl", ru: "Beylerbeyi Teragold 35 cl" }, price: "", image: "" },
+    { categoryId: "viski", title: { tr: "Chivas 12 70 cl", en: "Chivas 12 70 cl", ar: "Chivas 12 70 cl", ru: "Chivas 12 70 cl" }, price: "₺5.700,00", image: "" },
+    { categoryId: "viski", title: { tr: "Chivas 12 35 cl", en: "Chivas 12 35 cl", ar: "Chivas 12 35 cl", ru: "Chivas 12 35 cl" }, price: "₺2.900,00", image: "" },
     { categoryId: "viski", title: { tr: "Duble Viski", en: "Duble Viski", ar: "Duble Viski", ru: "Duble Viski" }, price: "₺650,00", image: "" },
     { categoryId: "viski", title: { tr: "Tek Viski", en: "Tek Viski", ar: "Tek Viski", ru: "Tek Viski" }, price: "₺450,00", image: "" },
+    { categoryId: "viski", title: { tr: "Johnnie Walker Black Label", en: "Johnnie Walker Black Label", ar: "Johnnie Walker Black Label", ru: "Johnnie Walker Black Label" }, price: "", image: "" },
+    { categoryId: "viski", title: { tr: "Chivas 18 Yıllık", en: "Chivas Regal 18 Years Old", ar: "Chivas 18 Yıllık", ru: "Chivas 18 Yıllık" }, price: "", image: "" },
     { categoryId: "votka_cin", title: { tr: "Absolut 70 cl", en: "Absolut 70 cl", ar: "Absolut 70 cl", ru: "Absolut 70 cl" }, price: "₺4.200,00", image: "" },
     { categoryId: "votka_cin", title: { tr: "Absolut 35 cl", en: "Absolut 35 cl", ar: "Absolut 35 cl", ru: "Absolut 35 cl" }, price: "₺2.150,00", image: "" },
     { categoryId: "votka_cin", title: { tr: "Smirnoff 70 cl", en: "Smirnoff 70 cl", ar: "Smirnoff 70 cl", ru: "Smirnoff 70 cl" }, price: "₺4.200,00", image: "" },
     { categoryId: "votka_cin", title: { tr: "Duble Cin", en: "Duble Cin", ar: "Duble Cin", ru: "Duble Cin" }, price: "₺470,00", image: "" },
     { categoryId: "votka_cin", title: { tr: "Duble Absolut Votka", en: "Duble Absolut Votka", ar: "Duble Absolut Votka", ru: "Duble Absolut Votka" }, price: "₺420,00", image: "" },
+    { categoryId: "votka_cin", title: { tr: "Belvedere Votka", en: "Belvedere Vodka", ar: "Belvedere Votka", ru: "Belvedere Votka" }, price: "", image: "" },
+    { categoryId: "votka_cin", title: { tr: "Tanqueray No. TEN Cin", en: "Tanqueray No. TEN Gin", ar: "Tanqueray No. TEN Cin", ru: "Tanqueray No. TEN Cin" }, price: "", image: "" },
+    { categoryId: "votka_cin", title: { tr: "Gordon's Cin", en: "Gordon's London Dry Gin", ar: "Gordon's Cin", ru: "Gordon's Cin" }, price: "", image: "" },
     { categoryId: "sarap", title: { tr: "Sarafin 75 cl (Kırmızı/Beyaz/Blush)", en: "Sarafin 75 cl (Kırmızı/Beyaz/Blush)", ar: "Sarafin 75 cl (Kırmızı/Beyaz/Blush)", ru: "Sarafin 75 cl (Kırmızı/Beyaz/Blush)" }, price: "₺4.300,00", image: "" },
     { categoryId: "sarap", title: { tr: "Versus Dedeçeşme 75 cl", en: "Versus Dedeçeşme 75 cl", ar: "Versus Dedeçeşme 75 cl", ru: "Versus Dedeçeşme 75 cl" }, price: "₺3.000,00", image: "" },
     { categoryId: "sarap", title: { tr: "Versus Beyaz 75 cl", en: "Versus Beyaz 75 cl", ar: "Versus Beyaz 75 cl", ru: "Versus Beyaz 75 cl" }, price: "₺2.900,00", image: "" },
@@ -259,6 +264,7 @@ let menuData = [
     { categoryId: "sarap", title: { tr: "Buzbağ 75 cl (Kırmızı/Beyaz)", en: "Buzbağ 75 cl (Kırmızı/Beyaz)", ar: "Buzbağ 75 cl (Kırmızı/Beyaz)", ru: "Buzbağ 75 cl (Kırmızı/Beyaz)" }, price: "₺1.950,00", image: "" },
     { categoryId: "sarap", title: { tr: "Buzbağ 37,5 cl (Kırmızı/Beyaz)", en: "Buzbağ 37,5 cl (Kırmızı/Beyaz)", ar: "Buzbağ 37,5 cl (Kırmızı/Beyaz)", ru: "Buzbağ 37,5 cl (Kırmızı/Beyaz)" }, price: "₺900,00", image: "" },
     { categoryId: "sarap", title: { tr: "Kadeh Şarap", en: "Kadeh Şarap", ar: "Kadeh Şarap", ru: "Kadeh Şarap" }, price: "₺450,00", image: "" },
+    { categoryId: "sarap", title: { tr: "Prosecco / Köpüklü Şarap", en: "Prosecco / Sparkling Wine", ar: "Prosecco / Köpüklü Şarap", ru: "Prosecco / Köpüklü Şarap" }, price: "", image: "" },
     { categoryId: "biralar", title: { tr: "Efes 50 cl", en: "Efes 50 cl", ar: "Efes 50 cl", ru: "Efes 50 cl" }, price: "₺420,00", image: "" },
     { categoryId: "biralar", title: { tr: "Tuborg 50 cl", en: "Tuborg 50 cl", ar: "Tuborg 50 cl", ru: "Tuborg 50 cl" }, price: "₺420,00", image: "" },
     { categoryId: "biralar", title: { tr: "Corona 33 cl", en: "Corona 33 cl", ar: "Corona 33 cl", ru: "Corona 33 cl" }, price: "₺320,00", image: "" },
@@ -268,15 +274,20 @@ let menuData = [
     { categoryId: "biralar", title: { tr: "Cips", en: "Cips", ar: "Cips", ru: "Cips" }, price: "₺300,00", image: "" },
     { categoryId: "biralar", title: { tr: "Antep Çerez", en: "Antep Çerez", ar: "Antep Çerez", ru: "Antep Çerez" }, price: "₺245,00", image: "" },
     { categoryId: "biralar", title: { tr: "Patates Tava", en: "Patates Tava", ar: "Patates Tava", ru: "Patates Tava" }, price: "₺240,00", image: "" },
-    { categoryId: "alkolsuz", title: { tr: "Redbull", en: "Redbull", ar: "Redbull", ru: "Redbull" }, price: "₺170,00", image: "", extras: { tr: "+₺100,00 Büyük Redbull", en: "+₺100,00 Large Redbull", ar: "+₺100,00 ريد بول كبير", ru: "+₺100,00 Большой Ред Булл" } },
-    { categoryId: "alkolsuz", title: { tr: "Kola / Fanta / Sprite", en: "Kola / Fanta / Sprite", ar: "Kola / Fanta / Sprite", ru: "Kola / Fanta / Sprite" }, price: "₺145,00", image: "" },
+    { categoryId: "alkolsuz", title: { tr: "Redbull", en: "Redbull", ar: "Redbull", ru: "Redbull" }, price: "₺170,00", image: "", extras: { tr: "+₺100,00 Büyük Redbull", en: "+₺100,00 Large Redbull", ar: "+₺100,00 ريد بول كبير", ru: "+₺100,00 Büyük Redbull" } },
     { categoryId: "alkolsuz", title: { tr: "Tonik", en: "Tonic", ar: "تونيك", ru: "Тоник" }, price: "₺140,00", image: "", extras: { tr: "+₺260,00 1 Litre", en: "+₺260,00 1 Liter", ar: "+₺260,00 1 لتر", ru: "+₺260,00 1 литр" } },
     { categoryId: "alkolsuz", title: { tr: "Acılı / Acısız Şalgam", en: "Turnip Juice (Spicy / Mild)", ar: "عصير اللفت (حار / بارد)", ru: "Шалгам (Острый / Мягкий)" }, price: "₺110,00", image: "", extras: { tr: "+₺290,00 1 Litre", en: "+₺290,00 1 Liter", ar: "+₺290,00 1 لتر", ru: "+₺290,00 1 литр" } },
-    { categoryId: "alkolsuz", title: { tr: "Portakal / Vişne / Şeftali Suyu", en: "Portakal / Vişne / Şeftali Suyu", ar: "Portakal / Vişne / Şeftali Suyu", ru: "Portakal / Vişne / Şeftali Suyu" }, price: "₺130,00", image: "" },
-    { categoryId: "alkolsuz", title: { tr: "Ice Tea Limon / Şeftali", en: "Ice Tea Limon / Şeftali", ar: "Ice Tea Limon / Şeftali", ru: "Ice Tea Limon / Şeftali" }, price: "₺130,00", image: "" },
     { categoryId: "alkolsuz", title: { tr: "Churchill", en: "Churchill", ar: "Churchill", ru: "Churchill" }, price: "₺130,00", image: "" },
     { categoryId: "alkolsuz", title: { tr: "Ayran", en: "Ayran", ar: "Ayran", ru: "Ayran" }, price: "₺100,00", image: "" },
-    { categoryId: "alkolsuz", title: { tr: "Soda", en: "Soda", ar: "Soda", ru: "Soda" }, price: "₺75,00", image: "" }
+    { categoryId: "alkolsuz", title: { tr: "Soda", en: "Soda", ar: "Soda", ru: "Soda" }, price: "₺75,00", image: "" },
+    { categoryId: "alkolsuz", title: { tr: "Kola", en: "Coca-Cola", ar: "كولا", ru: "Кола" }, price: "₺145,00", image: "" },
+    { categoryId: "alkolsuz", title: { tr: "Kola (Zero)", en: "Coca-Cola Zero Sugar", ar: "كولا زيرو", ru: "Кола Зеро" }, price: "₺145,00", image: "" },
+    { categoryId: "alkolsuz", title: { tr: "Fanta", en: "Fanta", ar: "فانتا", ru: "Фанта" }, price: "₺145,00", image: "" },
+    { categoryId: "alkolsuz", title: { tr: "Sprite", en: "Sprite", ar: "سبرايت", ru: "Спрайт" }, price: "₺145,00", image: "" },
+    { categoryId: "alkolsuz", title: { tr: "Kayısı Suyu", en: "Apricot Juice", ar: "عصير المشمş", ru: "Абрикосовый сок" }, price: "₺130,00", image: "" },
+    { categoryId: "alkolsuz", title: { tr: "Vişne Suyu", en: "Sour Cherry Juice", ar: "عصير الكرز", ru: "Вишневый сок" }, price: "₺130,00", image: "" },
+    { categoryId: "alkolsuz", title: { tr: "Şeftali Suyu", en: "Peach Juice", ar: "عصير الخوخ", ru: "Персиковый сок" }, price: "₺130,00", image: "" },
+    { categoryId: "alkolsuz", title: { tr: "Portakal Suyu", en: "Orange Juice", ar: "عصير البرتقال", ru: "Апельсиновый сок" }, price: "₺130,00", image: "" }
 ];
 
     const menuGrid = document.getElementById('qr-menu-grid');
