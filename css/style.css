@@ -842,6 +842,73 @@ footer {
     border-color: var(--accent);
 }
 
+/* iOS üzerinde kaydirma izni — menü listesinde dikey scroll korunsun */
+.qr-menu-grid {
+    touch-action: pan-y;
+}
+
+/* Desktop'ta sticky back bar görünmez */
+#qr-sticky-back {
+    display: none;
+}
+
+/* Mobilde grid içindeki back button gizlenir (sticky bar var) */
+@media (max-width: 768px) {
+    #qr-sticky-back {
+        display: flex;
+    }
+    .qr-back-desktop {
+        display: none;
+    }
+}
+
+/* Sticky Geri Dön butonu — sadece mobilde aktif */
+@media (max-width: 768px) {
+    .qr-sticky-back {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 500;
+        padding: 0.75rem 1.5rem;
+        padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+        background: rgba(14, 12, 10, 0.96);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        animation: slideUpBar 0.3s ease;
+    }
+
+    .qr-sticky-back .qr-back-btn {
+        flex: 1;
+        margin-bottom: 0;
+        text-align: center;
+        padding: 0.85rem 1rem;
+        font-size: 13px;
+    }
+
+    .qr-sticky-back-hint {
+        font-size: 11px;
+        color: var(--muted);
+        letter-spacing: 0.1em;
+        opacity: 0.6;
+        white-space: nowrap;
+    }
+
+    /* Sticky bar açıkken sayfa altına padding ekle ki içerik arkasında kalmasın */
+    body.has-sticky-back {
+        padding-bottom: calc(72px + env(safe-area-inset-bottom));
+    }
+
+    @keyframes slideUpBar {
+        from { transform: translateY(100%); opacity: 0; }
+        to   { transform: translateY(0);   opacity: 1; }
+    }
+}
+
 /* Menu Items Cards */
 .qr-card {
     background-color: var(--bg2);

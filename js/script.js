@@ -379,6 +379,11 @@ document.addEventListener('DOMContentLoaded', () => {
         function renderCategories() {
             currentView = 'categories';
             menuGrid.innerHTML = '';
+
+            // Sticky back bar'u kaldır
+            const stickyBar = document.getElementById('qr-sticky-back');
+            if (stickyBar) stickyBar.remove();
+            document.body.classList.remove('has-sticky-back');
             
             categories.forEach(cat => {
                 const card = document.createElement('div');
@@ -412,15 +417,66 @@ document.addEventListener('DOMContentLoaded', () => {
             revealCardsWhenReady(menuGrid, '.qr-category-card img');
         }
 
+        // iOS Safari swipe-back önleme + touch ile geri navigasyon
+        let touchStartX = 0;
+        let touchStartY = 0;
+        const SWIPE_THRESHOLD = 60;   // px - ne kadar kaydırılırsa tetiklensin
+        const EDGE_ZONE = 40;         // px - ekranın sol kenarından bu kadar içeride başlarsa edge swipe sayılır
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        document.addEventListener('touchend', function(e) {
+            if (currentView !== 'items') return;
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            // Yatay hareket baskın, soldan sağa, yeterli mesafe
+            if (dx > SWIPE_THRESHOLD && Math.abs(dy) < Math.abs(dx) * 0.6) {
+                renderCategories();
+            }
+        }, { passive: true });
+
+        // History API ile sahte state yönetimi:
+        // Kategoriye girildiğinde items state'i push et.
+        // Safari'nin swipe geri'si popstate'i tetikler → renderCategories() çağrılır, sayfa değişmez.
+        window.addEventListener('popstate', function(e) {
+            if (currentView === 'items') {
+                e.preventDefault && e.preventDefault();
+                renderCategories();
+            }
+        });
+
         // Alt Menü (Seçili Kategorinin Ürünleri)
         function renderMenu() {
             currentView = 'items';
             menuGrid.innerHTML = '';
+
+            // History state push: Safari swipe-back bu state'i poplatır
+            if (!history.state || history.state.view !== 'items') {
+                history.pushState({ view: 'items' }, '');
+            }
+
+            // Sticky geri dön butonu (mobil için)
+            const backBtnText = (typeof currentLang !== 'undefined' && translations[currentLang]) ? translations[currentLang].btn_back : '← Geri Dön';
+            if (window.matchMedia('(max-width: 768px)').matches) {
+                // Var olan sticky barı kaldır
+                const existingBar = document.getElementById('qr-sticky-back');
+                if (existingBar) existingBar.remove();
+
+                const stickyBar = document.createElement('div');
+                stickyBar.id = 'qr-sticky-back';
+                stickyBar.className = 'qr-sticky-back';
+                stickyBar.innerHTML = `<button class="qr-back-btn" onclick="renderCategories()">${backBtnText}</button>`;
+                document.body.appendChild(stickyBar);
+                document.body.classList.add('has-sticky-back');
+            }
             
-            // Geri Dön Butonu
+            // Geri Dön Butonu - grid içinde üstte (desktop)
             const backBtnContainer = document.createElement('div');
             backBtnContainer.style.gridColumn = '1 / -1';
-            const backBtnText = (typeof currentLang !== 'undefined' && translations[currentLang]) ? translations[currentLang].btn_back : '← Geri Dön';
+            backBtnContainer.className = 'qr-back-desktop';
             backBtnContainer.innerHTML = `<button class="qr-back-btn" onclick="renderCategories()">${backBtnText}</button>`;
             menuGrid.appendChild(backBtnContainer);
 
@@ -594,8 +650,15 @@ document.addEventListener('DOMContentLoaded', () => {
             revealCardsWhenReady(menuGrid, '.qr-card-img');
         }
 
+        // renderCategories override: history state'i temizle
+        const _origRenderCategories = renderCategories;
+        window.renderCategories = function() {
+            // Eğer history'de items state varsa, bir geri git ki swipe'ın push ettiği state temizlensin
+            // Ama bunu sadece programatik çağrılarda yapalım (popstate'den değil)
+            _origRenderCategories();
+        };
+
         // Global functions for onclick and language switcher
-        window.renderCategories = renderCategories;
         window.renderMenu = renderMenu;
         window.getCurrentView = () => currentView;
 
